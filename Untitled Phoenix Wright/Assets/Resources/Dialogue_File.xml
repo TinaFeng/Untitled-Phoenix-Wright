@@ -2,16 +2,16 @@
 
 <Dialogue_Collection_1>
   <Scene>
-  <name> Court Wating Room </name> 
-    <object name = " ">null*  &lt;color=#5DE42F&gt;7 月 16 日  上午 9 点 50 分  
+  <name>Court_Wating_Room</name> 
+    <object name = " ">null*  &lt;color=#5DE42F&gt; July 16th   9:50 a.m.  
     
-  当地法院  被告人第一候审室 &lt;/color&gt;</object>
-    <object name ="???">null*  &lt;color=#2DA7DB&gt;（没想到这么快就要开庭了.....）&lt;/color&gt;</object>>
-    <object name ="???">null*  怎么，紧张了？</object>>
-    <object name ="???">null* 别，别这样说啊，&lt;color=#E67634&gt;老师&lt;/color&gt;！</object>>
-    <object name ="老师">Sensei*  哈哈，我就是开个玩笑。相信自己，没问题的。</object>>
-    <object name ="???">null*   &lt;color=#2DA7DB&gt;（我的名字叫做&lt;/color&gt;&lt;color=#E67634&gt;米祖·奈提加尔&lt;/color&gt; &lt;color=#2DA7DB&gt;，是一名律师。）&lt;/color&gt;</object>>
-    <object name ="米祖">null*  &lt;color=#2DA7DB&gt;（而今天，将是我第一次为别人辩护。）&lt;/color&gt;</object>>
+  Court &lt;/color&gt;</object>
+    <object name ="???">null*  &lt;color=#2DA7DB&gt;(This is too soon.....)&lt;/color&gt;</object>>
+    <object name ="???">null*  What is it, worried?</object>>
+    <object name ="???">null* Please don't say that, &lt;color=#E67634&gt;Mr. Sensei&lt;/color&gt;!</object>>
+    <object name ="Mr.Sensei">Sensei*  Hahhah, I'm just joking. Believe in yourself. You'll be fine.</object>>
+    <object name ="???">null*   &lt;color=#2DA7DB&gt;(My name is &lt;/color&gt;&lt;color=#E67634&gt;Insert Protagonist&lt;/color&gt; &lt;color=#2DA7DB&gt;, and I'm a defence attorney)&lt;/color&gt;</object>>
+    <object name ="Protagonist">null*  &lt;color=#2DA7DB&gt;(Today, is going to be my first time defending for someone)&lt;/color&gt;</object>>
   </Scene>
   
   <Scene>

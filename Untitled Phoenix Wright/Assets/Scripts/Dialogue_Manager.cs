@@ -23,7 +23,7 @@ public class Dialogue_Manager : MonoBehaviour {
 
     public GameObject Arrow;        // The little arrow thing to tell the player next dialogue
    
-    public string section_call="null";     //for debug purposes, this is which part of the dialogue we are calling
+    public string section_call="null";     //making it publuc for debug purposes. This is which part of the dialogue we are calling.
 
     // End of Inspector Input--------
 
@@ -91,7 +91,8 @@ public class Dialogue_Manager : MonoBehaviour {
 
             Debug.Log(section_call);
             
-            end_of_chapter = Script[section_call].Count;    //Mark the end as 1+ the size of script
+            end_of_chapter = Script[section_call].Count;    //Mark the end
+
 
             if (done)//if one dialogue is over
             {
@@ -108,34 +109,14 @@ public class Dialogue_Manager : MonoBehaviour {
                 reset_dialogue_box();
                
             }
-
+            else if (line_count ==0)//if we are just starting, auto play one
+            {
+                forward_dialogue();
+            }
+            
             else if (Input.GetMouseButtonDown(0) &&in_conversation)//if mouse click
             {
-            //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
-                if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
-                {
-                    wait_time = 0.04f;
-                    Arrow.SetActive(false);
-                }
-                if (done) //if we are done, set wait time back to default. 
-                {
-                    wait_time = 0.1f;
-                    name.text = Script[section_call][line_count].name;
-                    //play the current line out
-                    string processing = Script[section_call][line_count].text; //make a string for the content
-                                                                               // Debug.Log(Script[line_count].icon);
-                    image.texture = (Texture)Resources.Load("Arts/" + Script[section_call][line_count].icon);//load icon
-                    StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
-                    Arrow.SetActive(false);//shut the arrow
-                    line_count++;//prepare for the next
-
-                }
-
-
-             
-
-                //Debug.Log(line_count);
-                //Debug.Log(end_of_chapter);
+                forward_dialogue();
             }
         }
 
@@ -150,6 +131,36 @@ public class Dialogue_Manager : MonoBehaviour {
         image.texture = (Texture)Resources.Load("null");
         done = true;
         in_conversation = true;
+    }
+
+    void forward_dialogue()
+    {
+        //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
+        if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
+        {
+            wait_time = 0.04f;
+            Arrow.SetActive(false);
+        }
+        if (done) //if we are done, set wait time back to default. 
+        {
+            wait_time = 0.1f;
+            name.text = Script[section_call][line_count].name;
+            //play the current line out
+            string processing = Script[section_call][line_count].text; //make a string for the content
+                                                                       // Debug.Log(Script[line_count].icon);
+            image.texture = (Texture)Resources.Load("Arts/" + Script[section_call][line_count].icon);//load icon
+            StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
+            Arrow.SetActive(false);//shut the arrow
+            line_count++;//prepare for the next
+
+        }
+
+
+
+
+        //Debug.Log(line_count);
+        //Debug.Log(end_of_chapter);
+
     }
 
     IEnumerator PlayText(string story,Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
