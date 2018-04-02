@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding ="UTF-8"?>
+
+<Dialogue_Collection_1>
+  <Scene>
+  <name> Court Wating Room </name> 
+    <object name = " ">null*  &lt;color=#5DE42F&gt;7 月 16 日  上午 9 点 50 分  
+    
+  当地法院  被告人第一候审室 &lt;/color&gt;</object>
+    <object name ="???">null*  &lt;color=#2DA7DB&gt;（没想到这么快就要开庭了.....）&lt;/color&gt;</object>>
+    <object name ="???">null*  怎么，紧张了？</object>>
+    <object name ="???">null* 别，别这样说啊，&lt;color=#E67634&gt;老师&lt;/color&gt;！</object>>
+    <object name ="老师">Sensei*  哈哈，我就是开个玩笑。相信自己，没问题的。</object>>
+    <object name ="???">null*   &lt;color=#2DA7DB&gt;（我的名字叫做&lt;/color&gt;&lt;color=#E67634&gt;米祖·奈提加尔&lt;/color&gt; &lt;color=#2DA7DB&gt;，是一名律师。）&lt;/color&gt;</object>>
+    <object name ="米祖">null*  &lt;color=#2DA7DB&gt;（而今天，将是我第一次为别人辩护。）&lt;/color&gt;</object>>
+  </Scene>
+  
+  <Scene>
+    <name>Ittai</name>
+    <object name ="Player">Sensei*  &lt;color=#2DA7DB&gt;I don't know what it is.&lt;/color&gt;</object>>
+    <object name ="Player">null*   &lt;color=#2DA7DB&gt;But it looks &lt;color=#E67634&gt;creepy.&lt;/color&gt;&lt;/color&gt;</object>>
+  </Scene>
+</Dialogue_Collection_1>
