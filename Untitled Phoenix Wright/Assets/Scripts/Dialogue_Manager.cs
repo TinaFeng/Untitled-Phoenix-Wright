@@ -18,7 +18,7 @@ public class Dialogue_Manager : MonoBehaviour {
     public GameObject ImagePosition;// where the character face/animation located. 
                                     // Using ImagePosition because we need this position to call image from resources
                              
-    private RawImage image;         // The Image object after we load ImagePosition from resrouce file
+    private Image image;         // The Image object after we load ImagePosition from resrouce file
 
 
     public GameObject Arrow;        // The little arrow thing to tell the player next dialogue
@@ -73,8 +73,8 @@ public class Dialogue_Manager : MonoBehaviour {
         writer = Resources.Load("Typewriter") as AudioClip; //Load noises
 
         //Art
-        image = (RawImage)ImagePosition.GetComponent<RawImage>();       // get the raw image object in imageposition
-        image.texture = (Texture)Resources.Load("Arts/null");  //and assign the image to null (a blank png)
+        image = (Image)ImagePosition.GetComponent<Image>();       // get the raw image object in imageposition
+        image.sprite = Resources.Load<Sprite>("Arts/null");  //and assign the image to null (a blank png)
         Arrow.SetActive(false);     //shut the arrow
     }
 
@@ -122,18 +122,18 @@ public class Dialogue_Manager : MonoBehaviour {
 
 	}
 
-    void reset_dialogue_box()
+    void reset_dialogue_box() //clear all contents
     {
         line_count = 0;
         name.text = "";
         conversation.text = "";
-        image = (RawImage)ImagePosition.GetComponent<RawImage>();
-        image.texture = (Texture)Resources.Load("null");
+        image = (Image)ImagePosition.GetComponent<Image>();
+        image.sprite = (Sprite)Resources.Load("null");
         done = true;
         in_conversation = true;
     }
 
-    void forward_dialogue()
+    void forward_dialogue() //move on to next line 
     {
         //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
         if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
@@ -148,18 +148,12 @@ public class Dialogue_Manager : MonoBehaviour {
             //play the current line out
             string processing = Script[section_call][line_count].text; //make a string for the content
                                                                        // Debug.Log(Script[line_count].icon);
-            image.texture = (Texture)Resources.Load("Arts/" + Script[section_call][line_count].icon);//load icon
+            image.sprite = Resources.Load<Sprite>("Arts/" + Script[section_call][line_count].icon);//load icon
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
             line_count++;//prepare for the next
 
         }
-
-
-
-
-        //Debug.Log(line_count);
-        //Debug.Log(end_of_chapter);
 
     }
 
