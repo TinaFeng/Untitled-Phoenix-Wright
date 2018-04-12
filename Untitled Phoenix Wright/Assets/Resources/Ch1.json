@@ -1,0 +1,45 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Court_Wating_Room",
+      "objects": [
+        {
+          "name": " ",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F> July 16th   9:50 a.m./n Court"
+        },
+        {
+          "name": "???",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#2DA7DB>(This is too soon.....)</color>"
+        },
+        {
+          "name": "???",
+          "character": "Miles",
+          "animation": "Normal_Talking",
+          "text": "What is it,"
+        },
+        {
+          "name": "???",
+          "character": "Miles",
+          "animation": "Smile_Talking",
+          "text": "worried?"
+        }
+      ]
+    },
+    {
+      "name": "Court_Starting",
+      "objects": [
+        {
+          "name": "Judge",
+          "character": "Judge",
+          "animation": "Judge_Idle",
+          "text": "Trial blah"
+
+
+        }
+      ]
+    }]
+}

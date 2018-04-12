@@ -15,10 +15,10 @@ public class Dialogue_Manager : MonoBehaviour {
     public Text conversation;///The UI text field that is going to display what are they saying
 
     
-    public GameObject ImagePosition;// where the character face/animation located. 
-                                    // Using ImagePosition because we need this position to call image from resources
-                             
-    private Image image;         // The Image object after we load ImagePosition from resrouce file
+
+    //animation//protrait
+    GameObject animation_display;
+    Animator anim;
 
 
     public GameObject Arrow;        // The little arrow thing to tell the player next dialogue
@@ -35,7 +35,7 @@ public class Dialogue_Manager : MonoBehaviour {
     int line_count = 0;                                         // a counter that keeps track of which line is playing
     int end_of_chapter;                                         // an end indicator to tell object stop conversation
     bool in_conversation = false;                               // determine whether the chat box disappears
-
+   
 
    
     ///
@@ -47,7 +47,7 @@ public class Dialogue_Manager : MonoBehaviour {
     ///All the Audio Crap in the world
     AudioClip typing;
 
-    List<string> malevoices = new List<string>{ "???", "老师", "米祖", "裁判长" }; // a list of strings containing names of the male voices
+    List<string> malevoices = new List<string>{ "???", "Miles" }; // a list of strings containing names of the male voices
                                                                                    // the type writer can then play different noises accordingly
     List<string> fremalevoices = new List<string> {};
     
@@ -63,8 +63,8 @@ public class Dialogue_Manager : MonoBehaviour {
 
         //Script
          GameObject loader = GameObject.FindGameObjectWithTag("Script_Data");  //find the xml loader that has the xml data in the scene
-         Script =  loader.GetComponent<LoadXml>().sections;       //Assgin the processed dialogues in xmlloder as Script
-        //panel.SetActive(false);                                    //Panel is initially in a resting state
+         Script =  loader.GetComponent<LoadJson>().sections;       //Assgin the processed dialogues in xmlloder as Script
+        //panel.SetActive(false);                                    //Panel is initially in a resting state,comment out for debug purposes
 
         //Audio
         audioSource = GetComponent<AudioSource>();  //assgin audio source
@@ -73,9 +73,12 @@ public class Dialogue_Manager : MonoBehaviour {
         writer = Resources.Load("Typewriter") as AudioClip; //Load noises
 
         //Art
-        image = (Image)ImagePosition.GetComponent<Image>();       // get the raw image object in imageposition
-        image.sprite = Resources.Load<Sprite>("Arts/null");  //and assign the image to null (a blank png)
+
         Arrow.SetActive(false);     //shut the arrow
+
+        animation_display = GameObject.FindGameObjectWithTag("Character_Animator");
+        anim = animation_display.GetComponent<Animator>();
+
     }
 
     private void OnEnable() //everytime when the panel shows up,reset everything.
@@ -89,7 +92,7 @@ public class Dialogue_Manager : MonoBehaviour {
         if (section_call != "null")//if we know what we are talking
         {
 
-            Debug.Log(section_call);
+        //    Debug.Log(section_call);
             
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
@@ -127,14 +130,18 @@ public class Dialogue_Manager : MonoBehaviour {
         line_count = 0;
         name.text = "";
         conversation.text = "";
-        image = (Image)ImagePosition.GetComponent<Image>();
-        image.sprite = (Sprite)Resources.Load("null");
+        animation_display = GameObject.FindGameObjectWithTag("Character_Animator");
+        anim = animation_display.GetComponent<Animator>();
+        animation_display.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Animator>().runtimeAnimatorController; 
+        animation_display.GetComponent<Image>().sprite = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Image>().sprite;
+
         done = true;
         in_conversation = true;
     }
 
     void forward_dialogue() //move on to next line 
     {
+      
         //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
         if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
         {
@@ -148,7 +155,23 @@ public class Dialogue_Manager : MonoBehaviour {
             //play the current line out
             string processing = Script[section_call][line_count].text; //make a string for the content
                                                                        // Debug.Log(Script[line_count].icon);
-            image.sprite = Resources.Load<Sprite>("Arts/" + Script[section_call][line_count].icon);//load icon
+
+            
+            
+            GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character+ "/" + Script[section_call][line_count].animation);
+
+            
+//            Debug.Log(("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation));
+
+            
+            animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
+            animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
+
+            if (anim.gameObject.activeSelf)
+            {
+                anim.Play("Play");
+            }
+
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
             line_count++;//prepare for the next
