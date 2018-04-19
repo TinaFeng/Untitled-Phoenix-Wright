@@ -44,7 +44,7 @@ public class Dialogue_Manager : MonoBehaviour {
     ///  
   
 
-    ///All the Audio Crap in the world
+    ///All the Audio Crap in the world. Probably will move most of the audio to a separate audio manager
     AudioClip typing;
 
     List<string> malevoices = new List<string>{ "???", "Miles" }; // a list of strings containing names of the male voices
@@ -166,11 +166,6 @@ public class Dialogue_Manager : MonoBehaviour {
             
             animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
             animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
-
-            if (anim.gameObject.activeSelf)
-            {
-                anim.Play("Play");
-            }
 
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow

@@ -1,0 +1,16 @@
+﻿{
+  "Item_List": [
+    {
+      "name": "Attorney's Badge",
+      "file name": "Badge",
+      "description": "It's my badge. It shows that I am qualified to be a defense attorney. Although I've heared rumors about a defense attorney who had a paper badge, I still put my faith in the justice system.",
+      "is_unlocked": "1"
+    },
+    {
+      "name": "Cell Phone",
+      "file name": "Phone",
+      "description": "My phone.",
+      "is_unlocked": "1"
+    }
+  ]
+}
