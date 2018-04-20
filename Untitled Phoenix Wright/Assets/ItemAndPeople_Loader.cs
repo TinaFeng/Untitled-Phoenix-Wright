@@ -25,6 +25,12 @@ public class ItemAndPeople_Loader : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Load_Inventory("Item_List");
+
+        foreach(Type_Inventory item in items)
+        {
+            Debug.Log(item.display_name);
+            Debug.Log(item.description);
+        }
 	}
 	
     public void Load_Inventory(string content)
@@ -38,7 +44,32 @@ public class ItemAndPeople_Loader : MonoBehaviour {
 
         foreach (var item in Jo[content])
         {
-            Debug.Log(item.First);
+
+            int count = 0;
+            Type_Inventory individual = new Type_Inventory();
+            foreach(var value in item)
+            {
+                if (count == 0)//first item, name
+                {
+                    individual.display_name = value.First.ToString();
+
+                }
+                else if (count == 1) //second item, file name
+                    individual.file_name = value.First.ToString();
+                else if (count == 2)// thrid item, description
+                    individual.description = value.First.ToString();
+                else if (count == 3)// fourth item, is unlocked
+                {
+                    if (value.First.ToString() == "1")// unlocked already
+                        individual.is_unlocked = true;
+                    else
+                        individual.is_unlocked = false;
+                }
+
+                count++;
+            }
+
+            items.Add(individual);
         }
     }
 
