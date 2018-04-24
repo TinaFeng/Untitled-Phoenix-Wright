@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json.Converters;
 
+//Still under construction, but handles a different type of Json
+
 public class Type_Inventory // Type_Inventory stores information for each item and/or people profile.
                            // Such as name, description, unlocked or not, even more
                            
@@ -25,12 +27,14 @@ public class ItemAndPeople_Loader : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Load_Inventory("Item_List");
+        //Load_Inventory("People_List")  <--I don't have a list yet
 
-        foreach(Type_Inventory item in items)
-        {
-            Debug.Log(item.display_name);
-            Debug.Log(item.description);
-        }
+
+        //foreach(Type_Inventory item in items)
+        //{
+        //    Debug.Log(item.display_name);
+        //    Debug.Log(item.description);
+        //}
 	}
 	
     public void Load_Inventory(string content)

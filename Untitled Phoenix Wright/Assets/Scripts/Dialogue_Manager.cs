@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
+//After loading and processing dialogues from JsonLoader, go to dialogue manager script
+//This is the script that is in charge of "Phoenix Wright Style" text dialogue
 
 //Dialogue manager reads from a list of processed dialogue class, and plays them in type writer effect on Canvas UI
 public class Dialogue_Manager : MonoBehaviour {
 
 
-    // Inspector Input-------
-    public GameObject panel;  //this UI panel
+    // ------Inspector Input-------
+    public GameObject panel;  //UI panel,which is where we should attach this script to. The reason to use a public inspector input is for potential deactivation
     public Text name; //The UI text field that is going to display who's speaking
     public Text conversation;///The UI text field that is going to display what are they saying
 
     
 
-    //animation//protrait
-    GameObject animation_display;
+    //animation//protrait display
+    GameObject animation_display; 
     Animator anim;
 
 
@@ -25,13 +26,15 @@ public class Dialogue_Manager : MonoBehaviour {
    
     public string section_call="null";     //making it publuc for debug purposes. This is which part of the dialogue we are calling.
 
-    // End of Inspector Input--------
+    //------ End of Inspector Input--------
 
 
-    // dialogue play 
+    // Dialogue diplayers  
 
     public Dictionary<string, List<Type_Dialogue>> Script = 
-        new Dictionary<string, List<Type_Dialogue>>();          // Prepare a Script object that's a dictionary
+        new Dictionary<string, List<Type_Dialogue>>(); // Prepare a Script object that's dictionary composed from JsonLoader
+
+
     int line_count = 0;                                         // a counter that keeps track of which line is playing
     int end_of_chapter;                                         // an end indicator to tell object stop conversation
     bool in_conversation = false;                               // determine whether the chat box disappears

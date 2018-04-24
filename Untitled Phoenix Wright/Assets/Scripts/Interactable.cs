@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//might not work after Json changes
+
 public class Interactable : MonoBehaviour {
 
     //This is a really bad way of making mouse interaction work. Please code a better one
-    //This Script takes:
-    //item: the item's name, which will be connected to its description in the xml
+    //This Script takes: the dialogue manager panel, and cursor manager place holder.
+
+    //item: the item's name, which will be connected to dictionary key
     //dialogue_manager/cursor_manager: the object will call them when interacting with the object
     
     public string item;
@@ -28,7 +31,7 @@ public class Interactable : MonoBehaviour {
 
         Cursor.SetCursor(cursor_manager.GetComponent<Cursor_Manager>().Normal, Vector2.zero, CursorMode.Auto);
     }
-    private void OnMouseDown() //when click, if it has a name, call dialogue manager and play description
+    private void OnMouseDown() //when click, if it has a name(interactables have a public string recording its name), call dialogue manager and play description
     {
         if (item != "")
         {

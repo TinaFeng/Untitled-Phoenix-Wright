@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+//A Unity UI script that handles all events when pressing a button
+
 public class On_ButtonClick : MonoBehaviour {
 
    public void OnButtonClick(string button_name)
@@ -19,7 +22,7 @@ public class On_ButtonClick : MonoBehaviour {
 
     }
 
-    void Turn_on_Panel(GameObject panel)
+    void Turn_on_Panel(GameObject panel) // turn on a panel
     {
         panel.GetComponent<CanvasGroup>().alpha = 1;
         panel.GetComponent<CanvasGroup>().interactable = true;
@@ -27,7 +30,7 @@ public class On_ButtonClick : MonoBehaviour {
     }
 
 
-    void Turn_off_Panel(GameObject panel)
+    void Turn_off_Panel(GameObject panel) //turn off a panel
     {
         panel.GetComponent<CanvasGroup>().alpha = 0;
         panel.GetComponent<CanvasGroup>().interactable = false;

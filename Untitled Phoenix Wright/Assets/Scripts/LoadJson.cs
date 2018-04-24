@@ -5,11 +5,20 @@ using System.IO;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Converters;
-//[System.Serializable]
-public class Type_Dialogue // Type_Dialogue stores information for each individual dialogues.
-                            // Such as who's speaking(name), what do they look like(icon), and what are they saying(text)
-                            //class "Objects" is the orginal type dialogue that contains basic information
-{
+
+// This is a loder script that loads the desginated story scripting by its scene.
+
+// How to use: Attach this script on a gameobject(can be script loader, or anything in this scene)
+// and make sure to name the JSON file same as the scene name
+
+
+
+// Type_Dialogue is a class that stores information for each individual dialogues
+// such as who's speaking(name), what do they look like(icon), and what are they saying(text)
+// can add more variables
+
+public class Type_Dialogue
+{ 
         public string name;
         public string character;
         public string animation;
@@ -22,10 +31,9 @@ public class LoadJson : MonoBehaviour{
 
     private string Dialogue_File_Name;//json path, ideally should be the scene name
 
-    public List<Type_Dialogue> dialogues = new List<Type_Dialogue>(); // make a list of dialogue types for future use
-    public Dictionary<string, List<Type_Dialogue>> sections = new Dictionary<string, List<Type_Dialogue>>(); // a dictionary
-    //public List<Type_Dialogue1> dialogues = new List<Type_Dialogue1>(); // make a list of dialogue types for future use
-    //public Dictionary<string, List<Type_Dialogue1>> sections = new Dictionary<string, List<Type_Dialogue1>>(); // a dictionary
+    public List<Type_Dialogue> dialogues = new List<Type_Dialogue>(); // make a list of dialogue types for conversations
+    public Dictionary<string, List<Type_Dialogue>> sections = new Dictionary<string, List<Type_Dialogue>>(); 
+    //a dictionary that divides the script into sections
 
     // Use this for initialization
     void Start () {
@@ -39,26 +47,26 @@ public class LoadJson : MonoBehaviour{
             Dialogue_File_Name = SceneManager.GetActiveScene().name; // getting the file name from current scene
 
 
-            TextAsset rawJson = Resources.Load<TextAsset>(Dialogue_File_Name);
+            TextAsset rawJson = Resources.Load<TextAsset>(Dialogue_File_Name); //Load the JSON file by its name
            
-            Newtonsoft.Json.Linq.JObject Jo = Newtonsoft.Json.Linq.JObject.Parse(rawJson.text);
+            Newtonsoft.Json.Linq.JObject Jo = Newtonsoft.Json.Linq.JObject.Parse(rawJson.text); // Parse the JSON file into key value JSON pairs
     
             
-            string section_name = "null";                                // name used to link dictionary
+            string section_name = "null";   //storing a string for dictionary key
                                                                          //Debug.Log((Jo["Scene"]).GetType());
 
             foreach (var scene in Jo["Scene"]) //each scene here is a key for dictionary
         {
-            dialogues = new List<Type_Dialogue>();
+            dialogues = new List<Type_Dialogue>(); //create a new list for diectionary values
 
 
             foreach (var conversation in scene) //split the scene with scene name and the dialogue arrays
             {
                 //Also I give up on this part, assume the one that's not an array, is the key for dictionary  
-
+                // can also do indexes 
                
         
-                if(conversation.First.Type.ToString() == "String")//if the value is a string, make it the key
+                if (conversation.First.Type.ToString() == "String")//if the value is a string, make it the key
                 {
                     section_name = conversation.First.ToString();
                  
@@ -68,20 +76,20 @@ public class LoadJson : MonoBehaviour{
 
                     foreach ( var item in conversation.First)//breaking down to each array element
                     {
-                        Type_Dialogue line = new Type_Dialogue();
-                      //  Debug.Log(item);
+                       Type_Dialogue line = new Type_Dialogue();
+                       //  Debug.Log(item);
                         line.name = item["name"].ToString();
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
-                        dialogues.Add(line);
+                        dialogues.Add(line); //add this line to list
                     }
 
                 }
 
                 
             }
-            sections.Add(section_name, dialogues);
+            sections.Add(section_name, dialogues);// add list into a dictionary
         }
             
 
