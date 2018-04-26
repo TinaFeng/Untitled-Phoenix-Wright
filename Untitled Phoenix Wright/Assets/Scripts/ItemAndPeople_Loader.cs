@@ -11,7 +11,6 @@ public class Type_Inventory // Type_Inventory stores information for each item a
 {
     public string display_name;
     public string description;
-    public string file_name;
     public bool is_unlocked = false;
     
 
@@ -44,7 +43,6 @@ public class ItemAndPeople_Loader : MonoBehaviour {
         //Debug.Log(rawJson.text);
         Newtonsoft.Json.Linq.JObject Jo = Newtonsoft.Json.Linq.JObject.Parse(rawJson.text);
         
-        string section_name = "null";
 
         foreach (var item in Jo[content])
         {
@@ -58,11 +56,9 @@ public class ItemAndPeople_Loader : MonoBehaviour {
                     individual.display_name = value.First.ToString();
 
                 }
-                else if (count == 1) //second item, file name
-                    individual.file_name = value.First.ToString();
-                else if (count == 2)// thrid item, description
+                else if (count == 1)// 2nd item, description
                     individual.description = value.First.ToString();
-                else if (count == 3)// fourth item, is unlocked
+                else if (count == 2)// 3rd item, is unlocked
                 {
                     if (value.First.ToString() == "1")// unlocked already
                         individual.is_unlocked = true;

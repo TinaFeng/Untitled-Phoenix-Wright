@@ -17,9 +17,19 @@ public class On_ButtonClick : MonoBehaviour {
                 Turn_on_Panel(court_panel);
             else
                 Turn_off_Panel(court_panel);
-            //pull out evidence panel
+            //pull out Court Record
         }
 
+        else if (button_name == "Evidence")
+        {
+            GameObject evidence_panel = GameObject.FindGameObjectWithTag("Evidence");
+            Panel_LayerShift(evidence_panel);
+        }
+        else if (button_name == "Portrait")
+        {
+            GameObject portrait_panel = GameObject.FindGameObjectWithTag("Portrait");
+            Panel_LayerShift(portrait_panel);
+        }
     }
 
     void Turn_on_Panel(GameObject panel) // turn on a panel
@@ -37,4 +47,22 @@ public class On_ButtonClick : MonoBehaviour {
         panel.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
+    void Panel_LayerShift(GameObject panel, int position = 0) // put a panel on top
+    {
+        int index = panel.transform.GetSiblingIndex();
+        if (panel.name == "Evidence") // if we are uping index
+        {
+            index = GameObject.FindGameObjectWithTag("Portrait").transform.GetSiblingIndex();
+            if (panel.transform.GetSiblingIndex() < index) // pull up only at bottom
+                panel.transform.SetSiblingIndex(index);
+        }
+        else if (panel.name == "Portrait")
+        {
+            index = GameObject.FindGameObjectWithTag("Evidence").transform.GetSiblingIndex();
+            if (panel.transform.GetSiblingIndex() < index) // pull up only at bottom
+                panel.transform.SetSiblingIndex(index);
+        }
+        else
+        panel.transform.SetSiblingIndex(index + position);
+    }
 }
