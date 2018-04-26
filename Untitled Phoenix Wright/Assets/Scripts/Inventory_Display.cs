@@ -4,24 +4,73 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Inventory_Display : MonoBehaviour {
 
-    //if the rect width change, the scroll bar will show up
-	// Use this for initialization
-	void Start () {
-        
+    List<Type_Inventory> items;
+    List<Type_Inventory> portrait;
+    GameObject loader;
+    public GameObject item_box;
+    // Use this for initialization
+    void Start () { //find the list of items and people
+        loader = GameObject.FindGameObjectWithTag("Script_Data");  //find the xml loader that has the xml data in the scene
+
+        items = loader.GetComponent<ItemAndPeople_Loader>().items;
+
+        //portrait = GetComponent<ItemAndPeople_Loader>().people;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnCanvasGroupChanged()
+    {
+        if (transform.GetChild(1).name =="Evidence")
+        {
+            if (items != null)
+            Instantiate_Items(items);
+        }
+    }
+    // Update is called once per frame
+    void Update () {
 
 
       //  Debug.Log(GetComponent<RectTransform>().rect.width);
     }
 
-    //void Instantiate_Items(Dictionary item_collection)
-    //{
-    //    for (int i = 0; i!= item_collection.length;i++)
-    //    {
 
-    //    }
-    //}
+    public void Instantiate_Items(List<Type_Inventory> item_collection)
+    {
+        Transform[] currentlist = { };
+        if (transform.GetChild(1).GetChild(0).childCount != 0)
+        {
+            currentlist = transform.GetChild(1).GetChild(0).GetComponentsInChildren<Transform>();
+            //for (int i = 0;i!= currentlist.Length;i++)
+            //Debug.Log(currentlist[i].name);
+        }
+        for (int i = 0; i != item_collection.Count; i++)
+        {
+         //   Debug.Log(item_collection[i].display_name);
+            if ( !Search(currentlist, item_collection[i].display_name) )
+            {
+                GameObject item = Instantiate(item_box, transform.GetChild(1).GetChild(0));
+                item.GetComponent<Item_Button_Behavior>().item_name = item_collection[i].display_name;
+                item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + item_collection[i].display_name);
+
+
+                //item's position = i * something something . Align them nicely
+                Debug.Log(i);
+            }
+
+
+        }
+    }
+
+    private bool Search (Transform[] children, string name)
+    {
+        if (children.Length == 0)
+            return false;
+        for (int i = 1;i!= children.Length;i++)
+        {
+            
+            if (children[i].GetComponent<Item_Button_Behavior>().item_name == name)
+                return true;
+        }
+        
+            return false;
+    }
 }
