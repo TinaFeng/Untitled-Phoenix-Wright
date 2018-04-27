@@ -23,7 +23,8 @@ public class Type_Dialogue
         public string character;
         public string animation;
         public string text;
-
+        public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
+    //public string[] extra;
 }
 
 
@@ -82,6 +83,7 @@ public class LoadJson : MonoBehaviour{
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
+                        //line.extra = item["extra"].ToString();
                         dialogues.Add(line); //add this line to list
                     }
 

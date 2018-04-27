@@ -1,0 +1,22 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Chapter_2",
+      "objects": [
+		{
+          "name": " ",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F> Chapter 2",
+		  "extra": {"null" : "null"}
+        },
+		{
+          "name": " ",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F> Multiple Choice Question.",
+		  "extra": {"Mulitple Choice": ["A", "Yes", "No", "No", "No"]}
+        }
+		]
+    }]
+}
