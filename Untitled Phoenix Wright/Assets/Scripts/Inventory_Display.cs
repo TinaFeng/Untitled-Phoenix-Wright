@@ -36,9 +36,12 @@ public class Inventory_Display : MonoBehaviour {
     public void Instantiate_Items(List<Type_Inventory> item_collection)
     {
         Transform[] currentlist = { };
-        if (transform.GetChild(1).GetChild(0).childCount != 0)
+
+        Transform container = transform.GetChild(1).GetChild(0); //the panel (evidence/people) currently on top's container
+
+        if (container.childCount != 0)
         {
-            currentlist = transform.GetChild(1).GetChild(0).GetComponentsInChildren<Transform>();
+            currentlist = container.GetComponentsInChildren<Transform>();
             //for (int i = 0;i!= currentlist.Length;i++)
             //Debug.Log(currentlist[i].name);
         }
@@ -47,13 +50,18 @@ public class Inventory_Display : MonoBehaviour {
          //   Debug.Log(item_collection[i].display_name);
             if ( !Search(currentlist, item_collection[i].display_name) )
             {
-                GameObject item = Instantiate(item_box, transform.GetChild(1).GetChild(0));
+                GameObject item = Instantiate(item_box, container);
                 item.GetComponent<Item_Button_Behavior>().item_name = item_collection[i].display_name;
                 item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + item_collection[i].display_name);
 
 
+                item.GetComponent<RectTransform>().Translate(new Vector3 (i*item.GetComponent<RectTransform>().rect.width, 0,0));
+
+                 
                 //item's position = i * something something . Align them nicely
-                Debug.Log(i);
+                
+                //                Debug.Log(container.parent.GetComponent<Rect>().height);
+                //                Debug.Log(i);
             }
 
 
