@@ -186,8 +186,6 @@ public class Test_Dialogue_Manager : MonoBehaviour {
         if (malevoices.Contains(Script[section_call][line_count].name))
         {
             audio_manager.SetTypeSound("male");
-            //Testing sound effects, remove later.
-            audio_manager.PlayOneSFX("shock");
         }
         else if (Script[section_call][line_count].name == " ")
         {

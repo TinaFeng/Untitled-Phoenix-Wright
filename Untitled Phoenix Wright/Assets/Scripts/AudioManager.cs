@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
+
 /* Class to play various audio clips such as typing sounds,
  * sound effects, and background music.
  */
@@ -42,7 +43,7 @@ public class AudioManager : MonoBehaviour
 
     /* Dictionary containing file names and tags for BGM
      * Current background music tags:
-     * "lobby": Court
+     * "lobby": Court_Lobby.wav
      */
     Dictionary<string, string> bgm_dict = new Dictionary<string, string>();
     //AudioClip typing;
@@ -59,16 +60,19 @@ public class AudioManager : MonoBehaviour
     // Intitialization
     void Awake()
     {
-        //Load typing sounds
-        voices["male"] = Resources.Load("TypingMale") as AudioClip;
-        voices["female"] = Resources.Load("TypingFemale") as AudioClip;
-        voices["neutral"] = Resources.Load("Typewriter") as AudioClip;
+        ////Load typing sounds
+        //voices["male"] = Resources.Load("TypingMale") as AudioClip;
+        //voices["female"] = Resources.Load("TypingFemale") as AudioClip;
+        //voices["neutral"] = Resources.Load("Typewriter") as AudioClip;
 
-        //Load sound effect file names
-        sfx_dict["shock"] = "Test_Shock";
-        sfx_dict["select"] = "Test_Select";
-        //Load bgm file names
-        bgm_dict["lobby"] = "Court_Lobby";
+        ////Load sound effect file names
+        //sfx_dict["shock"] = "Test_Shock";
+        //sfx_dict["select"] = "Test_Select";
+        ////Load bgm file names
+        //bgm_dict["lobby"] = "Court_Lobby";
+
+        //Load sounds
+        LoadSounds();
 
         //Initialize AudioSources
         type_source = gameObject.AddComponent<AudioSource>() as AudioSource;
@@ -91,6 +95,7 @@ public class AudioManager : MonoBehaviour
 
         //Attach Listeners to buttons for UI sounds
         AttachListenersToButtons();
+
     }
 
     // Update is called once per frame
@@ -204,17 +209,26 @@ public class AudioManager : MonoBehaviour
     }
 
     // Sets the UI sound to "select" and plays it.
-
     void PlaySelect()
     {
         SetUISound("select");
         ui_source.Play();
     }
-    
 
+    // Initializes sound dictionaries from the "Sound_List" file.
+    void LoadSounds()
+    {
+        voices = SoundParser.LoadAsClips("Typing");
+        bgm_dict = SoundParser.LoadAsFilenames("BGM");
+        sfx_dict = SoundParser.LoadAsFilenames("SFX");
+    }
+
+    // Attaches an event listener that calls the PlaySound method whenever a button is pressed.
+    // Needs to be improved to not rely upon the canvas being named "Canvas"
     void AttachListenersToButtons()
     {
-        GameObject canvas = GameObject.Find("Canvas");
+        GameObject canvas = GameObject.FindWithTag("Main Canvas");
+        //Get all the buttons, active and inactive, on this canvas.
         Button[] buttons = canvas.GetComponentsInChildren<Button>(true);
         for(int i = 0; i< buttons.Length; i++)
         {
@@ -222,9 +236,29 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Prints that the specified tag was not found.
+    // Used if a tag isn't in a dictionary.
     void TagNotFound(string tag)
     {
         Debug.Log("Sound tag " + tag + " not found.");
+    }
+
+    // Prints out the contents of each dictionary.
+    // Used for debugging problems with assigning sounds.
+    void PrintDicts()
+    {
+        foreach (string key in voices.Keys)
+        {
+            print(key + ":" + voices[key]);
+        }
+        foreach (string key in bgm_dict.Keys)
+        {
+            print(key + ":" + bgm_dict[key]);
+        }
+        foreach (string key in sfx_dict.Keys)
+        {
+            print(key + ":" + sfx_dict[key]);
+        }
     }
 }
 
