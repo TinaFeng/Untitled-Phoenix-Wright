@@ -4,18 +4,18 @@
       "name": "Chapter_2",
       "objects": [
 		{
-          "name": " ",
+          "name": "Bob",
           "character": "null",
           "animation": "null",
           "text": "<color=#5DE42F> Chapter 2",
-		  "extra": {"null" : "null"}
+		  "extra": {}
         },
 		{
           "name": " ",
           "character": "null",
           "animation": "null",
-          "text": "<color=#5DE42F> Multiple Choice Question.",
-		  "extra": {"Mulitple Choice": ["A", "Yes", "No", "No", "No"]}
+          "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
+		  "extra": [{"MulitpleChoice":["A","Yes","No","No","No"]},{"Hi":null}]
         }
 		]
     }]

@@ -78,13 +78,28 @@ public class LoadJson : MonoBehaviour{
                     foreach ( var item in conversation.First)//breaking down to each array element
                     {
                        Type_Dialogue line = new Type_Dialogue();
-                       //  Debug.Log(item);
+                        //  Debug.Log(item);
                         line.name = item["name"].ToString();
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
+                        //Debug.Log(item["extra"]);
+                        //parse
+
+                        //line = JsonUtility.FromJson<Type_Dialogue>(item.ToString());
+                        //line.extra = item["extra"].ToObject < Dictionary<string, string[]>>();
+                        /*foreach (string key in item["extra"])
+                        {
+                            //Debug.Log(key);
+                        }*/
                         //line.extra = item["extra"].ToString();
                         dialogues.Add(line); //add this line to list
+                        /*foreach (string k in line.extra.Keys)
+                        {
+                            Debug.Log(k);
+                        }*/
+                        //Debug.Log(line.extra.Keys.Count);
+                        //Debug.Log(line.extra);
                     }
 
                 }

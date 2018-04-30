@@ -99,9 +99,16 @@ public class Dialogue_Manager : MonoBehaviour {
             
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
-
+            //Kaitlyn - Maybe this belongs at the end of foward dialogue
             if (done)//if one dialogue is over
             {
+                //If there is a multiple choice question, bring up the choices instead of the arrow.
+                //TESTING
+                //Debug.Log(line_count);
+                /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+                {
+                    Debug.Log("Multiple Choice");
+                }*/
                 Arrow.SetActive(true);//pop the arrow
             }
             if (line_count >= end_of_chapter && done == true)   // if we hit the end
@@ -172,8 +179,16 @@ public class Dialogue_Manager : MonoBehaviour {
 
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
-            line_count++;//prepare for the next
 
+            //TESTING: If there is a multiple choice question, the panel is brought up
+            //Debug.Log("Key count in " + line_count + " " + Script[section_call][line_count].extra.Keys.Count);
+            if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+            {
+                Debug.Log("Multiple Choice");
+                //Put up multiple choice until the player makes a guess
+            }
+            //TESTING
+            line_count++;//prepare for the next
         }
 
     }
