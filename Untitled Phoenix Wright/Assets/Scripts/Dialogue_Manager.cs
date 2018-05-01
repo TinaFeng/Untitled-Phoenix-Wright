@@ -182,11 +182,11 @@ public class Dialogue_Manager : MonoBehaviour {
 
             //TESTING: If there is a multiple choice question, the panel is brought up
             //Debug.Log("Key count in " + line_count + " " + Script[section_call][line_count].extra.Keys.Count);
-            if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+            /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
             {
                 Debug.Log("Multiple Choice");
                 //Put up multiple choice until the player makes a guess
-            }
+            }*/
             //TESTING
             line_count++;//prepare for the next
         }

@@ -7,15 +7,14 @@
           "name": "Bob",
           "character": "null",
           "animation": "null",
-          "text": "<color=#5DE42F> Chapter 2",
-		  "extra": {}
+          "text": "<color=#5DE42F> Chapter 2"
         },
 		{
-          "name": " ",
+			
           "character": "null",
           "animation": "null",
           "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
-		  "extra": [{"MulitpleChoice":["A","Yes","No","No","No"]},{"Hi":null}]
+		  "multipleChoice": ["Yes", "No", "No"]
         }
 		]
     }]

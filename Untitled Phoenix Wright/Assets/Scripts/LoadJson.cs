@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Converters;
+using System;
+//using Newtonsoft.Json;
+//using System.ComponentModel;
 
 // This is a loder script that loads the desginated story scripting by its scene.
 
@@ -18,12 +21,16 @@ using Newtonsoft.Json.Converters;
 // can add more variables
 
 public class Type_Dialogue
-{ 
-        public string name;
+{
+    //[DefaultValue("John Doe")]
+    //[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+    public string name;
+
         public string character;
         public string animation;
         public string text;
-        public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
+    public string[] multipleChoice;
+        //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
 
@@ -79,10 +86,35 @@ public class LoadJson : MonoBehaviour{
                     {
                        Type_Dialogue line = new Type_Dialogue();
                         //  Debug.Log(item);
-                        line.name = item["name"].ToString();
+                        try
+                        {
+                            line.name = item["name"].ToString();
+                        }
+                        catch(Exception e)
+                        {
+                            line.name = null;
+                        }
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
+
+                        try
+                        {
+                            //line.multipleChoice = item["multipleChoice"].Count;
+                            line.multipleChoice = new string[item["multipleChoice"].Count()];
+                            int index = 0;
+                            foreach (string choice in item["multipleChoice"])
+                            {
+                                line.multipleChoice[index] = choice;
+                                Debug.Log(line.multipleChoice[index]);
+                            }
+                            Debug.Log(item["multipleChoice"].Count());
+                            //line.multipleChoice = item["multipleChoice"].ToArray();
+                        }
+                        catch(Exception e)
+                        {
+                            line.multipleChoice = null;
+                        }
                         //Debug.Log(item["extra"]);
                         //parse
 
