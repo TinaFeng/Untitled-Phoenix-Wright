@@ -9,7 +9,7 @@ using Newtonsoft.Json.Converters;
 
 public class SoundParser{
     // Use this for initialization
-    private const string json_filename = "Sound_List";
+    private const string json_filename = "Audio/Sound_List";
 	
     //Loads the specified section as a dictionary of AudioClips.
     public static Dictionary<string, AudioClip> LoadAsClips(string section)

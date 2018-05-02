@@ -8,9 +8,7 @@ using System.Collections.Generic;
  * sound effects, and background music.
  */
 
-//TODO: Associate tags with clips/file names from external file.
-//TODO: Test it.
-//TODO: Audio options (volume levels, etc.)
+//Next steps: Fancy stuff (fade out)
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource ui_source;
 
     //Dictionaries associating AudioClips and sound file names to tags
+    //Set public for testing purposes; change to private later
 
     /* Dictionary containing typing AudioClips
      * Current typing sound tags:
@@ -32,20 +31,20 @@ public class AudioManager : MonoBehaviour
      * "female": TypingFemale.wav
      * "neutral": Typewriter.wav
      */
-    Dictionary<string, AudioClip> voices = new Dictionary<string, AudioClip>();
+    public Dictionary<string, AudioClip> voices = new Dictionary<string, AudioClip>();
 
     /* Dictionary containing file names and tags for sound effects.
      * Current sound effect tags:
      * "shock": Test_Shock.wav
      * "select": Test_Select.wav
      */
-    Dictionary<string, string> sfx_dict = new Dictionary<string, string>();
+    public Dictionary<string, string> sfx_dict = new Dictionary<string, string>();
 
     /* Dictionary containing file names and tags for BGM
      * Current background music tags:
      * "lobby": Court_Lobby.wav
      */
-    Dictionary<string, string> bgm_dict = new Dictionary<string, string>();
+    public Dictionary<string, string> bgm_dict = new Dictionary<string, string>();
     //AudioClip typing;
 
     //Hold the tag of the last assigned sound to the AudioSources.
@@ -116,6 +115,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Options methods
+
     // Sets the background music on or off.
     // If the background music was on, turn it off, and vice versa.
     public void ToggleBGM()
@@ -182,6 +183,8 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    // Sound Playing Methods
+
     // Plays the currently set typing sound.
     public void PlayTyping()
     {
@@ -214,6 +217,155 @@ public class AudioManager : MonoBehaviour
         SetUISound("select");
         ui_source.Play();
     }
+
+    
+    // Volume methods
+
+    public void SetTypingVolume(float value)
+    {
+        if(0 <= value && value <= 1.0f)
+            type_source.volume = value;
+    }
+
+    public void SetBGMVolume(float value)
+    {
+        if (0 <= value && value <= 1.0f)
+            bgm_source.volume = value;
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        if (0 <= value && value <= 1.0f)
+            sfx_source.volume = value;
+    }
+
+    public void SetUIVolume(float value)
+    {
+        if (0 <= value && value <= 1.0f)
+            ui_source.volume = value;
+    }
+
+    public void DecreaseTypingVolume(float value = 0.05f)
+    {
+        if(0 <= value && value <=1.0f)
+        {
+            if(type_source.volume - value < 0)
+            {
+                type_source.volume = 0.0f;
+            }
+            else
+            {
+                type_source.volume -= value;
+            }
+        }
+    }
+
+    public void DecreaseBGMVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (bgm_source.volume - value < 0)
+            {
+                bgm_source.volume = 0.0f;
+            }
+            else
+            {
+                bgm_source.volume -= value;
+            }
+        }
+    }
+
+    public void DecreaseSFXVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (sfx_source.volume - value < 0)
+            {
+                sfx_source.volume = 0.0f;
+            }
+            else
+            {
+                sfx_source.volume -= value;
+            }
+        }
+    }
+
+    public void DecreaseUIVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (ui_source.volume - value < 0)
+            {
+                ui_source.volume = 0.0f;
+            }
+            else
+            {
+                ui_source.volume -= value;
+            }
+        }
+    }
+
+    public void IncreaseTypingVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (type_source.volume + value > 1.0f)
+            {
+                type_source.volume = 1.0f;
+            }
+            else
+            {
+                type_source.volume += value;
+            }
+        }
+    }
+
+    public void IncreaseBGMVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (bgm_source.volume + value > 1.0f)
+            {
+                bgm_source.volume = 1.0f;
+            }
+            else
+            {
+                bgm_source.volume += value;
+            }
+        }
+    }
+
+    public void IncreaseSFXVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (sfx_source.volume + value > 1.0f)
+            {
+                sfx_source.volume = 1.0f;
+            }
+            else
+            {
+                sfx_source.volume += value;
+            }
+        }
+    }
+
+    public void IncreaseUIVolume(float value = 0.05f)
+    {
+        if (0 <= value && value <= 1.0f)
+        {
+            if (ui_source.volume + value > 1.0f)
+            {
+                ui_source.volume = 1.0f;
+            }
+            else
+            {
+                ui_source.volume += value;
+            }
+        }
+    }
+    // Internal Utility Methods
+
 
     // Initializes sound dictionaries from the "Sound_List" file.
     void LoadSounds()
