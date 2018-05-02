@@ -8,6 +8,8 @@ using System.Collections.Generic;
  * sound effects, and background music.
  */
 
+//For the full list of audio tags, see the Sound_List.json file in the Resources/Audio directory.
+
 //Next steps: Fancy stuff (fade out)
 
 public class AudioManager : MonoBehaviour
@@ -26,23 +28,14 @@ public class AudioManager : MonoBehaviour
     //Set public for testing purposes; change to private later
 
     /* Dictionary containing typing AudioClips
-     * Current typing sound tags:
-     * "male": TypingMale.wav
-     * "female": TypingFemale.wav
-     * "neutral": Typewriter.wav
      */
     public Dictionary<string, AudioClip> voices = new Dictionary<string, AudioClip>();
 
     /* Dictionary containing file names and tags for sound effects.
-     * Current sound effect tags:
-     * "shock": Test_Shock.wav
-     * "select": Test_Select.wav
      */
     public Dictionary<string, string> sfx_dict = new Dictionary<string, string>();
 
     /* Dictionary containing file names and tags for BGM
-     * Current background music tags:
-     * "lobby": Court_Lobby.wav
      */
     public Dictionary<string, string> bgm_dict = new Dictionary<string, string>();
     //AudioClip typing;
@@ -59,17 +52,6 @@ public class AudioManager : MonoBehaviour
     // Intitialization
     void Awake()
     {
-        ////Load typing sounds
-        //voices["male"] = Resources.Load("TypingMale") as AudioClip;
-        //voices["female"] = Resources.Load("TypingFemale") as AudioClip;
-        //voices["neutral"] = Resources.Load("Typewriter") as AudioClip;
-
-        ////Load sound effect file names
-        //sfx_dict["shock"] = "Test_Shock";
-        //sfx_dict["select"] = "Test_Select";
-        ////Load bgm file names
-        //bgm_dict["lobby"] = "Court_Lobby";
-
         //Load sounds
         LoadSounds();
 
@@ -221,6 +203,8 @@ public class AudioManager : MonoBehaviour
     
     // Volume methods
 
+    
+    //These methods set the volume for a particular AudioSource to a value between 0.0 and 1.0
     public void SetTypingVolume(float value)
     {
         if(0 <= value && value <= 1.0f)
@@ -245,6 +229,9 @@ public class AudioManager : MonoBehaviour
             ui_source.volume = value;
     }
 
+
+    // These methods decrease the volume of a particular AudioSource by the specified value,
+    // or 5% if no value is specified.
     public void DecreaseTypingVolume(float value = 0.05f)
     {
         if(0 <= value && value <=1.0f)
@@ -305,6 +292,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
+    // These methods increase the volume of a particular AudioSource by the specified value,
+    // or 5% if no value is specified.
     public void IncreaseTypingVolume(float value = 0.05f)
     {
         if (0 <= value && value <= 1.0f)
@@ -364,6 +354,8 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+    
+    
     // Internal Utility Methods
 
 
