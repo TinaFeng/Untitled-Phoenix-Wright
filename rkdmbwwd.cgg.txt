@@ -1,0 +1,108 @@
+﻿Revert "Merge branch 'Lawrence' into Tina"
+
+This reverts commit 6553fa11d6fd25e947dca75d552132a0e79b45ee, reversing
+changes made to 71e441f826ef14d3ae6bd8ffb1f4b3c9dd83e408.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch Tina
+# Your branch is ahead of 'origin/Tina' by 4 commits.
+#   (use "git push" to publish your local commits)
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	deleted:    Untitled Phoenix Wright/Assets/Prefabs/AudioManager.prefab
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Sound_List.json
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_BGM01.mp3
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_BGM02.mp3
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_Damage.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_Objection.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_Select.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_Shock.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio/Test_Slam.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Audio_Test.json
+#	renamed:    Untitled Phoenix Wright/Assets/Resources/Audio/Court_Lobby.mp3 -> Untitled Phoenix Wright/Assets/Resources/Court_Lobby.mp3
+#	renamed:    Untitled Phoenix Wright/Assets/Resources/Audio/Typewriter.wav -> Untitled Phoenix Wright/Assets/Resources/Typewriter.wav
+#	renamed:    Untitled Phoenix Wright/Assets/Resources/Audio/TypingFemale.wav -> Untitled Phoenix Wright/Assets/Resources/TypingFemale.wav
+#	renamed:    Untitled Phoenix Wright/Assets/Resources/Audio/TypingMale.wav -> Untitled Phoenix Wright/Assets/Resources/TypingMale.wav
+#	deleted:    Untitled Phoenix Wright/Assets/Scripts/AudioManager.cs
+#	deleted:    Untitled Phoenix Wright/Assets/Scripts/AudioTestScripts/TestButtons.cs
+#	deleted:    Untitled Phoenix Wright/Assets/Scripts/AudioTestScripts/Test_Dialogue_Manager.cs
+#	deleted:    Untitled Phoenix Wright/Assets/Scripts/Sound_Loader.cs
+#	deleted:    Untitled Phoenix Wright/Assets/Secne/Audio_Test.unity
+#
+# Changes not staged for commit:
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Court_Lobby.mp3.meta
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/Typewriter.wav.meta
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/TypingFemale.wav.meta
+#	deleted:    Untitled Phoenix Wright/Assets/Resources/TypingMale.wav.meta
+#	modified:   Untitled Phoenix Wright/Library/CurrentLayout.dwlt
+#	modified:   Untitled Phoenix Wright/Library/LastSceneManagerSetup.txt
+#	modified:   Untitled Phoenix Wright/Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   Untitled Phoenix Wright/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	modified:   Untitled Phoenix Wright/Library/assetDatabase3
+#	deleted:    Untitled Phoenix Wright/Library/metadata/92/9264a7f561e469748b889ba429fea418
+#	deleted:    Untitled Phoenix Wright/Library/metadata/92/9264a7f561e469748b889ba429fea418.info
+#	deleted:    Untitled Phoenix Wright/Library/metadata/92/9264a7f561e469748b889ba429fea418.resource
+#	deleted:    Untitled Phoenix Wright/Library/metadata/b2/b2743a37dbc723043a0814e72c6f9f57
+#	deleted:    Untitled Phoenix Wright/Library/metadata/b2/b2743a37dbc723043a0814e72c6f9f57.info
+#	deleted:    Untitled Phoenix Wright/Library/metadata/b2/b2743a37dbc723043a0814e72c6f9f57.resource
+#	deleted:    Untitled Phoenix Wright/Library/metadata/c3/c393d86a7c1d48543a83e02611cd1058
+#	deleted:    Untitled Phoenix Wright/Library/metadata/c3/c393d86a7c1d48543a83e02611cd1058.info
+#	deleted:    Untitled Phoenix Wright/Library/metadata/c3/c393d86a7c1d48543a83e02611cd1058.resource
+#	deleted:    Untitled Phoenix Wright/Library/metadata/eb/ebc933a111b08cd47a710ed7e29f59c6
+#	deleted:    Untitled Phoenix Wright/Library/metadata/eb/ebc933a111b08cd47a710ed7e29f59c6.info
+#	deleted:    Untitled Phoenix Wright/Library/metadata/eb/ebc933a111b08cd47a710ed7e29f59c6.resource
+#
+# Untracked files:
+#	Untitled Phoenix Wright/Assets/Prefabs/AudioManager.prefab.meta
+#	Untitled Phoenix Wright/Assets/Resources/Audio.meta
+#	Untitled Phoenix Wright/Assets/Resources/Audio/
+#	Untitled Phoenix Wright/Assets/Resources/Audio_Test.json.meta
+#	Untitled Phoenix Wright/Assets/Scripts/AudioManager.cs.meta
+#	Untitled Phoenix Wright/Assets/Scripts/AudioTestScripts.meta
+#	Untitled Phoenix Wright/Assets/Scripts/AudioTestScripts/
+#	Untitled Phoenix Wright/Assets/Scripts/Sound_Loader.cs.meta
+#	Untitled Phoenix Wright/Assets/Secne/Audio_Test.unity.meta
+#	Untitled Phoenix Wright/Library/metadata/16/16076dd9a28d9cc49967692b5e4fe3e4
+#	Untitled Phoenix Wright/Library/metadata/16/16076dd9a28d9cc49967692b5e4fe3e4.info
+#	Untitled Phoenix Wright/Library/metadata/16/16076dd9a28d9cc49967692b5e4fe3e4.resource
+#	Untitled Phoenix Wright/Library/metadata/1d/
+#	Untitled Phoenix Wright/Library/metadata/27/27d297031fe5e8a45a54765bb2ce3cf5
+#	Untitled Phoenix Wright/Library/metadata/27/27d297031fe5e8a45a54765bb2ce3cf5.info
+#	Untitled Phoenix Wright/Library/metadata/2e/2eb467a5b8dd7f144a097d8d96c7a37e
+#	Untitled Phoenix Wright/Library/metadata/2e/2eb467a5b8dd7f144a097d8d96c7a37e.info
+#	Untitled Phoenix Wright/Library/metadata/2e/2eb467a5b8dd7f144a097d8d96c7a37e.resource
+#	Untitled Phoenix Wright/Library/metadata/41/41a3b3187e2c05849897584755a343c9
+#	Untitled Phoenix Wright/Library/metadata/41/41a3b3187e2c05849897584755a343c9.info
+#	Untitled Phoenix Wright/Library/metadata/58/
+#	Untitled Phoenix Wright/Library/metadata/63/
+#	Untitled Phoenix Wright/Library/metadata/77/
+#	Untitled Phoenix Wright/Library/metadata/85/
+#	Untitled Phoenix Wright/Library/metadata/86/864506cd5d780d44a988056460df2750
+#	Untitled Phoenix Wright/Library/metadata/86/864506cd5d780d44a988056460df2750.info
+#	Untitled Phoenix Wright/Library/metadata/86/864506cd5d780d44a988056460df2750.resource
+#	Untitled Phoenix Wright/Library/metadata/97/
+#	Untitled Phoenix Wright/Library/metadata/a3/a33d5fa12f3eec445af0a337ab716148
+#	Untitled Phoenix Wright/Library/metadata/a3/a33d5fa12f3eec445af0a337ab716148.info
+#	Untitled Phoenix Wright/Library/metadata/a3/a33d5fa12f3eec445af0a337ab716148.resource
+#	Untitled Phoenix Wright/Library/metadata/b0/
+#	Untitled Phoenix Wright/Library/metadata/c5/c5d3e9a4f79aa21448d9c58af5af0ace
+#	Untitled Phoenix Wright/Library/metadata/c5/c5d3e9a4f79aa21448d9c58af5af0ace.info
+#	Untitled Phoenix Wright/Library/metadata/c9/c92d5fec97c876243958320c877f423c
+#	Untitled Phoenix Wright/Library/metadata/c9/c92d5fec97c876243958320c877f423c.info
+#	Untitled Phoenix Wright/Library/metadata/c9/c92d5fec97c876243958320c877f423c.resource
+#	Untitled Phoenix Wright/Library/metadata/cd/
+#	Untitled Phoenix Wright/Library/metadata/d3/d3903eab38347d24994a0f4e90e2b5b1
+#	Untitled Phoenix Wright/Library/metadata/d3/d3903eab38347d24994a0f4e90e2b5b1.info
+#	Untitled Phoenix Wright/Library/metadata/d3/d3903eab38347d24994a0f4e90e2b5b1.resource
+#	Untitled Phoenix Wright/Library/metadata/d9/d91746e0f15803f4e8c5e2b51fa751a2
+#	Untitled Phoenix Wright/Library/metadata/d9/d91746e0f15803f4e8c5e2b51fa751a2.info
+#	Untitled Phoenix Wright/Library/metadata/d9/d91746e0f15803f4e8c5e2b51fa751a2.resource
+#	Untitled Phoenix Wright/Library/metadata/eb/ebdc70dfeb3a7ed40a0c8ed638c3a890
+#	Untitled Phoenix Wright/Library/metadata/eb/ebdc70dfeb3a7ed40a0c8ed638c3a890.info
+#	Untitled Phoenix Wright/Library/metadata/eb/ebdc70dfeb3a7ed40a0c8ed638c3a890.resource
+#	Untitled Phoenix Wright/Library/metadata/f0/
+#	Untitled Phoenix Wright/Library/metadata/fa/
+#
+
