@@ -11,18 +11,17 @@ public class Inventory_Display : MonoBehaviour {
 
     
     List<GameObject> Item_List;
-    List<GameObject> Protrait_List;
+    List<GameObject> Portrait_List;
     // Use this for initialization
     void Start () { //find the list of items and people
         loader = GameObject.FindGameObjectWithTag("Script_Data");  //find the xml loader that has the xml data in the scene
 
         items = loader.GetComponent<ItemAndPeople_Loader>().items;
-
-
         Item_List = new List<GameObject>();
-        
-        //portrait = GetComponent<ItemAndPeople_Loader>().people;
-	}
+        portrait = loader.GetComponent<ItemAndPeople_Loader>().people ;
+        Portrait_List = new List<GameObject>();
+
+    }
 
     private void OnCanvasGroupChanged()
     {
@@ -31,9 +30,19 @@ public class Inventory_Display : MonoBehaviour {
             if (items != null)
             {
                 Instantiate_Items(items);
-                
+                Item_List[0].GetComponent<On_ButtonClick>().OnButtonClick("item");
             }
+            
 
+
+        }
+        else if (transform.GetChild(1).name=="Portrait")
+        {
+            if (portrait != null)
+            {
+                Instantiate_Items(portrait);
+            }
+            Portrait_List[0].GetComponent<On_ButtonClick>().OnButtonClick("item");
         }
 
     }
@@ -51,9 +60,13 @@ public class Inventory_Display : MonoBehaviour {
 
         Transform container = transform.GetChild(1).GetChild(0); //the panel (evidence/people) currently on top's container
 
+
         if (container.childCount == 1)
         {
+            if (item_collection == items)
             Item_List.Add(container.GetChild(0).gameObject);
+            else
+                Portrait_List.Add(container.GetChild(0).gameObject);
         }
         if (container.childCount >1)
         {
@@ -61,6 +74,8 @@ public class Inventory_Display : MonoBehaviour {
             
                 
         }
+
+
         for (int i = 0; i != item_collection.Count; i++)
         {
          //   Debug.Log(item_collection[i].display_name);
@@ -69,11 +84,14 @@ public class Inventory_Display : MonoBehaviour {
                 GameObject item = Instantiate(item_box, container);
                 item.GetComponent<Item_Button_Behavior>().item_name = item_collection[i].display_name;
                 item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + item_collection[i].display_name);
-
-
+                item.GetComponent<Item_Button_Behavior>().item_description = item_collection[i].description;
                 item.GetComponent<RectTransform>().Translate(new Vector3 (i*item.GetComponent<RectTransform>().rect.width, 0,0));
 
-                Item_List.Add(item);
+
+                if (item_collection == items)
+                    Item_List.Add(item);
+                else
+                    Portrait_List.Add(item);
                 //Debug.Log(item.GetComponent<Item_Button_Behavior>().item_name);    
                 //item's position = i * something something . Align them nicely
                 
@@ -84,6 +102,8 @@ public class Inventory_Display : MonoBehaviour {
             
         }
 
+
+        
     }
 
     private bool Search (Transform[] children, string name)
