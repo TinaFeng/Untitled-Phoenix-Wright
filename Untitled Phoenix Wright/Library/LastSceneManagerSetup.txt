@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Secne/Audio_Test.unity
+- path: Assets/Secne/Ch1.unity
   isLoaded: 1
   isActive: 1
