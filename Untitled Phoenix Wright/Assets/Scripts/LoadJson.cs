@@ -30,6 +30,7 @@ public class Type_Dialogue
         public string animation;
         public string text;
     public string[] multipleChoice;
+    public int correctChoice;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
@@ -85,7 +86,7 @@ public class LoadJson : MonoBehaviour{
                     foreach ( var item in conversation.First)//breaking down to each array element
                     {
                        Type_Dialogue line = new Type_Dialogue();
-                        //  Debug.Log(item);
+
                         try
                         {
                             line.name = item["name"].ToString();
@@ -94,44 +95,46 @@ public class LoadJson : MonoBehaviour{
                         {
                             line.name = null;
                         }
+
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
 
+                        //Adds in the multiple choices
                         try
                         {
-                            //line.multipleChoice = item["multipleChoice"].Count;
                             line.multipleChoice = new string[item["multipleChoice"].Count()];
                             int index = 0;
                             foreach (string choice in item["multipleChoice"])
                             {
                                 line.multipleChoice[index] = choice;
-                                Debug.Log(line.multipleChoice[index]);
+                                index++;
                             }
-                            Debug.Log(item["multipleChoice"].Count());
-                            //line.multipleChoice = item["multipleChoice"].ToArray();
+                            if (line.multipleChoice.Count() == 1 || line.multipleChoice.Count() > 4)
+                            {
+                                Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
+                            }
                         }
                         catch(Exception e)
                         {
                             line.multipleChoice = null;
                         }
-                        //Debug.Log(item["extra"]);
-                        //parse
 
-                        //line = JsonUtility.FromJson<Type_Dialogue>(item.ToString());
-                        //line.extra = item["extra"].ToObject < Dictionary<string, string[]>>();
-                        /*foreach (string key in item["extra"])
+                        //Adds in the correct choice.  Some checks since tied to multipleChoice
+                        try
                         {
-                            //Debug.Log(key);
-                        }*/
-                        //line.extra = item["extra"].ToString();
+                            line.correctChoice = item["correctChoice"].ToObject<int>();
+                            if (line.multipleChoice == null)
+                            {
+                                Debug.Log("No multiple choices");
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            line.correctChoice = 0;
+                        }
+
                         dialogues.Add(line); //add this line to list
-                        /*foreach (string k in line.extra.Keys)
-                        {
-                            Debug.Log(k);
-                        }*/
-                        //Debug.Log(line.extra.Keys.Count);
-                        //Debug.Log(line.extra);
                     }
 
                 }
