@@ -300,8 +300,14 @@ public class Dialogue_Manager : MonoBehaviour {
             {
                 yield return new WaitUntil(() => playerMultChoiceSelection >= 0);
                 if (playerMultChoiceSelection == Script[section_call][line_count].correctChoice)
+                {
                     break;
-                //else, there is a penalty. Might grey out the player's incorrect guess
+                }
+                else
+                {
+                    //else, there is a penalty. Greys out the player's incorrect guess
+                    multChoicePanel.GetComponent<MultChoicePanelManager>().DisableIncorrectGuess(playerMultChoiceSelection, Script[section_call][line_count].multipleChoice.Length);
+                }   
             }
             multChoicePanel.GetComponent<MultChoicePanelManager>().ResetChoices();
             multChoicePanel.SetActive(false);
