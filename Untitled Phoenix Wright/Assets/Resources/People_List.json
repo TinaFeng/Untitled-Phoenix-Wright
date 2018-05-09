@@ -1,13 +1,13 @@
 ﻿{
-  "Item_List": [
+  "People_List": [
     {
-      "name": "Attorney's Badge",
-      "description": "It's my badge. It shows that I am qualified to be a defense attorney. Although I've heared rumors about a defense attorney who had a paper badge, I still put my faith in the justice system.",
+      "name": "Artemis Lutea",
+      "description": "Yes, that's me.",
       "is_unlocked": "1"
     },
     {
-      "name": "Cell Phone",
-      "description": "My phone.",
+      "name": "Helper dude",
+      "description": "Helper",
       "is_unlocked": "1"
     },
     {

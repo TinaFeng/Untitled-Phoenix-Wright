@@ -26,21 +26,23 @@ public class ItemAndPeople_Loader : MonoBehaviour {
     // Use this for initialization
     void Start () {
         Load_Inventory("Item_List");
-        //Load_Inventory("People_List")  <--I don't have a list yet
+        Load_Inventory("People_List");
 
 
-        //foreach(Type_Inventory item in items)
+        //foreach (var item in items)
         //{
+
         //    Debug.Log(item.display_name);
         //    Debug.Log(item.description);
         //}
-	}
-	
+
+    }
+
     public void Load_Inventory(string content)
     {
         
         TextAsset rawJson = Resources.Load<TextAsset>(content);
-        //Debug.Log(rawJson.text);
+//        Debug.Log(rawJson.text);
         Newtonsoft.Json.Linq.JObject Jo = Newtonsoft.Json.Linq.JObject.Parse(rawJson.text);
         
 
@@ -54,6 +56,7 @@ public class ItemAndPeople_Loader : MonoBehaviour {
                 if (count == 0)//first item, name
                 {
                     individual.display_name = value.First.ToString();
+
 
                 }
                 else if (count == 1)// 2nd item, description
@@ -69,7 +72,10 @@ public class ItemAndPeople_Loader : MonoBehaviour {
                 count++;
             }
 
-            items.Add(individual);
+            if (content == "Item_List")
+                items.Add(individual);
+            else if (content == "People_List")
+                people.Add(individual);
         }
     }
 
