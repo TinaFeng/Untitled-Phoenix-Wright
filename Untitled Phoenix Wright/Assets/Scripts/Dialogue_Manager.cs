@@ -14,7 +14,7 @@ public class Dialogue_Manager : MonoBehaviour {
     public GameObject panel;  //UI panel,which is where we should attach this script to. The reason to use a public inspector input is for potential deactivation
     public Text name; //The UI text field that is going to display who's speaking
     public Text conversation;///The UI text field that is going to display what are they saying
-
+    public GameObject multChoicePanel;
     
 
     //animation//protrait display
@@ -44,8 +44,9 @@ public class Dialogue_Manager : MonoBehaviour {
     ///
     float wait_time = 0.1f; //how long per each letter
     bool done = true; // is the current dialogue donw (are we calling arrow)
-    ///  
-  
+                      ///  
+
+    int playerMultChoiceSelection = -1; //The player's choice when selecting one of the multiple choice options
 
     ///All the Audio Crap in the world. Probably will move most of the audio to a separate audio manager
     AudioClip typing;
@@ -99,9 +100,16 @@ public class Dialogue_Manager : MonoBehaviour {
             
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
-
+            //Kaitlyn - Maybe this belongs at the end of foward dialogue
             if (done)//if one dialogue is over
             {
+                //If there is a multiple choice question, bring up the choices instead of the arrow.
+                //TESTING
+                //Debug.Log(line_count);
+                /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+                {
+                    Debug.Log("Multiple Choice");
+                }*/
                 Arrow.SetActive(true);//pop the arrow
             }
             if (line_count >= end_of_chapter && done == true)   // if we hit the end
@@ -172,8 +180,18 @@ public class Dialogue_Manager : MonoBehaviour {
 
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
-            line_count++;//prepare for the next
 
+            //TESTING: If there is a multiple choice question, the panel is brought up
+            //Debug.Log("Key count in " + line_count + " " + Script[section_call][line_count].extra.Keys.Count);
+            /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+            {
+                Debug.Log("Multiple Choice");
+                //Put up multiple choice until the player makes a guess
+            }*/
+
+            
+            //TESTING
+            //line_count++;//prepare for the next
         }
 
     }
@@ -266,6 +284,42 @@ public class Dialogue_Manager : MonoBehaviour {
 
         }
 
+        
+        //Throws up the multiple choice panel if there is a question
+        if (Script[section_call][line_count].multipleChoice != null)
+        {
+            /*foreach (string s in Script[section_call][line_count].multipleChoice)
+                Debug.Log(s);*/
+            multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
+            multChoicePanel.SetActive(true);
+            //Need to select correct button arrangement based on number of choices
+
+            //Stops player from progressing until they choose the correct option
+            playerMultChoiceSelection = -1;
+            while (true)
+            {
+                yield return new WaitUntil(() => playerMultChoiceSelection >= 0);
+                if (playerMultChoiceSelection == Script[section_call][line_count].correctChoice)
+                {
+                    break;
+                }
+                else
+                {
+                    //else, there is a penalty. Greys out the player's incorrect guess
+                    multChoicePanel.GetComponent<MultChoicePanelManager>().DisableIncorrectGuess(playerMultChoiceSelection, Script[section_call][line_count].multipleChoice.Length);
+                }   
+            }
+            multChoicePanel.GetComponent<MultChoicePanelManager>().ResetChoices();
+            multChoicePanel.SetActive(false);
+        }
+        line_count++;
         done = true; // when we are done, mark done as true
+    }
+
+    //Called by multiple choice buttons
+    public void setPlayerMultChoiceSelection(int sel)
+    {
+        playerMultChoiceSelection = sel;
+        //Debug.Log(playerMultChoiceSelection);
     }
 }

@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json.Converters;
+using System;
+//using Newtonsoft.Json;
+//using System.ComponentModel;
 
 // This is a loder script that loads the desginated story scripting by its scene.
 
@@ -18,12 +21,18 @@ using Newtonsoft.Json.Converters;
 // can add more variables
 
 public class Type_Dialogue
-{ 
-        public string name;
+{
+    //[DefaultValue("John Doe")]
+    //[JsonProperty(DefaultValueHandling = DefaultValueHandling.Populate)]
+    public string name;
+
         public string character;
         public string animation;
         public string text;
-
+    public string[] multipleChoice;
+    public int correctChoice;
+        //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
+    //public string[] extra;
 }
 
 
@@ -77,11 +86,54 @@ public class LoadJson : MonoBehaviour{
                     foreach ( var item in conversation.First)//breaking down to each array element
                     {
                        Type_Dialogue line = new Type_Dialogue();
-                       //  Debug.Log(item);
-                        line.name = item["name"].ToString();
+
+                        try
+                        {
+                            line.name = item["name"].ToString();
+                        }
+                        catch(Exception e)
+                        {
+                            line.name = null;
+                        }
+
                         line.character = item["character"].ToString();
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
+
+                        //Adds in the multiple choices
+                        try
+                        {
+                            line.multipleChoice = new string[item["multipleChoice"].Count()];
+                            int index = 0;
+                            foreach (string choice in item["multipleChoice"])
+                            {
+                                line.multipleChoice[index] = choice;
+                                index++;
+                            }
+                            if (line.multipleChoice.Count() == 1 || line.multipleChoice.Count() > 4)
+                            {
+                                Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
+                            }
+                        }
+                        catch(Exception e)
+                        {
+                            line.multipleChoice = null;
+                        }
+
+                        //Adds in the correct choice.  Some checks since tied to multipleChoice
+                        try
+                        {
+                            line.correctChoice = item["correctChoice"].ToObject<int>();
+                            if (line.multipleChoice == null)
+                            {
+                                Debug.Log("No multiple choices");
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            line.correctChoice = 0;
+                        }
+
                         dialogues.Add(line); //add this line to list
                     }
 

@@ -1,0 +1,38 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Chapter_2",
+      "objects": [
+		{
+          "name": "Bob",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F> Chapter 2"
+        },
+		{
+			
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F>Multiple Choice Question.\nSelect 1.",
+		  "multipleChoice": ["1", "3", "2"],
+		  "correctChoice": "0"
+        },
+		{
+			"name": "John Doe",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Z.",
+		  "multipleChoice": ["E", "Z", "P", "Q"],
+		  "correctChoice" : "1"
+        },
+		{
+			"name": "John Doe",
+          "character": "null",
+          "animation": "null",
+          "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
+		  "multipleChoice": ["No", "No", "No", "Yes"],
+		  "correctChoice" : "3"
+        }
+		]
+    }]
+}
