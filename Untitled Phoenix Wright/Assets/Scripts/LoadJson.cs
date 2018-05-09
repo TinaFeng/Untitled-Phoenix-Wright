@@ -55,6 +55,7 @@ public class LoadJson : MonoBehaviour{
 
             Dialogue_File_Name = SceneManager.GetActiveScene().name; // getting the file name from current scene
 
+        Debug.Log(Dialogue_File_Name);
 
             TextAsset rawJson = Resources.Load<TextAsset>(Dialogue_File_Name); //Load the JSON file by its name
            

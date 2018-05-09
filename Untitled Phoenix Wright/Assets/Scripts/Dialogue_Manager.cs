@@ -171,13 +171,15 @@ public class Dialogue_Manager : MonoBehaviour {
             
             GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character+ "/" + Script[section_call][line_count].animation);
 
-            
-//            Debug.Log(("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation));
 
-            
-            animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
-            animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
+            //            Debug.Log(("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation));
 
+
+            if (animation_display.GetComponent<Animator>() != null)
+            {
+                animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
+                animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
+            }
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
 

@@ -1,0 +1,35 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Demo1",
+      "objects": [
+		{
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "This happend"
+        },
+		{
+
+      "name": "Connor", 
+      "character": "Connor",
+          "animation": "Standing",
+          "text": "that happened"
+
+        },
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "I'm lying. Show me your badge."
+
+        },
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
+        }
+		]
+    }]
+}
