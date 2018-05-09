@@ -60,6 +60,21 @@ public class On_ButtonClick : MonoBehaviour {
 
             Scroll(panel, "Right");
         }
+        else if (button_name == "Present")
+        {
+
+            Present();
+        }
+
+ 
+    }
+    void Present()
+    {
+ 
+        string presenting = GameObject.FindGameObjectWithTag("Display_Panel").transform.GetChild(1).GetChild(0).GetComponent<Text>().text;
+        GameObject.FindGameObjectWithTag("Dialogue_Manager").GetComponent<Dialogue_Manager>().PresentEvidence(presenting);
+        Turn_off_Panel(GameObject.FindGameObjectWithTag("Court_Record"));
+
     }
     void Display_Item(string itemname, string description)
     {

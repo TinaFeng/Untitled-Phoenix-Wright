@@ -1,27 +1,31 @@
 ﻿{
   "Scene": [
     {
-      "name": "Demo1",
+      "name": "~Regarding Testimony~",
       "objects": [
-		{
+        {
           "name": "Connor",
           "character": "Connor",
           "animation": "Standing",
-          "text": "This happend"
+          "text": "~Regarding Testimony~",
+          "presentable": "1"
         },
-		{
+        {
 
-      "name": "Connor", 
-      "character": "Connor",
+          "name": "Connor",
+          "character": "Connor",
           "animation": "Standing",
-          "text": "that happened"
+          "text": "that happened",
+          "presentable": "1"
 
         },
         {
           "name": "Connor",
           "character": "Connor",
           "animation": "Standing",
-          "text": "I'm lying. Show me your badge."
+          "text": "I'm lying. Show me your badge.",
+          "presentable": "1",
+          "evidence": "Attorney's Badge"
 
         },
         {
@@ -29,7 +33,63 @@
           "character": "Connor",
           "animation": "Standing",
           "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
+          "presentable": "1"
         }
-		]
-    }]
+      ]
+
+    },
+    {
+      "name": "~Regarding Testimony~Right",
+      "objects": [
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Fine",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "you got me",
+          "presentable": "0"
+        }
+
+
+
+      ]
+
+
+    },
+    {
+      "name": "~Regarding Testimony~Wrong",
+      "objects": [
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "wtf",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "that's not a badge",
+          "presentable": "0",
+          "nextsection": "~Regarding Testimony~"
+
+        }
+
+
+
+      ]
+
+
+    }
+  ]
 }
+

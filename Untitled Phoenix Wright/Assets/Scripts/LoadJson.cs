@@ -31,6 +31,9 @@ public class Type_Dialogue
         public string text;
     public string[] multipleChoice;
     public int correctChoice;
+    public bool presentable;
+    public string evidence;
+    public string next_section = null;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
@@ -134,6 +137,40 @@ public class LoadJson : MonoBehaviour{
                         {
                             line.correctChoice = 0;
                         }
+
+                        //presentable option
+                        try
+                        {
+                            if (item["presentable"].ToString() == "1")
+                                line.presentable = true;
+                            else
+                                line.presentable = false;
+                        }
+                        catch (Exception e)
+                        {
+                            line.presentable = false;
+                        }
+                        //evidence answer to present
+                        try
+                        {
+                            line.evidence = item["evidence"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.evidence = null;
+                        }
+                        //if we have a next section variable
+                        try
+                        {
+                            line.next_section = item["nextsection"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.next_section = null;
+                        }
+
+
+
 
                         dialogues.Add(line); //add this line to list
                     }

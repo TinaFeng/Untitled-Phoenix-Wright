@@ -90,6 +90,10 @@ public class Test_Dialogue_Manager : MonoBehaviour {
         if (section_call != "null")//if we know what we are talking
         {
 
+            if (section_call.Contains("~"))
+            {
+                GameObject.FindGameObjectWithTag("Present_Button").SetActive(true);
+            }
         //    Debug.Log(section_call);
             
             end_of_chapter = Script[section_call].Count;    //Mark the end

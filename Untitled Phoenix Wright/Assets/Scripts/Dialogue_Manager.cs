@@ -44,8 +44,13 @@ public class Dialogue_Manager : MonoBehaviour {
     ///
     float wait_time = 0.1f; //how long per each letter
     bool done = true; // is the current dialogue donw (are we calling arrow)
+    public bool is_court = true; //determine if we shut the chat box or not
                       ///  
 
+
+    //extra functionality variables
+    string next = "";
+    string playerPresentItem = "";
     int playerMultChoiceSelection = -1; //The player's choice when selecting one of the multiple choice options
 
     ///All the Audio Crap in the world. Probably will move most of the audio to a separate audio manager
@@ -100,6 +105,25 @@ public class Dialogue_Manager : MonoBehaviour {
             
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
+            //dealing with evidence
+            if (section_call.Contains("~"))
+            {
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 1;
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = true;
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts =true;
+            }
+            else
+            {
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 0;
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = false;
+                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = false;
+            }
+
+            
+
+
+
+
             //Kaitlyn - Maybe this belongs at the end of foward dialogue
             if (done)//if one dialogue is over
             {
@@ -114,13 +138,31 @@ public class Dialogue_Manager : MonoBehaviour {
             }
             if (line_count >= end_of_chapter && done == true)   // if we hit the end
             {
-                in_conversation = false;
+
+                    in_conversation = false;
             }
-            if (Input.GetMouseButtonDown(0) && in_conversation == false && done == true)
-            {
+            if (Input.GetKeyDown(KeyCode.Space) && in_conversation == false && done == true)
+            {//determie if we should shut dialogue box
                 //section_call = "null";
-                panel.SetActive(false);
-                reset_dialogue_box();
+                if (!is_court)
+                {
+                    reset_dialogue_box();
+                    panel.SetActive(false);
+                }
+                else
+                {
+                    if (next != null)
+                    {
+                        section_call = next;
+                        reset_dialogue_box();
+                    }
+                    else
+                    {
+                        line_count = 0;
+                        in_conversation = true;
+                    }
+                }
+
                
             }
             else if (line_count ==0)//if we are just starting, auto play one
@@ -128,7 +170,7 @@ public class Dialogue_Manager : MonoBehaviour {
                 forward_dialogue();
             }
             
-            else if (Input.GetMouseButtonDown(0) &&in_conversation)//if mouse click
+            else if (Input.GetKeyDown(KeyCode.Space) &&in_conversation)//if commad
             {
                 forward_dialogue();
             }
@@ -145,9 +187,10 @@ public class Dialogue_Manager : MonoBehaviour {
         anim = animation_display.GetComponent<Animator>();
         animation_display.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Animator>().runtimeAnimatorController; 
         animation_display.GetComponent<Image>().sprite = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Image>().sprite;
-
+        playerPresentItem = "";
         done = true;
         in_conversation = true;
+        next = null;
     }
 
     void forward_dialogue() //move on to next line 
@@ -167,8 +210,18 @@ public class Dialogue_Manager : MonoBehaviour {
             string processing = Script[section_call][line_count].text; //make a string for the content
                                                                        // Debug.Log(Script[line_count].icon);
 
-            
-            
+            if (Script[section_call][line_count].evidence != null)
+            {
+                playerPresentItem = Script[section_call][line_count].evidence;
+                Debug.Log("This line can present evidence");
+            }
+
+            if (Script[section_call][line_count].next_section != null)
+            {
+                next = Script[section_call][line_count].next_section;
+                Debug.Log("going to another line");
+
+            }
             GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character+ "/" + Script[section_call][line_count].animation);
 
 
@@ -318,6 +371,18 @@ public class Dialogue_Manager : MonoBehaviour {
         done = true; // when we are done, mark done as true
     }
 
+    public void PresentEvidence(string presenting)
+    {
+      
+        if (presenting == playerPresentItem)
+        {
+            section_call = section_call + "Right";
+        }
+        else
+            section_call = section_call + "Wrong";
+
+        reset_dialogue_box();
+    }
     //Called by multiple choice buttons
     public void setPlayerMultChoiceSelection(int sel)
     {
