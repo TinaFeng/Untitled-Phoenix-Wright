@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
     string current_ui = "";
 
     //Determines whether the background music should be played.
-    bool bgm_playing = false;
+    public bool bgm_playing = false;
 
     // Intitialization
     void Awake()
@@ -72,7 +72,7 @@ public class AudioManager : MonoBehaviour
         ui_source.volume = 0.7f;
         bgm_source.volume = 0.5f;
 
-        ToggleBGM(true);
+        //ToggleBGM(true);
 
         //Attach Listeners to buttons for UI sounds
         AttachListenersToButtons();

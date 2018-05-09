@@ -7,15 +7,14 @@ using UnityEngine;
 
 public class SoundBehavior : MonoBehaviour, IInteractionBehavior {
 
-    AudioSource audioSource;
     public string audio_name;
+    AudioManager audio_manager;
 	// Use this for initialization
 	void Start () {
-        audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = Resources.Load<AudioClip>(audio_name);
+        audio_manager = GameObject.FindGameObjectWithTag("Audio_Manager").GetComponent<AudioManager>();
 	}
 	
 	public void PerformBehavior () {
-        audioSource.Play();
+        audio_manager.PlayOneSFX(audio_name);
 	}
 }
