@@ -33,6 +33,7 @@ public class Type_Dialogue
     public int correctChoice;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
+    public string evidence;
 }
 
 
@@ -134,6 +135,20 @@ public class LoadJson : MonoBehaviour{
                             line.correctChoice = 0;
                         }
 
+                        //Checks if there is an evidence item the player needs to show.
+                        try
+                        {
+                            line.correctChoice = item["evidence"].ToObject<int>();
+                            if (line.evidence == null)
+                            {
+                                Debug.Log("No multiple choices");
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            line.evidence = null;
+                        }
+
                         dialogues.Add(line); //add this line to list
                     }
 
@@ -147,3 +162,10 @@ public class LoadJson : MonoBehaviour{
 
         }
     }
+
+    public string character;
+    public string animation;
+    public string text;
+    public string[] multipleChoice;
+    public int correctChoice;
+    //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
