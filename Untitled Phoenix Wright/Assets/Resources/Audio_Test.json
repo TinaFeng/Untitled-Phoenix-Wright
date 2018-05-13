@@ -1,0 +1,21 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Audio_Test",
+      "objects": [
+        {
+          "name": " ",
+          "character": "null",
+          "animation": "null",
+          "text": "This is the audio manager test scene."
+        },
+        {
+          "name": " ",
+          "character": "null",
+          "animation": "null",
+          "text": "Please press the buttons to test various aspects of the audio manager."
+        }
+      ]
+    }
+    ]
+}

@@ -1,0 +1,38 @@
+﻿{
+  "People_List": [
+    {
+      "name": "Artemis Lutea",
+      "description": "Yes, that's me.",
+      "is_unlocked": "1"
+    },
+    {
+      "name": "Helper dude",
+      "description": "Helper",
+      "is_unlocked": "1"
+    },
+    {
+      "name": "Placeholder",
+      "description": "placeholder",
+      "is_unlocked": "1"
+
+    },
+    {
+      "name": "Placeholder",
+      "description": "placeholder",
+      "is_unlocked": "1"
+
+    },
+    {
+      "name": "Placeholder",
+      "description": "placeholder",
+      "is_unlocked": "1"
+
+    },
+    {
+      "name": "Placeholder",
+      "description": "placeholder",
+      "is_unlocked": "1"
+
+    }
+  ]
+}
