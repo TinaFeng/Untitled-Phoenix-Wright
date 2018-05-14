@@ -1,0 +1,68 @@
+{
+    "Scene": [
+      {
+        "name": "AudioDialogue",
+        "objects": [
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Testing dialogue manager cueing audio."
+          },
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Playing a bgm.",
+            "bgm" : "lobby"
+          },
+          {
+            "name": "AudioManager-kun",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Excluding the bgm field allows the music to keep playing."
+          },
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Changing to another bgm.",
+            "bgm" : "test01"
+          },
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Using the same tag as the currently playing bgm does not restart the music.",
+            "bgm" : "test01"
+          },
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> Stopping bgm.",
+            "bgm" : "stop"
+          },
+          {
+            "name": "AudioManager",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> The next line should play a sound effect on the count of three.",
+          },
+          {
+            "name": "AudioManager-chan",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> 1...2...{sound='shock'}3!",
+          },
+          {
+            "name": "AudioManager-chan-kun-san-sama-senpai",
+            "character": "null",
+            "animation": "null",
+            "text": "<color=#5DE42F> {sound='shock'}W{sound='slam'}O{sound='damage'}W{sound='objection'}!",
+            "bgm" : "test02"
+          }
+          ]
+      }]
+  }
+  

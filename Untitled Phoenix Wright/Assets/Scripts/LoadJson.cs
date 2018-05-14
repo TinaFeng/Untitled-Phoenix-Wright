@@ -31,6 +31,7 @@ public class Type_Dialogue
         public string text;
     public string[] multipleChoice;
     public int correctChoice;
+    public string bgm;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
@@ -132,6 +133,16 @@ public class LoadJson : MonoBehaviour{
                         catch (Exception e)
                         {
                             line.correctChoice = 0;
+                        }
+
+                        //Gets tag for background music, if any.
+                        try
+                        {
+                            line.bgm = item["bgm"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.bgm = null;
                         }
 
                         dialogues.Add(line); //add this line to list

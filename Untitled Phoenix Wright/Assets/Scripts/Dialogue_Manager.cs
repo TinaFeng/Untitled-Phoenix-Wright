@@ -56,12 +56,16 @@ public class Dialogue_Manager : MonoBehaviour {
     List<string> fremalevoices = new List<string> {};
     
     //Can add more List<string> for more type noises
-
+    
     AudioSource audioSource;
     AudioClip male;
     AudioClip female;
     AudioClip writer;
     // audio objects
+
+    AudioManager audio_manager;
+    //Handles all audio except for typing sounds (would be an easy change though...)
+    
     ///
     void Start () {
 
@@ -75,6 +79,8 @@ public class Dialogue_Manager : MonoBehaviour {
         male= Resources.Load("TypingMale") as AudioClip;
         female = Resources.Load("TypingFemale") as AudioClip;
         writer = Resources.Load("Typewriter") as AudioClip; //Load noises
+
+        audio_manager = GameObject.FindGameObjectWithTag("Audio_Manager").GetComponent<AudioManager>();
 
         //Art
 
@@ -204,6 +210,21 @@ public class Dialogue_Manager : MonoBehaviour {
         string command_begin = ""; //^
         bool color = false;//are we using rich text bs
 
+        //Play/Change/Stop background music, if specified.
+        if(Script[section_call][line_count].bgm != null)
+        {
+            string tag = Script[section_call][line_count].bgm;
+            Debug.Log(tag);
+            if (tag == "stop")
+            {
+                audio_manager.ToggleBGM(false);
+            }
+            else
+            {
+                audio_manager.ToggleBGM(true);
+                audio_manager.SetBGM(tag);
+            }
+        }
 
         //determine which sound is beeping, can add more if statements
         if (malevoices.Contains(Script[section_call][line_count].name))
@@ -257,6 +278,35 @@ public class Dialogue_Manager : MonoBehaviour {
 
             if (story[i] == '>')// if it hits > , skip
                 continue;
+
+            //Search for audio cues
+            if (story[i] == '{')
+            {
+                i++;
+                string command = "";
+                while(story[i] != '=')
+                {
+                    command = command + story[i];
+                    i++;
+                }
+                //skip '='
+                i++;
+                //Handle sound commands
+                if(command.Trim() == "sound")
+                {
+                    string tag = "";
+                    while(story[i] != '}')
+                    {
+                        tag += story[i];
+                        i++;
+                    }
+                    char[] toTrim = { ' ', '\n', '\'' };
+                    tag = tag.Trim(toTrim);
+                    audio_manager.PlayOneSFX(tag);
+                    //skip '}'
+                    i++;
+                }
+            }
 
             current = story[i].ToString();
             if (color == true)  // if we are still in color mode, add color
