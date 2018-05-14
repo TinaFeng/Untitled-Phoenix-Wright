@@ -214,7 +214,6 @@ public class Dialogue_Manager : MonoBehaviour {
         if(Script[section_call][line_count].bgm != null)
         {
             string tag = Script[section_call][line_count].bgm;
-            Debug.Log(tag);
             if (tag == "stop")
             {
                 audio_manager.ToggleBGM(false);
@@ -295,11 +294,13 @@ public class Dialogue_Manager : MonoBehaviour {
                 if(command.Trim() == "sound")
                 {
                     string tag = "";
+                    //Get all text up to closing brace
                     while(story[i] != '}')
                     {
                         tag += story[i];
                         i++;
                     }
+                    //Isolate tag
                     char[] toTrim = { ' ', '\n', '\'' };
                     tag = tag.Trim(toTrim);
                     audio_manager.PlayOneSFX(tag);
