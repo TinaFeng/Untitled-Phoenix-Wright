@@ -21,6 +21,8 @@ public class Dialogue_Manager : MonoBehaviour {
     GameObject animation_display; 
     Animator anim;
 
+    Image background;//The background image
+
 
     public GameObject Arrow;        // The little arrow thing to tell the player next dialogue
    
@@ -47,6 +49,7 @@ public class Dialogue_Manager : MonoBehaviour {
                       ///  
 
     int playerMultChoiceSelection = -1; //The player's choice when selecting one of the multiple choice options
+    string playerEvidenceSelection = null; //The player's choice of evidence to present
 
     ///All the Audio Crap in the world. Probably will move most of the audio to a separate audio manager
     AudioClip typing;
@@ -83,6 +86,7 @@ public class Dialogue_Manager : MonoBehaviour {
         animation_display = GameObject.FindGameObjectWithTag("Character_Animator");
         anim = animation_display.GetComponent<Animator>();
 
+        background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
     }
 
     private void OnEnable() //everytime when the panel shows up,reset everything.
@@ -116,7 +120,8 @@ public class Dialogue_Manager : MonoBehaviour {
             {
                 in_conversation = false;
             }
-            if (Input.GetMouseButtonDown(0) && in_conversation == false && done == true)
+            //if (Input.GetMouseButtonDown(0) && in_conversation == false && done == true)
+            if (Input.GetKeyDown(KeyCode.Space) && in_conversation == false && done == true)
             {
                 //section_call = "null";
                 panel.SetActive(false);
@@ -128,7 +133,8 @@ public class Dialogue_Manager : MonoBehaviour {
                 forward_dialogue();
             }
             
-            else if (Input.GetMouseButtonDown(0) &&in_conversation)//if mouse click
+            //else if (Input.GetMouseButtonDown(0) &&in_conversation)//if mouse click
+            else if (Input.GetKeyDown(KeyCode.Space) && in_conversation)
             {
                 forward_dialogue();
             }
@@ -142,9 +148,14 @@ public class Dialogue_Manager : MonoBehaviour {
         name.text = "";
         conversation.text = "";
         animation_display = GameObject.FindGameObjectWithTag("Character_Animator");
+        Vector3 animation_displayPos = animation_display.transform.localPosition;
+        animation_display.transform.localPosition = new Vector3(0, animation_displayPos.y, animation_displayPos.z);
         anim = animation_display.GetComponent<Animator>();
         animation_display.GetComponent<Animator>().runtimeAnimatorController = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Animator>().runtimeAnimatorController; 
         animation_display.GetComponent<Image>().sprite = Resources.Load<GameObject>("Arts/" + "Characters/null/null").GetComponent<Image>().sprite;
+
+        background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
+        background.sprite = null;
 
         done = true;
         in_conversation = true;
@@ -170,13 +181,18 @@ public class Dialogue_Manager : MonoBehaviour {
             
             
             GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character+ "/" + Script[section_call][line_count].animation);
+            background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
-            
-//            Debug.Log(("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation));
+            //            Debug.Log(("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation));
 
-            
+
             animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
             animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
+
+            //Moves the character to the x position specified in the JSON
+            int characterXPos = Script[section_call][line_count].characterXPos;
+            Vector3 animation_displayPos = animation_display.transform.localPosition;
+            animation_display.transform.localPosition = new Vector3(characterXPos, animation_displayPos.y, animation_displayPos.z);
 
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
@@ -196,7 +212,7 @@ public class Dialogue_Manager : MonoBehaviour {
 
     }
 
-    IEnumerator PlayText(string story,Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
+    IEnumerator PlayText(string story, Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
     {
         done = false; //mark it as not done
         conversation.text = ""; //clear the current chat box
@@ -218,19 +234,19 @@ public class Dialogue_Manager : MonoBehaviour {
         {
             typing = female;
         }
-    
+
 
         string current; // current is the string we are about to type out
 
-        for (int i =0; i!= story.Length;i++) //for every letter in the dialogue
+        for (int i = 0; i != story.Length; i++) //for every letter in the dialogue
         {
-            
-            if(story[i] == '<' && story[i+1] != '/')//if this is the beginning of a rich text, record the color
-            { 
+
+            if (story[i] == '<' && story[i + 1] != '/')//if this is the beginning of a rich text, record the color
+            {
                 command_begin = "";
                 command_begin += story[i];
                 int count = i + 1;
-                while(story[count]!='>')
+                while (story[count] != '>')
                 {
                     command_begin += story[count];
                     count++;
@@ -243,14 +259,14 @@ public class Dialogue_Manager : MonoBehaviour {
 
             if (story[i] == '<' && story[i + 1] == '/') //if it is a </  sign
             {
-                i++; 
-                int count =i;
-                while (story[count] !='>') //until you hit the end of the command, skip everything
+                i++;
+                int count = i;
+                while (story[count] != '>') //until you hit the end of the command, skip everything
                 {
                     i++;
                     count++;
                 }
-                
+
                 color = false;//not in color anymore
             }
 
@@ -260,31 +276,31 @@ public class Dialogue_Manager : MonoBehaviour {
 
             current = story[i].ToString();
             if (color == true)  // if we are still in color mode, add color
-             {
+            {
                 string add = command_begin + story[i] + command_end;
                 conversation.text += add;
-          
-             }
+
+            }
             else//if not, just add the text to yield string
-             {
+            {
                 conversation.text += story[i];
-                
-                
-               }
+
+
+            }
 
 
             //Audio Management
-            if(current!= "\n")
+            if (current != "\n")
             {
                 audioSource.PlayOneShot(typing, 0.7f);
             }
-           
+
             yield return new WaitForSeconds(wait_time); //type writer
 
 
         }
 
-        
+
         //Throws up the multiple choice panel if there is a question
         if (Script[section_call][line_count].multipleChoice != null)
         {
@@ -296,6 +312,7 @@ public class Dialogue_Manager : MonoBehaviour {
 
             //Stops player from progressing until they choose the correct option
             playerMultChoiceSelection = -1;
+            //Debug.Log("Correct choice " + Script[section_call][line_count].correctChoice);
             while (true)
             {
                 yield return new WaitUntil(() => playerMultChoiceSelection >= 0);
@@ -307,11 +324,29 @@ public class Dialogue_Manager : MonoBehaviour {
                 {
                     //else, there is a penalty. Greys out the player's incorrect guess
                     multChoicePanel.GetComponent<MultChoicePanelManager>().DisableIncorrectGuess(playerMultChoiceSelection, Script[section_call][line_count].multipleChoice.Length);
-                }   
+                    playerMultChoiceSelection = -1;
+                }
             }
             multChoicePanel.GetComponent<MultChoicePanelManager>().ResetChoices();
             multChoicePanel.SetActive(false);
         }
+
+        /*if (Script[section_call][line_count].evidence != null)
+        {
+            Debug.Log(Script[section_call][line_count].evidence);
+            playerEvidenceSelection = null;
+            /*while (true)
+            {
+                if (playerEvidenceSelection.Equals(Script[section_call][line_count].evidence))
+                {
+                    break;
+                }
+                else
+                {
+                    //else, there is a penalty.
+                }
+            }
+        }*/
         line_count++;
         done = true; // when we are done, mark done as true
     }
@@ -319,7 +354,14 @@ public class Dialogue_Manager : MonoBehaviour {
     //Called by multiple choice buttons
     public void setPlayerMultChoiceSelection(int sel)
     {
+        //Debug.Log("Player choice " + sel);
         playerMultChoiceSelection = sel;
         //Debug.Log(playerMultChoiceSelection);
+    }
+
+    //Can be called by a piece of evidence when the player clicks it
+    public void setPlayerEvidenceSelection(string sel)
+    {
+        playerEvidenceSelection = sel;
     }
 }

@@ -28,11 +28,15 @@ public class Type_Dialogue
 
         public string character;
         public string animation;
+    public int characterXPos;
         public string text;
     public string[] multipleChoice;
     public int correctChoice;
-        //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
+    //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
+    public string evidence;
+
+    public string background; //The background image
 }
 
 
@@ -97,6 +101,17 @@ public class LoadJson : MonoBehaviour{
                         }
 
                         line.character = item["character"].ToString();
+
+                        //Adds in the character's X position.  Defaults to 0
+                        try
+                        {
+                            line.characterXPos = item["characterXPos"].ToObject<int>();
+                        }
+                        catch (Exception e)
+                        {
+                            line.characterXPos = 0;
+                        }
+
                         line.animation = item["animation"].ToString();
                         line.text = item["text"].ToString();
 
@@ -124,6 +139,7 @@ public class LoadJson : MonoBehaviour{
                         try
                         {
                             line.correctChoice = item["correctChoice"].ToObject<int>();
+                            //Debug.Log("When read in..." + line.correctChoice);
                             if (line.multipleChoice == null)
                             {
                                 Debug.Log("No multiple choices");
@@ -132,6 +148,35 @@ public class LoadJson : MonoBehaviour{
                         catch (Exception e)
                         {
                             line.correctChoice = 0;
+                        }
+
+                        //Adds in the correct choice.  Some checks since tied to multipleChoice
+                        try
+                        {
+                            line.evidence = item["evidence"].ToString();
+                            if (line.evidence == null)
+                            {
+                                Debug.Log("No multiple choices");
+                            }
+                            //Debug.Log(line.evidence);
+                        }
+                        catch (Exception e)
+                        {
+                            line.evidence = null;
+                        }
+
+                        try
+                        {
+                            line.background = item["background"].ToString();
+                            if (line.background == null)
+                            {
+                                Debug.Log("No multiple choices");
+                            }
+                            //Debug.Log(line.evidence);
+                        }
+                        catch (Exception e)
+                        {
+                            line.background = null;
                         }
 
                         dialogues.Add(line); //add this line to list
