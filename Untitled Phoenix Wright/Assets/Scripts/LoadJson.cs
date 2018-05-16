@@ -39,7 +39,7 @@ public class Type_Dialogue
     public string next_scene;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
-    public string evidence;
+
 
     public string background; //The background image
 }
@@ -190,7 +190,8 @@ public class LoadJson : MonoBehaviour{
                         //if we have next scene
                         try
                         {
-                            line.next_scene = item["next_scene"].ToString();
+                            line.next_scene = item["nextscene"].ToString();
+                            Debug.Log(item["nextscene"].ToString());
                         }
                         catch (Exception e)
                         {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 //After loading and processing dialogues from JsonLoader, go to dialogue manager script
 //This is the script that is in charge of "Phoenix Wright Style" text dialogue
 
@@ -44,9 +44,9 @@ public class Dialogue_Manager : MonoBehaviour {
 
    
     ///
-    float wait_time = 0.1f; //how long per each letter
+    float wait_time = 0.01f; //how long per each letter
     bool done = true; // is the current dialogue donw (are we calling arrow)
-    public bool is_court = true; //determine if we shut the chat box or not
+    public bool is_court = false; //determine if we shut the chat box or not
                       ///  
 
 
@@ -62,7 +62,8 @@ public class Dialogue_Manager : MonoBehaviour {
     List<string> malevoices = new List<string>{ "???", "Miles" }; // a list of strings containing names of the male voices
                                                                                    // the type writer can then play different noises accordingly
     List<string> fremalevoices = new List<string> {};
-    
+
+    List<string> typesound = new List<string> {" ",",",".","?","!"};
     //Can add more List<string> for more type noises
     
     AudioSource audioSource;
@@ -154,13 +155,22 @@ public class Dialogue_Manager : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.Space) && in_conversation == false && done == true)
             {//determie if we should shut dialogue box
                 //section_call = "null";
+     
                 if (!is_court)
                 {
+
+ 
+                    if (Script[section_call][line_count - 1].next_scene != null)
+                    {
+                
+                        SceneManager.LoadScene(Script[section_call][line_count-1].next_scene);
+                    }
                     reset_dialogue_box();
                     panel.SetActive(false);
                 }
                 else
                 {
+            
                     if (next != null)
                     {
                         section_call = next;
@@ -215,12 +225,12 @@ public class Dialogue_Manager : MonoBehaviour {
         //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
         if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
         {
-            wait_time = 0.04f;
+            wait_time = 0.02f;
             Arrow.SetActive(false);
         }
         if (done) //if we are done, set wait time back to default. 
         {
-            wait_time = 0.1f;
+            wait_time = 0.01f;
             name.text = Script[section_call][line_count].name;
             //play the current line out
             string processing = Script[section_call][line_count].text; //make a string for the content
@@ -401,7 +411,15 @@ public class Dialogue_Manager : MonoBehaviour {
             //Audio Management
             if (current != "\n")
             {
-                audioSource.PlayOneShot(typing, 0.7f);
+                wait_time = 0.03f;
+                if (typesound.Contains(current))
+                {
+                    audioSource.PlayOneShot(typing, 0.7f);
+                    if (current != " ")
+                        wait_time = 0.1f;
+                    else
+                        wait_time = 0.03f;
+                }
             }
 
             yield return new WaitForSeconds(wait_time); //type writer

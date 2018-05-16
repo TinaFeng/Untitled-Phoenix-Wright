@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Secne/Demo1.unity
+- path: Assets/Secne/Ch1_CourtLodge.unity
   isLoaded: 1
   isActive: 1

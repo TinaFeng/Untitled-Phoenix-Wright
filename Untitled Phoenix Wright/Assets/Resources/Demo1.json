@@ -9,7 +9,9 @@
           "animation": "Standing",
           "text": "~Regarding Testimony~",
           "presentable": "1",
-            "bgm": "test01"
+          "bgm": "test01",
+          "background": "TempGreen"
+
         },
         {
 
@@ -18,7 +20,8 @@
           "animation": "Standing",
           "text": "that happened",
           "presentable": "1",
-          "bgm": "test02"
+          "bgm": "test02",
+          "background": "TempOrange"
 
         },
         {
