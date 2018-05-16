@@ -35,6 +35,7 @@ public class Type_Dialogue
     public string evidence;
     public string next_section = null;
     public string bgm;
+    public string next_scene;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
@@ -170,6 +171,15 @@ public class LoadJson : MonoBehaviour{
                             line.next_section = null;
                         }
 
+                        //if we have next scene
+                        try
+                        {
+                            line.next_scene = item["next_scene"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.next_scene = null;
+                        }
 
 
 

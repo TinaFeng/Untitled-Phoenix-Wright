@@ -8,7 +8,8 @@
           "character": "Connor",
           "animation": "Standing",
           "text": "~Regarding Testimony~",
-          "presentable": "1"
+          "presentable": "1",
+            "bgm": "test01"
         },
         {
 
@@ -16,7 +17,8 @@
           "character": "Connor",
           "animation": "Standing",
           "text": "that happened",
-          "presentable": "1"
+          "presentable": "1",
+          "bgm": "test02"
 
         },
         {

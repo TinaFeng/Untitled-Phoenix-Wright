@@ -425,9 +425,11 @@ public class Dialogue_Manager : MonoBehaviour {
     public void PresentEvidence(string presenting)
     {
       
+        audio_manager.PlayOneSFX("objection");
         if (presenting == playerPresentItem)
         {
             section_call = section_call + "Right";
+
         }
         else
             section_call = section_call + "Wrong";
