@@ -76,38 +76,50 @@
           "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard."
         },
         {
-          "name": "Alex",
+          "name": "Artemis",
           "character": "Alex",
           "animation": "Alex_Standing",
-          "text": "Skipping for now."
+          "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations. It would risk his future career in the Senate and the House."
         },
         {
           "name": "Alex",
           "character": "Alex",
           "animation": "Alex_Standing",
-          "text": "Skipping for now."
+          "text": "Oh, he was once part of the New World Wrestling Federation."
+        },
+        {
+          "name": "Artemis",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Exactly. NWW doesn't poll well with the voters in his district."
         },
         {
           "name": "Alex",
           "character": "Alex",
           "animation": "Alex_Standing",
-          "text": "Skipping for now."
+          "text": "Hm. Seems like we have only five more minutes."
+        },
+        {
+          "name": "Artemis",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Run through the witnesses that we have."
         },
         {
           "name": "Alex",
           "character": "Alex",
           "animation": "Alex_Standing",
-          "text": "Skipping for now."
+          "text": "We have Gabriel, obviously."
         },
         {
           "name": "Alex",
           "character": "Alex",
           "animation": "Alex_Standing",
-          "text": "Skipping for now."
+          "text": "We also have our defendant Eduardo, the IT guy KAI L. KIMURA, and we have the detective responsible for the murder case CONNOR BURKE."
         },
 
         {
-          "name": "Alex",
+          "name": "Artemis",
           "character": "Alex",
           "animation": "Alex_Standing",
           "text": "Okay. Seems like the Judge is almost ready. We should set up for the trial inside the courtroom.",
