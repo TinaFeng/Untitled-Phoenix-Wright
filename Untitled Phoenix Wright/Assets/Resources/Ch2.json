@@ -5,30 +5,40 @@
       "objects": [
 		{
           "name": "Bob",
-          "character": "null",
-          "animation": "null",
-          "text": "<color=#5DE42F> Chapter 2"
+          "character": "Miles",
+		  "characterXPos": "500",
+          "animation": "Normal_Talking",
+          "text": "<color=#5DE42F> Chapter 2",
+		  "background": "TempGreen"
+        },
+		{
+          "character": "Miles",
+          "animation": "Normal_Talking",
+          "text": "<color=#5DE42F> Show me the badge",
+		  "evidence": "Attorney's badge"
         },
 		{
 			
-          "character": "null",
-          "animation": "null",
+          "character": "Miles",
+		  "characterXPos": "-250",
+          "animation": "Normal_Talking",
           "text": "<color=#5DE42F>Multiple Choice Question.\nSelect 1.",
 		  "multipleChoice": ["1", "3", "2"],
-		  "correctChoice": "0"
+		  "correctChoice": "0",
+		  "background": "TempOrange"
         },
 		{
 			"name": "John Doe",
-          "character": "null",
-          "animation": "null",
+          "character": "Miles",
+          "animation": "Normal_Talking",
           "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Z.",
 		  "multipleChoice": ["E", "Z", "P", "Q"],
 		  "correctChoice" : "1"
         },
 		{
 			"name": "John Doe",
-          "character": "null",
-          "animation": "null",
+          "character": "Miles",
+          "animation": "Normal_Talking",
           "text": "<color=#5DE42F>Multiple Choice Question.\nSelect Yes.",
 		  "multipleChoice": ["No", "No", "No", "Yes"],
 		  "correctChoice" : "3"

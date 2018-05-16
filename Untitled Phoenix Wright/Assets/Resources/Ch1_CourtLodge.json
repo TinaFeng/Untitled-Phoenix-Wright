@@ -1,0 +1,175 @@
+﻿{
+  "Scene": [
+    {
+      "name": "Lodge",
+      "objects": [
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Seems like it's almost finally time, huh?",
+          "bgm": "lobby"
+
+        },
+        {
+
+          "name": "Artemis",
+          "character": "null",
+          "animation": "null",
+          "text": "Of course. There's only fifteen minutes left before the trial."
+
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "You don't seem very nervous."
+
+        },
+        {
+          "name": "Artemis",
+          "character": "null",
+          "animation": "null",
+          "text": "Perhaps. Run me through the details again."
+        },
+
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "This is the criminal case for <color=#ff4d4d>Eduardo Fuentes</color>. "
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "He is currently being charged for a <color=#ff4d4d>felony</color>, but our evidence suggests that this crime can be downgraded to a <color=#ff4d4d>misdemeanor</color>."
+        },
+        {
+          "name": "Artemis",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Right. The prosecuting lawyer is the public prosecutor and our superior, <color=#ff4d4d>Felix Gwerder</color>."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "It'll be tough. Even despite our client's background, Felix has an all-star witness."
+        },
+        {
+          "name": "Artemis",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "<color=#ff4d4d>GABRIEL HYLAND</color>? It's going to be tough to get the jury to dislike him. Could be problematic."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Wait, why do we need need the jury to dislike Gabriel?"
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Skipping for now."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Skipping for now."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Skipping for now."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Skipping for now."
+        },
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Skipping for now."
+        },
+
+        {
+          "name": "Alex",
+          "character": "Alex",
+          "animation": "Alex_Standing",
+          "text": "Okay. Seems like the Judge is almost ready. We should set up for the trial inside the courtroom.",
+          "nextscene": "Demo1"
+        }
+
+
+      ]
+
+    },
+    {
+      "name": "~Regarding Testimony~Right",
+      "objects": [
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Fine",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "you got me",
+          "presentable": "0"
+        }
+
+
+
+      ]
+
+
+    },
+    {
+      "name": "~Regarding Testimony~Wrong",
+      "objects": [
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "wtf",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "that's not a badge",
+          "presentable": "0",
+          "nextsection": "~Regarding Testimony~"
+
+        }
+
+
+
+      ]
+
+
+    }
+  ]
+}
+
