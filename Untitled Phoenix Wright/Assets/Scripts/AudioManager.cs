@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 /* Class to play various audio clips such as typing sounds,
  * sound effects, and background music.
+ * Make sure that the object that this component is attached to has the Audio_Manager tag.
  */
 
 //For the full list of audio tags, see the Sound_List.json file in the Resources/Audio directory.
@@ -38,6 +39,8 @@ public class AudioManager : MonoBehaviour
     /* Dictionary containing file names and tags for BGM
      */
     public Dictionary<string, string> bgm_dict = new Dictionary<string, string>();
+
+    public AudioClip type_clip;
     //AudioClip typing;
 
     //Hold the tag of the last assigned sound to the AudioSources.
@@ -66,16 +69,18 @@ public class AudioManager : MonoBehaviour
         //Set default values for AudioSources
         SetUISound("select");
         SetTypeSound("neutral"); //default typing sound
-        SetBGM("lobby");
+        //SetBGM("lobby");
         type_source.volume = 0.4f;
         sfx_source.volume = 1.0f;
         ui_source.volume = 0.7f;
         bgm_source.volume = 0.5f;
 
+        
+
         //ToggleBGM(true);
 
         //Attach Listeners to buttons for UI sounds
-        AttachListenersToButtons();
+        //AttachListenersToButtons();
 
     }
 

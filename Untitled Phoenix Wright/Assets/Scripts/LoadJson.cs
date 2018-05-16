@@ -34,6 +34,7 @@ public class Type_Dialogue
     public bool presentable;
     public string evidence;
     public string next_section = null;
+    public string bgm;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
 }
@@ -171,6 +172,16 @@ public class LoadJson : MonoBehaviour{
 
 
 
+
+                        //Gets tag for background music, if any.
+                        try
+                        {
+                            line.bgm = item["bgm"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.bgm = null;
+                        }
 
                         dialogues.Add(line); //add this line to list
                     }
