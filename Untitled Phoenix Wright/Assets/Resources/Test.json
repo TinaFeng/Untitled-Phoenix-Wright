@@ -1,0 +1,114 @@
+{
+ "Scene":  [
+
+ {
+"name:": "~testing~",
+"objects": [ 
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text": "1",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "lobby",
+ "background": "TempGreen"
+},
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text":  "I told him that was not the case, but he won't listen.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text": "3",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "objection",
+ "background": "TempKAy"
+},
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text": "4",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text": "5",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Connor",
+ "character": "Connor",
+ "animation": "Standing",
+ "text": "6",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+}
+]
+	},	
+
+ {
+"name:": "~testing_end~",
+"objects": [ 
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Standing",
+ "text":  "No, you are not.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+		}
+	]
+}
+	]
+}

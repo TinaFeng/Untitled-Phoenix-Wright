@@ -124,16 +124,19 @@ public class LoadJson : MonoBehaviour{
                         //Adds in the multiple choices
                         try
                         {
-                            line.multipleChoice = new string[item["multipleChoice"].Count()];
-                            int index = 0;
-                            foreach (string choice in item["multipleChoice"])
+                            if (item["multipleChoice"].Count() != 0)
                             {
-                                line.multipleChoice[index] = choice;
-                                index++;
-                            }
-                            if (line.multipleChoice.Count() == 1 || line.multipleChoice.Count() > 4)
-                            {
-                                Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
+                                line.multipleChoice = new string[item["multipleChoice"].Count()];
+                                int index = 0;
+                                foreach (string choice in item["multipleChoice"])
+                                {
+                                    line.multipleChoice[index] = choice;
+                                    index++;
+                                }
+                                if (line.multipleChoice.Count() == 1 || line.multipleChoice.Count() > 4)
+                                {
+                                    Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
+                                }
                             }
                         }
                         catch(Exception e)
@@ -171,6 +174,7 @@ public class LoadJson : MonoBehaviour{
                         //evidence answer to present
                         try
                         {
+                            if (item["evidence"].ToString() !="")
                             line.evidence = item["evidence"].ToString();
                         }
                         catch (Exception e)
@@ -180,7 +184,8 @@ public class LoadJson : MonoBehaviour{
                         //if we have a next section variable
                         try
                         {
-                            line.next_section = item["nextsection"].ToString();
+                            if (item["nextsection"].ToString() != "")
+                                line.next_section = item["nextsection"].ToString();
                         }
                         catch (Exception e)
                         {
@@ -190,7 +195,8 @@ public class LoadJson : MonoBehaviour{
                         //if we have next scene
                         try
                         {
-                            line.next_scene = item["nextscene"].ToString();
+                            if (item["nextscene"].ToString() != "")
+                                line.next_scene = item["nextscene"].ToString();
                             Debug.Log(item["nextscene"].ToString());
                         }
                         catch (Exception e)
@@ -203,7 +209,8 @@ public class LoadJson : MonoBehaviour{
                         //Gets tag for background music, if any.
                         try
                         {
-                            line.bgm = item["bgm"].ToString();
+                            if (item["bgm"].ToString() != "")
+                                line.bgm = item["bgm"].ToString();
                         }
                         catch (Exception e)
                         {
@@ -212,11 +219,9 @@ public class LoadJson : MonoBehaviour{
 
                         try
                         {
-                            line.background = item["background"].ToString();
-                            if (line.background == null)
-                            {
-                                Debug.Log("No multiple choices");
-                            }
+                            if (item["background"].ToString() != "")
+                                line.background = item["background"].ToString();
+       
                             //Debug.Log(line.evidence);
                         }
                         catch (Exception e)
