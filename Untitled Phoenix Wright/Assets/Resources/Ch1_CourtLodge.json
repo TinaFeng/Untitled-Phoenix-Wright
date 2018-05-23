@@ -47,8 +47,8 @@
         },
         {
           "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "character": "null",
+          "animation": "null",
           "text": "Right. The prosecuting lawyer is the public prosecutor and our superior, <color=#ff4d4d>Felix Gwerder</color>."
         },
         {
@@ -70,15 +70,15 @@
           "text": "Wait, why do we need need the jury to dislike Gabriel?"
         },
         {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "name": "Artemis",
+          "character": "null",
+          "animation": "null",
           "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard."
         },
         {
           "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "character": "null",
+          "animation": "null",
           "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations. It would risk his future career in the Senate and the House."
         },
         {
@@ -89,8 +89,8 @@
         },
         {
           "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "character": "null",
+          "animation": "null",
           "text": "Exactly. NWW doesn't poll well with the voters in his district."
         },
         {
@@ -101,8 +101,8 @@
         },
         {
           "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "character": "null",
+          "animation": "null",
           "text": "Run through the witnesses that we have."
         },
         {
@@ -120,10 +120,10 @@
 
         {
           "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
+          "character": "null",
+          "animation": "null",
           "text": "Okay. Seems like the Judge is almost ready. We should set up for the trial inside the courtroom.",
-          "nextscene": "Demo1"
+          "nextscene": "Ch1_Courtroom"
         }
 
 

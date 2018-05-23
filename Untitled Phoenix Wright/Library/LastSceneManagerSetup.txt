@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Secne/Test.unity
-  isLoaded: 1
-  isActive: 1
