@@ -37,7 +37,8 @@ public class Dialogue_Manager : MonoBehaviour {
         new Dictionary<string, List<Type_Dialogue>>(); // Prepare a Script object that's dictionary composed from JsonLoader
 
 
-    int line_count = 0;                                         // a counter that keeps track of which line is playing
+    int line_count = -1;                                         // a counter that keeps track of which line is playing
+    int last_finished_line = -1;        //The index of the last line played and finished.
     int end_of_chapter;                                         // an end indicator to tell object stop conversation
     bool in_conversation = false;                               // determine whether the chat box disappears
    
@@ -76,7 +77,7 @@ public class Dialogue_Manager : MonoBehaviour {
     //Handles all audio except for typing sounds (would be an easy change though...)
     
     ///
-    void Start () {
+    void Awake () {
 
         //Script
          GameObject loader = GameObject.FindGameObjectWithTag("Script_Data");  //find the xml loader that has the xml data in the scene
@@ -99,6 +100,9 @@ public class Dialogue_Manager : MonoBehaviour {
         anim = animation_display.GetComponent<Animator>();
 
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
+
+        Debug.Log(line_count);
+        Debug.Log(Script.Count);
     }
 
     private void OnEnable() //everytime when the panel shows up,reset everything.
@@ -108,12 +112,16 @@ public class Dialogue_Manager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        
         if (section_call != "null")//if we know what we are talking
         {
+            //Debug.Log("Lince con" + line_count);
+            if (line_count == -1)//if we are just starting, auto play one
+            {
+                //Debug.Log("Forwarding 1st line");
+                line_count++;
+                forward_dialogue();
+            }
 
-        //    Debug.Log(section_call);
-            
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
             //dealing with evidence
@@ -130,77 +138,77 @@ public class Dialogue_Manager : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
 
-            
-
-
-
-
-            //Kaitlyn - Maybe this belongs at the end of foward dialogue
-            if (done)//if one dialogue is over
+            /*if (done)//if one dialogue is over
             {
-                //If there is a multiple choice question, bring up the choices instead of the arrow.
-                //TESTING
-                //Debug.Log(line_count);
-                /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+                //Arrow.SetActive(true);//pop the arrow
+            }*/
+            if (done)
+            {
+                if (line_count >= end_of_chapter && done == true)   // if we hit the end
                 {
-                    Debug.Log("Multiple Choice");
-                }*/
-                Arrow.SetActive(true);//pop the arrow
-            }
-            if (line_count >= end_of_chapter && done == true)   // if we hit the end
-            {
-
                     in_conversation = false;
-            }
-            if (Input.GetKeyDown(KeyCode.Space) && in_conversation == false && done == true)
-            {//determie if we should shut dialogue box
-                //section_call = "null";
-     
-                if (!is_court)
-                {
-
- 
-                    if (Script[section_call][line_count - 1].next_scene != null)
-                    {
-                
-                        SceneManager.LoadScene(Script[section_call][line_count-1].next_scene);
-                    }
-                    reset_dialogue_box();
-                    panel.SetActive(false);
                 }
-                else
-                {
-            
-                    if (next != null)
+                if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation == false && done == true)
+                {//determie if we should shut dialogue box
+                 //section_call = "null";
+
+                    if (!is_court)
                     {
-                        section_call = next;
+                        if (Script[section_call][line_count - 1].next_scene != null)
+                        {
+                            SceneManager.LoadScene(Script[section_call][line_count - 1].next_scene);
+                        }
                         reset_dialogue_box();
+                        panel.SetActive(false);
                     }
                     else
                     {
-                        line_count = 0;
-                        in_conversation = true;
+                        if (next != null)
+                        {
+                            section_call = next;
+                            reset_dialogue_box();
+                        }
+                        else
+                        {
+                            line_count = 0;
+                            in_conversation = true;
+                        }
                     }
                 }
 
-               
+                else if (Input.GetKeyDown(KeyCode.LeftArrow) && in_conversation && line_count > 0 && done == true)
+                {
+                    line_count -= 1;
+                    forward_dialogue();
+                }
+                /*else if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation)//if commad
+                {
+                    //forward_dialogue();
+                }*/
+
             }
-            else if (line_count ==0)//if we are just starting, auto play one
+
+            if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation)//if commad
             {
-                forward_dialogue();
+                if (line_count < Script[section_call].Count - 1)
+                {
+                    if (done)
+                    {
+                        line_count++;
+                    }
+                    forward_dialogue();
+                }
             }
-            
-            else if (Input.GetKeyDown(KeyCode.Space) &&in_conversation)//if commad
-            {
-                forward_dialogue();
-            }
+
+            //Perhaps there is a better place to incriment line count
+
         }
 
 	}
 
     void reset_dialogue_box() //clear all contents
     {
-        line_count = 0;
+        line_count = -1;
         name.text = "";
         conversation.text = "";
         animation_display = GameObject.FindGameObjectWithTag("Character_Animator");
@@ -221,7 +229,6 @@ public class Dialogue_Manager : MonoBehaviour {
 
     void forward_dialogue() //move on to next line 
     {
-      
         //    Debug.Log("Current Index: " + line_count + " MaxCount: " + end_of_chapter);
         if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
         {
@@ -279,11 +286,18 @@ public class Dialogue_Manager : MonoBehaviour {
                 //Put up multiple choice until the player makes a guess
             }*/
 
-            
+
             //TESTING
             //line_count++;//prepare for the next
+            //line_count++;
         }
+        
+    }
 
+    //Used to display a part of the text conversation without doing the typing animations, etc.
+    void DisplayText(Text converstation)
+    {
+        conversation.text = "";
     }
 
     IEnumerator PlayText(string story, Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
@@ -431,6 +445,7 @@ public class Dialogue_Manager : MonoBehaviour {
         //Throws up the multiple choice panel if there is a question
         if (Script[section_call][line_count].multipleChoice != null)
         {
+            //Debug.Log("Line count" + line_count);
             /*foreach (string s in Script[section_call][line_count].multipleChoice)
                 Debug.Log(s);*/
             multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
@@ -474,8 +489,9 @@ public class Dialogue_Manager : MonoBehaviour {
                 }
             }
         }*/
-        line_count++;
+        //line_count++;
         done = true; // when we are done, mark done as true
+        Arrow.SetActive(true);//pop the arrow
     }
 
     public void PresentEvidence(string presenting)
