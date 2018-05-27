@@ -101,8 +101,8 @@ public class Dialogue_Manager : MonoBehaviour {
 
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
 
-        Debug.Log(line_count);
-        Debug.Log(Script.Count);
+        //Debug.Log(line_count);
+        //Debug.Log(Script.Count);
     }
 
     private void OnEnable() //everytime when the panel shows up,reset everything.
@@ -235,69 +235,82 @@ public class Dialogue_Manager : MonoBehaviour {
             wait_time = 0.02f;
             Arrow.SetActive(false);
         }
-        if (done) //if we are done, set wait time back to default. 
+        else  //if we are done, set wait time back to default. 
         {
-            wait_time = 0.01f;
             name.text = Script[section_call][line_count].name;
-            //play the current line out
-            string processing = Script[section_call][line_count].text; //make a string for the content
-                                                                       // Debug.Log(Script[line_count].icon);
 
-            if (Script[section_call][line_count].evidence != null)
-            {
-                playerPresentItem = Script[section_call][line_count].evidence;
-                Debug.Log("This line can present evidence");
-            }
-
-            if (Script[section_call][line_count].next_section != null)
-            {
-                next = Script[section_call][line_count].next_section;
-                Debug.Log("going to another line");
-
-            }
-            GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character+ "/" + Script[section_call][line_count].animation);
-
-            if(Script[section_call][line_count].background != null)
+            if (Script[section_call][line_count].background != null)
                 background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
-            
+            GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
+
             animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
             animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
-
 
             if (animation_display.GetComponent<Animator>() != null)
             {
                 animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
                 animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
             }
+            
             //Moves the character to the x position specified in the JSON
             int characterXPos = Script[section_call][line_count].characterXPos;
             Vector3 animation_displayPos = animation_display.transform.localPosition;
             animation_display.transform.localPosition = new Vector3(characterXPos, animation_displayPos.y, animation_displayPos.z);
 
-            StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
-            Arrow.SetActive(false);//shut the arrow
-
-            //TESTING: If there is a multiple choice question, the panel is brought up
-            //Debug.Log("Key count in " + line_count + " " + Script[section_call][line_count].extra.Keys.Count);
-            /*if (Script[section_call][line_count].extra.ContainsKey("Multiple Choice"))
+            //If the player is moving to a new piece of the conversation
+            if (line_count > last_finished_line)
             {
-                Debug.Log("Multiple Choice");
-                //Put up multiple choice until the player makes a guess
-            }*/
+                wait_time = 0.01f;
 
+                //play the current line out
+                string processing = Script[section_call][line_count].text; //make a string for the content
+                                                                           // Debug.Log(Script[line_count].icon);
 
-            //TESTING
-            //line_count++;//prepare for the next
-            //line_count++;
+                if (Script[section_call][line_count].evidence != null)
+                {
+                    playerPresentItem = Script[section_call][line_count].evidence;
+                    Debug.Log("This line can present evidence");
+                }
+
+                if (Script[section_call][line_count].next_section != null)
+                {
+                    next = Script[section_call][line_count].next_section;
+                    Debug.Log("going to another line");
+                }
+
+                StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
+                Arrow.SetActive(false);//shut the arrow
+            }
+            else
+            {
+                //Otherwise displays text while skipping multiple choice, etc.
+                DisplayText();
+            }
         }
-        
     }
 
     //Used to display a part of the text conversation without doing the typing animations, etc.
-    void DisplayText(Text converstation)
+    void DisplayText()
     {
-        conversation.text = "";
+        string convo = Script[section_call][line_count].text;
+
+        int colorCodeStart = convo.IndexOf("<color=#");
+        int colorCodeEnd = convo.IndexOf(">");
+
+        //In case of color coding
+        if(colorCodeStart != -1 && colorCodeEnd != -1)
+        {
+            string command_end = "</color>";//(Currently hardcoded) Dealing with rich text crap
+            string command_begin = ""; //^
+
+            command_begin = convo.Substring(colorCodeStart, colorCodeEnd);
+            conversation.text = command_begin + convo.Substring(colorCodeEnd) + command_end;
+        }
+        else
+        {
+            conversation.text = convo;
+        }
     }
 
     IEnumerator PlayText(string story, Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
@@ -492,6 +505,8 @@ public class Dialogue_Manager : MonoBehaviour {
         //line_count++;
         done = true; // when we are done, mark done as true
         Arrow.SetActive(true);//pop the arrow
+
+        last_finished_line = line_count;
     }
 
     public void PresentEvidence(string presenting)
