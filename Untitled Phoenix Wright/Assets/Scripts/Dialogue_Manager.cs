@@ -40,19 +40,20 @@ public class Dialogue_Manager : MonoBehaviour {
     int line_count = 0;                                         // a counter that keeps track of which line is playing
     int end_of_chapter;                                         // an end indicator to tell object stop conversation
     bool in_conversation = false;                               // determine whether the chat box disappears
-   
+    
 
    
     ///
     float wait_time = 0.01f; //how long per each letter
     bool done = true; // is the current dialogue donw (are we calling arrow)
     public bool is_court = false; //determine if we shut the chat box or not
-                      ///  
+    public bool can_press = false;// determine whether to hide press button
+                                                                ///  
 
 
     //extra functionality variables
-    string next = "";
-    string playerPresentItem = "";
+    public string next = "";
+    public string playerPresentItem = "";
     int playerMultChoiceSelection = -1; //The player's choice when selecting one of the multiple choice options
     string playerEvidenceSelection = null; //The player's choice of evidence to present
 
@@ -112,9 +113,16 @@ public class Dialogue_Manager : MonoBehaviour {
         if (section_call != "null")//if we know what we are talking
         {
 
-        //    Debug.Log(section_call);
-            
-            end_of_chapter = Script[section_call].Count;    //Mark the end
+            //    Debug.Log(section_call);
+            try
+            {
+                end_of_chapter = Script[section_call].Count;    //Mark the end
+            }
+            catch
+            {
+                print(section_call);
+                throw;
+            }
 
             //dealing with evidence
             if (section_call.Contains("~"))
@@ -130,10 +138,8 @@ public class Dialogue_Manager : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = false;
             }
 
+
             
-
-
-
 
             //Kaitlyn - Maybe this belongs at the end of foward dialogue
             if (done)//if one dialogue is over
@@ -294,6 +300,16 @@ public class Dialogue_Manager : MonoBehaviour {
         string command_begin = ""; //^
         bool color = false;//are we using rich text bs
 
+        // Check if the current line can be pressed for information.
+        // Should probably be put elsewhere, but it keeps breaking due to line_count shenanigans.
+        if(Script[section_call][line_count].press != null)
+        {
+            can_press = true;
+        }
+        else
+        {
+            can_press = false;
+        }
         //Play/Change/Stop background music, if specified.
         if(Script[section_call][line_count].bgm != null)
         {
@@ -476,6 +492,17 @@ public class Dialogue_Manager : MonoBehaviour {
         }*/
         line_count++;
         done = true; // when we are done, mark done as true
+    }
+
+    // Set the next section to be the press response section.
+    public void PressSection()
+    {
+        //Needed to prevent crashes if the press button is clicked before text finishes.
+        if (done)
+        {
+            section_call = Script[section_call][line_count - 1].press;
+            reset_dialogue_box();
+        }
     }
 
     public void PresentEvidence(string presenting)

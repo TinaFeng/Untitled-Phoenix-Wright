@@ -8,8 +8,8 @@
           "character": "Alex",
           "animation": "Alex_Standing",
           "text": "Seems like it's almost finally time, huh?",
-          "bgm": "lobby"
-
+          "bgm": "lobby",
+          "background": "court lounge"
         },
         {
 

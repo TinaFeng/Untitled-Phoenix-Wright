@@ -36,6 +36,7 @@ public class Type_Dialogue
     public string evidence;
     public string next_section = null;
     public string bgm;
+    public string press = null;
     public string next_scene;
         //public Dictionary <string, string[]> extra = new Dictionary <string, string[]>();
     //public string[] extra;
@@ -180,6 +181,15 @@ public class LoadJson : MonoBehaviour{
                         catch (Exception e)
                         {
                             line.evidence = null;
+                        }
+                        //section to call if pressed
+                        try
+                        {
+                            line.press = item["press"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.press = null;
                         }
                         //if we have a next section variable
                         try
