@@ -15,7 +15,12 @@
           "character": "Miles",
           "animation": "Normal_Talking",
           "text": "<color=#5DE42F>Show me the badge",
-		  "evidence": "Attorney's badge"
+		  "evidence": "Attorney's Badge",
+        },
+		{
+          "character": "Miles",
+          "animation": "Normal_Talking",
+          "text": "<color=#5DE42F>There it is!"
         },
 		{
 			

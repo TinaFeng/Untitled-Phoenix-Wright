@@ -23,6 +23,9 @@ public class Dialogue_Manager : MonoBehaviour {
 
     Image background;//The background image
 
+    GameObject presentButton; //button used to present evidence
+    //GameObject courtRecordButton; //button used to open court record
+
 
     public GameObject Arrow;        // The little arrow thing to tell the player next dialogue
    
@@ -101,6 +104,11 @@ public class Dialogue_Manager : MonoBehaviour {
 
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
 
+        presentButton = GameObject.FindGameObjectWithTag("Present_Button");
+        presentButton.SetActive(false);
+
+        //courtRecordButton = GameObject.Find("CourtRecord");
+
         //Debug.Log(line_count);
         //Debug.Log(Script.Count);
     }
@@ -125,18 +133,10 @@ public class Dialogue_Manager : MonoBehaviour {
             end_of_chapter = Script[section_call].Count;    //Mark the end
 
             //dealing with evidence
-            if (section_call.Contains("~"))
-            {
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 1;
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = true;
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts =true;
-            }
-            else
-            {
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 0;
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = false;
-                GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = false;
-            }
+            //May change to something more efficient
+            //Only want the button visible during cross-examination or when the player needs to show
+            //an item
+
 
             /*if (done)//if one dialogue is over
             {
@@ -269,7 +269,7 @@ public class Dialogue_Manager : MonoBehaviour {
 
                 if (Script[section_call][line_count].evidence != null)
                 {
-                    playerPresentItem = Script[section_call][line_count].evidence;
+                    //playerPresentItem = Script[section_call][line_count].evidence;
                     Debug.Log("This line can present evidence");
                 }
 
@@ -486,22 +486,56 @@ public class Dialogue_Manager : MonoBehaviour {
             multChoicePanel.SetActive(false);
         }
 
-        /*if (Script[section_call][line_count].evidence != null)
+        if (Script[section_call][line_count].evidence != null)
         {
-            Debug.Log(Script[section_call][line_count].evidence);
-            playerEvidenceSelection = null;
-            /*while (true)
+            Debug.Log("EVIDENCE " + Script[section_call][line_count].evidence);
+            presentButton.SetActive(true);
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 1;
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = true;
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //Debug.Log(Script[section_call][line_count].evidence);
+            playerEvidenceSelection = "";
+            while (true)
             {
+                //Debug.Log("Awaiting player evidence selection");
+
+                yield return new WaitUntil(() => !playerEvidenceSelection.Equals(""));
+                //Debug.Log("playerEvidence selection " + playerEvidenceSelection + playerEvidenceSelection.Length);
+                //Debug.Log("Evidence " + Script[section_call][line_count].evidence + Script[section_call][line_count].evidence.Length);
+                //Debug.Log(playerEvidenceSelection.Equals(Script[section_call][line_count].evidence));
                 if (playerEvidenceSelection.Equals(Script[section_call][line_count].evidence))
                 {
+                    //Automatically moves to next line, if there is one.
+                    if(line_count + 1 < end_of_chapter)
+                    {
+                        done = true;
+                        line_count += 1;
+                        forward_dialogue();
+                        yield break;
+                    }
                     break;
                 }
                 else
                 {
                     //else, there is a penalty.
+                    conversation.text = "WTF IS THIS!!!";
+                    playerEvidenceSelection = "";
+                    Arrow.SetActive(true);
+                    presentButton.SetActive(false);
+                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.RightArrow));
+                    DisplayText();
+                    Arrow.SetActive(false);
+                    presentButton.SetActive(true);
                 }
             }
-        }*/
+
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().alpha = 0;
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().interactable = false;
+            //GameObject.FindGameObjectWithTag("Present_Button").GetComponent<CanvasGroup>().blocksRaycasts = false;
+            presentButton.SetActive(false);
+        }
+
+        //GameObject.FindGameObjectWithTag("Present_Button").SetActive(false);
         //line_count++;
         done = true; // when we are done, mark done as true
         Arrow.SetActive(true);//pop the arrow
@@ -511,17 +545,20 @@ public class Dialogue_Manager : MonoBehaviour {
 
     public void PresentEvidence(string presenting)
     {
-      
+        //Debug.Log("Presenting" + presenting);
+        //Debug.Log("Player present item" + playerPresentItem);
         audio_manager.PlayOneSFX("objection");
-        if (presenting == playerPresentItem)
+        /*if (presenting == playerPresentItem)
         {
             section_call = section_call + "Right";
 
         }
         else
-            section_call = section_call + "Wrong";
+            section_call = section_call + "Wrong";*/
+        //Print negative statement.
 
-        reset_dialogue_box();
+        playerEvidenceSelection = presenting;
+        //reset_dialogue_box();
     }
     //Called by multiple choice buttons
     public void setPlayerMultChoiceSelection(int sel)
