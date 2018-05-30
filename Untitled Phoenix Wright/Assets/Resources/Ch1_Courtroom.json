@@ -1,0 +1,289 @@
+{
+ "Scene":  [
+
+ {
+"name:": "Courtroom_1",
+"objects": [ 
+{
+ "name": "Bailiff",
+ "character": "null",
+ "animation": "null",
+ "text": "All rise.",
+ "bgm": "lobby",
+ "background": "courtroom"
+},
+{
+	"name": "Bailiff",
+	"character": "null",
+	"animation": "null",
+	"text": "Department One of the Superior Court is now in session. Judge Barrett presiding."
+},
+{
+	"name": "Bailiff",
+	"character": "null",
+	"animation": "null",
+	"text": "Please be seated."
+},
+{
+	"name": "Judge Barrett",
+	"character": "Judge",
+	"animation": "Court_Neutral",
+	"text": "Good morning, ladies and gentlemen.",
+	"background": "judge_stand"
+},
+{
+	"name": "Judge Barrett",
+	"character": "Judge",
+	"animation": "Court_Neutral",
+	"text": "Calling the case of the People of the State of California versus Eduardo Fuentes.",
+},
+{
+	"name": "Judge Barrett",
+	"character": "Judge",
+	"animation": "Court_Neutral",
+	"text": "Are both sides ready?"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text": "Ready for the People, your honor.",
+	"background": "prosecution_stand"
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text": "Ready for the People, your honor.",
+	"background": "defense_stand"
+},
+{
+	"name": "Judge Barrett",
+	"character": "Judge",
+	"animation": "Court_Neutral",
+	"text": "Will the clerk please swear in the jury?",
+	"background": "judge_stand"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Will the jury please stand and raise your right hand?",
+	"background": "courtroom"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Do each of you swear that you will fairly try the case before this court, and that you will return a true verdict according to the evidence and the instructions of the court, so help you, God?"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text":"Please say \"I do\"."
+},
+{
+	"name": "Jury",
+	"character": "null",
+	"animation": "null",
+	"text":"I do."
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text":"You may be seated."
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"Your Honor and ladies and gentlemen of the jury: the defendant has been charged with the crime of murdering the late <color=#ff4d4d>JOSHUA HYLAND</color>.",
+	"background": "prosecution_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"The evidence will show that Joshua's corpse was found was found with a <color=#ff4d4d>stab wound</color>."
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"Mr. Fuentes was found on the crime scene with the murder weapon in his possession."
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"The evidence I present will prove to you that the defendant is guilty as charged."
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text":"Your Honor and ladies and gentlemen of the jury: under the law my client is presumed innocent until proven guilty.",
+	"background": "defense_stand"
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text":"During this trial, you will discover that there is no real evidence to suggest that Eduardo was the murderer."
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text":"The truth is much simpler: Eduardo was provoked to stab the late Mr. Hyland, but left and returned the crime scene in order to administer proper first aid."
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text":"He had made a mistake, but had tried to do the right thing by trying to save the late Mr. Hyland."
+},
+{
+	"name": "Artemis",
+	"character": "Artemis",
+	"animation": "Court_Neutral",
+	"text":"The evidence I present will show that my client is not guilty."
+},
+{
+	"name": "Judge Barrett",
+	"character": "Judge",
+	"animation": "Court_Neutral",
+	"text":"The prosecution may call its first witness.",
+	"background":"judge_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"The People call the brother of the late Mr. Hyland.",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Please stand.",
+	"background": "courtroom"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Raise your right hand."
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Do you promise that the testimony you shall give in the case before this court shall be the truth, the whole truth, and nothing but the truth, so help you God?"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I most certainly do.",
+	"background": "witness_stand"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "Please state your first and last name.",
+	"background": "courtroom"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I am Gabriel Hyland.",
+	"background": "witness_stand"
+},
+{
+	"name": "Clerk",
+	"character": "null",
+	"animation": "null",
+	"text": "You may be seated.",
+	"background": "courtroom"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"Gabriel, where do you work?",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I am the current State Senator for California's 26th District.",
+	"background": "witness_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"Where were you on April 4th, 2014?",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I was in <color=#ff4d4d>Warehouse Six</color> on the NWW Studios filming lot.",
+	"background": "witness_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"To your knowledge, where was Joshua and Mr. Fuentes on that day?",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I had sent Eduardo to deal with Joshua at <color=#ff4d4d>Warehouse Four</color>, I think.",
+	"background": "witness_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text": "Gabriel, have you observed Mr. Fuentes openly carrying his <color=#ff4d4d>tactical knife</color>?",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "Yes. Eduardo has always kept his knife visible to the public.",
+	"background": "witness_stand"
+},
+{
+	"name": "Felix",
+	"character": "Felix",
+	"animation": "Court_Neutral",
+	"text":"What time did you spot Joshua's dead body?",
+	"background":"prosecution_stand"
+},
+{
+	"name": "Gabriel",
+	"character": "Gabriel",
+	"animation": "Neutral",
+	"text": "I think around <color=#ff4d4d>7:20 PM</color>?",
+	"background": "witness_stand"
+}
+
+	]
+}
+	]
+}

@@ -1,0 +1,179 @@
+﻿{
+  "Scene": [
+    {
+      "name": "~TestCrossExamination~",
+      "objects": [
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "What's wrong?",
+          "press": "press1",
+          "presentable": "1",
+          "bgm": "test01",
+          "background": "TempGreen"
+
+        },
+        {
+
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "I'm not guilty!",
+          "press": "press2",
+          "presentable": "1",
+          "background": "TempOrange"
+
+        },
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Do you even have a badge?",
+          "press":"press3",
+          "presentable": "1",
+          "evidence": "Attorney's Badge"
+
+        },
+        {
+          "name": "Artemis",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "I must be missing something. Let me check again.",
+          "nextsection": "~TestCrossExamination~",
+          "presentable": "0"
+        }
+      ]
+
+    },
+    {
+      "name": "~TestCrossExamination~Right",
+      "objects": [
+        {
+          "name": "Connor",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Aw. You got me.",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Artemis",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Damn straight.",
+          "presentable": "0"
+        }
+
+
+
+      ]
+
+
+    },
+    {
+      "name": "~TestCrossExamination~Wrong",
+      "objects": [
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "You're really slipping up.",
+          "presentable": "0"
+        },
+        {
+
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "Oops.",
+          "presentable": "0",
+          "nextsection": "~TestCrossExamination~"
+
+        }    
+      ]
+    },
+    {
+      "name": "press1",
+      "objects": [
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "Bear with me, I'm testing something.",
+          "presentable": "0"
+        },
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Oh.",
+          "presentable": "0",
+          "nextsection": "~TestCrossExamination~"
+        }
+      ]
+    },
+    {
+      "name": "press2",
+      "objects": [
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "What are you saying? Of course you're guilty.",
+          "presentable": "0"
+        },
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "I thought this was just a test.",
+          "presentable": "0"
+        },
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "That was a lie.",
+          "presentable": "0"
+        },
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "Urk!",
+          "presentable": "0",
+          "nextsection": "~TestCrossExamination~"
+        }
+      ]
+    },
+    {
+      "name": "press3",
+      "objects": [
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "What kind of badge are you talking about?",
+          "presentable": "0"
+        },
+        {
+          "name": "Test",
+          "character": "Connor",
+          "animation": "Standing",
+          "text": "You know, one that shows that you can stand in court as a lawyer?",
+          "presentable": "0"
+        },
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "(Do I have something like that? I should check.)",
+          "presentable": "0",
+          "nextsection": "~TestCrossExamination~"
+        }
+      ]
+    }
+  ]
+}
+
