@@ -30,7 +30,7 @@
           "character": "Connor",
           "animation": "Standing",
           "text": "Do you even have a badge?",
-          "press":"press3",
+          "press": "press3",
           "presentable": "1",
           "evidence": "Attorney's Badge"
 

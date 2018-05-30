@@ -15,7 +15,7 @@ public class Dialogue_Manager : MonoBehaviour {
     public Text name; //The UI text field that is going to display who's speaking
     public Text conversation;///The UI text field that is going to display what are they saying
     public GameObject multChoicePanel;
-    
+    public GameObject PressButton;
 
     //animation//protrait display
     GameObject animation_display; 
@@ -44,6 +44,8 @@ public class Dialogue_Manager : MonoBehaviour {
     int last_finished_line = -1;        //The index of the last line played and finished.
     int end_of_chapter;                                         // an end indicator to tell object stop conversation
     bool in_conversation = false;                               // determine whether the chat box disappears
+
+    int examincation_index = -1;  //checking cross examintation sentences when pressed
     
 
    
@@ -52,7 +54,8 @@ public class Dialogue_Manager : MonoBehaviour {
     bool done = true; // is the current dialogue donw (are we calling arrow)
     public bool is_court = false; //determine if we shut the chat box or not
     public bool can_press = false;// determine whether to hide press button
-                                                                ///  
+                                  ///  
+    public bool is_pressing = false;
 
 
     //extra functionality variables
@@ -143,6 +146,7 @@ public class Dialogue_Manager : MonoBehaviour {
             {
                 //Arrow.SetActive(true);//pop the arrow
             }*/
+
             if (done)
             {
                 if (line_count >= end_of_chapter && done == true)   // if we hit the end
@@ -153,6 +157,7 @@ public class Dialogue_Manager : MonoBehaviour {
                 {//determie if we should shut dialogue box
                  //section_call = "null";
 
+        
                     if (!is_court)
                     {
                         if (Script[section_call][line_count - 1].next_scene != null)
@@ -164,8 +169,10 @@ public class Dialogue_Manager : MonoBehaviour {
                     }
                     else
                     {
+                        Debug.Log(next);
                         if (next != null)
                         {
+                            Debug.Log("Moving on");
                             section_call = next;
                             reset_dialogue_box();
                         }
@@ -191,14 +198,31 @@ public class Dialogue_Manager : MonoBehaviour {
 
             if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation)//if commad
             {
-                if (line_count < Script[section_call].Count - 1)
+                if (next != null)
                 {
-                    if (done)
+                    section_call = next;
+                    reset_dialogue_box();
+                    if (is_pressing)
                     {
-                        line_count++;
+                        line_count = examincation_index;
+                        is_pressing = false;
                     }
-                    forward_dialogue();
+                    
                 }
+                else
+                {
+                    if (line_count < Script[section_call].Count - 1)
+                    {
+                        if (done)
+                        {
+                            line_count++;
+                        }
+                    }
+                    else
+                        line_count = 0;
+                }
+               forward_dialogue();
+                
             }
 
             //Perhaps there is a better place to incriment line count
@@ -240,6 +264,21 @@ public class Dialogue_Manager : MonoBehaviour {
         {
             name.text = Script[section_call][line_count].name;
 
+            // Check if the current line can be pressed for information.
+
+            if (Script[section_call][line_count].press != null)
+            {
+                can_press = true;
+                PressButton.SetActive(true);
+            }
+            else
+            {
+                can_press = false;
+                PressButton.SetActive(false);
+            }
+
+
+
             if (Script[section_call][line_count].background != null)
                 background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
@@ -260,6 +299,20 @@ public class Dialogue_Manager : MonoBehaviour {
             animation_display.transform.localPosition = new Vector3(characterXPos, animation_displayPos.y, animation_displayPos.z);
 
             //If the player is moving to a new piece of the conversation
+
+            if (Script[section_call][line_count].presentable)
+            {
+                presentButton.SetActive(true);
+                //playerPresentItem = Script[section_call][line_count].evidence;
+                Debug.Log("This line can present evidence");
+            }
+
+            if (Script[section_call][line_count].next_section != null)
+            {
+                next = Script[section_call][line_count].next_section;
+                Debug.Log("going to another line");
+            }
+
             if (line_count > last_finished_line)
             {
                 wait_time = 0.01f;
@@ -267,18 +320,6 @@ public class Dialogue_Manager : MonoBehaviour {
                 //play the current line out
                 string processing = Script[section_call][line_count].text; //make a string for the content
                                                                            // Debug.Log(Script[line_count].icon);
-
-                if (Script[section_call][line_count].evidence != null)
-                {
-                    //playerPresentItem = Script[section_call][line_count].evidence;
-                    Debug.Log("This line can present evidence");
-                }
-
-                if (Script[section_call][line_count].next_section != null)
-                {
-                    next = Script[section_call][line_count].next_section;
-                    Debug.Log("going to another line");
-                }
 
                 StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
                 Arrow.SetActive(false);//shut the arrow
@@ -294,6 +335,7 @@ public class Dialogue_Manager : MonoBehaviour {
     //Used to display a part of the text conversation without doing the typing animations, etc.
     void DisplayText()
     {
+
         string convo = Script[section_call][line_count].text;
 
         int colorCodeStart = convo.IndexOf("<color=#");
@@ -312,6 +354,7 @@ public class Dialogue_Manager : MonoBehaviour {
         {
             conversation.text = convo;
         }
+        done = true;
     }
 
     IEnumerator PlayText(string story, Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)
@@ -322,16 +365,7 @@ public class Dialogue_Manager : MonoBehaviour {
         string command_begin = ""; //^
         bool color = false;//are we using rich text bs
 
-        // Check if the current line can be pressed for information.
-        // Should probably be put elsewhere, but it keeps breaking due to line_count shenanigans.
-        if(Script[section_call][line_count].press != null)
-        {
-            can_press = true;
-        }
-        else
-        {
-            can_press = false;
-        }
+
         //Play/Change/Stop background music, if specified.
         if(Script[section_call][line_count].bgm != null)
         {
@@ -497,7 +531,7 @@ public class Dialogue_Manager : MonoBehaviour {
             multChoicePanel.SetActive(false);
         }
 
-        if (Script[section_call][line_count].evidence != null)
+        if (Script[section_call][line_count].presentable)
         {
             Debug.Log("EVIDENCE " + Script[section_call][line_count].evidence);
             presentButton.SetActive(true);
@@ -519,6 +553,7 @@ public class Dialogue_Manager : MonoBehaviour {
                     //Automatically moves to next line, if there is one.
                     if(line_count + 1 < end_of_chapter)
                     {
+                        presentButton.SetActive(false);
                         done = true;
                         line_count += 1;
                         forward_dialogue();
@@ -560,7 +595,9 @@ public class Dialogue_Manager : MonoBehaviour {
         //Needed to prevent crashes if the press button is clicked before text finishes.
         if (done)
         {
-            section_call = Script[section_call][line_count - 1].press;
+            is_pressing = true;
+            examincation_index = line_count;
+            section_call = Script[section_call][line_count].press;
             reset_dialogue_box();
         }
     }

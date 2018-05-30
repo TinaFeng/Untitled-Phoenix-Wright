@@ -65,8 +65,13 @@ public class On_ButtonClick : MonoBehaviour {
 
             Present();
         }
-
+        else if (button_name ==  "Press")
+        {
+            GameObject manager = GameObject.FindGameObjectWithTag("Dialogue_Manager");
+             manager.GetComponent<Dialogue_Manager>().PressSection();
+        }
  
+
     }
     void Present()
     {

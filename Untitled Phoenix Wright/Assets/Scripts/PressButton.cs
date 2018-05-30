@@ -12,14 +12,7 @@ public class PressButton : MonoBehaviour {
 	
     void Update()
     {
-        if (dialogue_manager.can_press == false)
-        {
-            press_button.SetActive(false);
-        }
-        else
-        {
-            press_button.SetActive(true);
-        }
+
     }
 
 
