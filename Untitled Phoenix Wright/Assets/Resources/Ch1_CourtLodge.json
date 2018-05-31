@@ -1,187 +1,338 @@
-﻿{
-  "Scene": [
-    {
-      "name": "Lodge",
-      "objects": [
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "Seems like it's almost finally time, huh?",
-          "bgm": "lobby",
-          "background": "court lounge"
-        },
-        {
+{
+ "Scene":  [
 
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Of course. There's only fifteen minutes left before the trial."
-
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "You don't seem very nervous."
-
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Perhaps. Run me through the details again."
-        },
-
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "This is the criminal case for <color=#ff4d4d>Eduardo Fuentes</color>. "
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "He is currently being charged for a <color=#ff4d4d>felony</color>, but our evidence suggests that this crime can be downgraded to a <color=#ff4d4d>misdemeanor</color>."
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Right. The prosecuting lawyer is the public prosecutor and our superior, <color=#ff4d4d>Felix Gwerder</color>."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "It'll be tough. Even despite our client's background, Felix has an all-star witness."
-        },
-        {
-          "name": "Artemis",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "<color=#ff4d4d>GABRIEL HYLAND</color>? It's going to be tough to get the jury to dislike him. Could be problematic."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "Wait, why do we need need the jury to dislike Gabriel?"
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard."
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations. It would risk his future career in the Senate and the House."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "Oh, he was once part of the New World Wrestling Federation."
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Exactly. NWW doesn't poll well with the voters in his district."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "Hm. Seems like we have only five more minutes."
-        },
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Run through the witnesses that we have."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "We have Gabriel, obviously."
-        },
-        {
-          "name": "Alex",
-          "character": "Alex",
-          "animation": "Alex_Standing",
-          "text": "We also have our defendant Eduardo, the IT guy KAI L. KIMURA, and we have the detective responsible for the murder case CONNOR BURKE."
-        },
-
-        {
-          "name": "Artemis",
-          "character": "null",
-          "animation": "null",
-          "text": "Okay. Seems like the Judge is almost ready. We should set up for the trial inside the courtroom.",
-          "nextscene": "Ch1_Courtroom"
-        }
-
-
-      ]
-
-    },
-    {
-      "name": "~Regarding Testimony~Right",
-      "objects": [
-        {
-          "name": "Connor",
-          "character": "Connor",
-          "animation": "Standing",
-          "text": "Fine",
-          "presentable": "0"
-        },
-        {
-
-          "name": "Connor",
-          "character": "Connor",
-          "animation": "Standing",
-          "text": "you got me",
-          "presentable": "0"
-        }
-
-
-
-      ]
-
-
-    },
-    {
-      "name": "~Regarding Testimony~Wrong",
-      "objects": [
-        {
-          "name": "Connor",
-          "character": "Connor",
-          "animation": "Standing",
-          "text": "wtf",
-          "presentable": "0"
-        },
-        {
-
-          "name": "Connor",
-          "character": "Connor",
-          "animation": "Standing",
-          "text": "that's not a badge",
-          "presentable": "0",
-          "nextsection": "~Regarding Testimony~"
-
-        }
-
-
-
-      ]
-
-
-    }
-  ]
+ {
+"name:": "Lodge",
+"objects": [ 
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "Seems like it's almost finally time, huh?",
+ "multipleChoice": "",
+ "correctChoice": "[]",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "lobby",
+ "background": "court lounge"
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "Of course. There's only fifteen minutes left before the trial.",
+ "multipleChoice": "[]",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text": "You don't seem very nervous.",
+ "multipleChoice": "[]",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "Perhaps. Run me through the details again.",
+ "multipleChoice": "[]",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text": "This is the criminal case for EDUARDO FUENTES.",
+ "multipleChoice": "[]",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "He is currently being charged for a felony, but our evidence suggests that this crime can be downgraded to a misdemeanor.",
+ "multipleChoice": "",
+ "correctChoice": "[]",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text":  "Right. The prosecuting lawyer is the public prosecutor and our superior, FELIX GWERDER.",
+ "multipleChoice": "",
+ "correctChoice": "[]",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text": "It'll be tough.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "Even despite our client's background, Felix has an all-star witness.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "GABRIEL HYLAND?",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "It's going to be tough to get the jury to dislike him. Could be problematic.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "Wait, why do we need need the jury to dislike Gabriel?",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "It would risk his future career in the Senate and the House.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "Oh, he was once part of the New World Wrestling Federation.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "Exactly. NWW doesn't poll well with the voters in his district.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text": "Hm. Seems like we have only five more minutes.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "Run through the witnesses that we have.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "We have Gabriel, obviously.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Alex",
+ "character": "Alex",
+ "animation": "Alex_Standing",
+ "text":  "We also have our defendant Eduardo, the IT guy KAI L. KIMURA, and we have the detective responsible for the murder case CONNOR BURKE.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
+},
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "Okay. Seems like JUDGE BARRETT is almost ready.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "",
+ "bgm": "",
+ "background": ""
 }
+]
+	},	
 
+ {
+"name:": "Lodge_end",
+"objects": [ 
+{
+ "name": "Artemis",
+ "character": "Artemis",
+ "animation": "Court_Neutral",
+ "text": "We should set up for the trial inside the courtroom.",
+ "multipleChoice": "",
+ "correctChoice": "",
+ "presentable": "",
+ "evidence": "",
+ "nextsection": "",
+ "nextscene": "Ch1_Courtroom",
+ "bgm": "",
+ "background": ""
+		}
+	]
+}
+	]
+}
