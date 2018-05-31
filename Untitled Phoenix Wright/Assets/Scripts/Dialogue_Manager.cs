@@ -56,7 +56,7 @@ public class Dialogue_Manager : MonoBehaviour {
     public bool can_press = false;// determine whether to hide press button
                                   ///  
     public bool is_pressing = false;
-
+    public bool speedrun = false;
 
     //extra functionality variables
     public string next = "";
@@ -151,6 +151,7 @@ public class Dialogue_Manager : MonoBehaviour {
             {
                 if (line_count >= end_of_chapter && done == true)   // if we hit the end
                 {
+                    
                     in_conversation = false;
                 }
                 if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation == false && done == true)
@@ -162,6 +163,7 @@ public class Dialogue_Manager : MonoBehaviour {
                     {
                         if (Script[section_call][line_count - 1].next_scene != null)
                         {
+                            Debug.Log("Next Scene");
                             SceneManager.LoadScene(Script[section_call][line_count - 1].next_scene);
                         }
                         reset_dialogue_box();
@@ -169,10 +171,10 @@ public class Dialogue_Manager : MonoBehaviour {
                     }
                     else
                     {
-                        Debug.Log(next);
+                        //Debug.Log(next);
                         if (next != null)
                         {
-                            Debug.Log("Moving on");
+                           // Debug.Log("Moving on");
                             section_call = next;
                             reset_dialogue_box();
                         }
@@ -262,6 +264,13 @@ public class Dialogue_Manager : MonoBehaviour {
         }
         else  //if we are done, set wait time back to default. 
         {
+
+            if (Script[section_call][line_count].next_scene != null)
+            {
+
+                SceneManager.LoadScene(Script[section_call][line_count].next_scene);
+            }
+           
             name.text = Script[section_call][line_count].name;
 
             // Check if the current line can be pressed for information.
@@ -313,7 +322,9 @@ public class Dialogue_Manager : MonoBehaviour {
                 Debug.Log("going to another line");
             }
 
-            if (line_count > last_finished_line)
+            if (speedrun)
+                DisplayText();
+            else if (line_count > last_finished_line)
             {
                 wait_time = 0.01f;
 
@@ -324,6 +335,7 @@ public class Dialogue_Manager : MonoBehaviour {
                 StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
                 Arrow.SetActive(false);//shut the arrow
             }
+      
             else
             {
                 //Otherwise displays text while skipping multiple choice, etc.
@@ -355,6 +367,7 @@ public class Dialogue_Manager : MonoBehaviour {
             conversation.text = convo;
         }
         done = true;
+        Arrow.SetActive(true);
     }
 
     IEnumerator PlayText(string story, Text conversation)  // Type Writer Coroutine (requires the string to type, and where to display)

@@ -111,7 +111,7 @@
  "correctChoice": "",
  "presentable": "",
  "evidence": "",
- "nextsection": "",
+ "nextseceation": "",
  "nextscene": "",
  "bgm": "",
  "background": ""
@@ -308,31 +308,12 @@
  "presentable": "",
  "evidence": "",
  "nextsection": "",
- "nextscene": "",
+ "nextscene": "Ch1_Courtroom",
  "bgm": "",
  "background": ""
 }
 ]
-	},	
+	}
 
- {
-"name:": "Lodge_end",
-"objects": [ 
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "We should set up for the trial inside the courtroom.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "Ch1_Courtroom",
- "bgm": "",
- "background": ""
-		}
-	]
-}
 	]
 }
