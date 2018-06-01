@@ -52,6 +52,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     ///
     float wait_time = 0.01f; //how long per each letter
+    bool fast_forward = false;
     bool done = true; // is the current dialogue donw (are we calling arrow)
     public bool is_investigation; //determine if we should leave dialogue box on or off
     public bool can_press = false;// determine whether to hide press button
@@ -132,61 +133,64 @@ public class Dialogue_Manager : MonoBehaviour
                 forward_dialogue();
             }
 
-
-
-            if (done) // done is to monitor typing
-            {
-                if (line_count >= Script[section_call].Count-1)   // if we hit the end
+            if (line_count >= Script[section_call].Count - 1)   // if we hit the end
                 {
 
                     in_conversation = false;    //in_conversation determines if the current sections is over or not
                 }
 
 
-                if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation == false) //end of section handling
+            if (Input.GetKeyDown(KeyCode.RightArrow) && !done)
+            {
+       
+                fast_forward = true;
+                Arrow.SetActive(false);
+            }
+
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation == false && done) //end of section handling
+            {
+
+                if (is_investigation) //investigation determines whether the current arc is investigation or not. If it is , we turn off chat box after interaction.
                 {
-
-                    if (is_investigation) //investigation determines whether the current arc is investigation or not. If it is , we turn off chat box after interaction.
-                    {
-                        reset_dialogue_box();
-                        panel.SetActive(false);
-                    }
-                    else//
-                    {
-                        if (next != null)
-                        {
-                            section_call = next;
-                            reset_dialogue_box();
-                        }
-                        if (Script[section_call][line_count].next_scene != null)
-                        {
-                            SceneManager.LoadScene(Script[section_call][line_count].next_scene);
-                        }
-                        else
-                        {
-                            //if not moving on, roll back
-                            Debug.Log("Roll back at conversation == false 165");
-                            line_count = 0;
-                            in_conversation = true;
-                        }
-                    }
+                    reset_dialogue_box();
+                    panel.SetActive(false);
                 }
-
-
-                ///-------------------------------Dialogue Controls---------------------------------------------
-                ///--------------------------------------------------------Right Arrow---------------------------------------------
-                ///
-                if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation)
+                else//
                 {
                     if (next != null)
                     {
+                        Debug.Log("Next section at switching back");
                         section_call = next;
                         reset_dialogue_box();
-                        if (is_pressing)
-                        {
-                            line_count = examincation_index;
-                            is_pressing = false;
-                        }
+                        
+
+                    }
+                    else if (Script[section_call][line_count].next_scene != null)
+                    {
+                        SceneManager.LoadScene(Script[section_call][line_count].next_scene);
+                    }
+                    else
+                    {
+                        //if not moving on, roll back
+                        Debug.Log("Roll back at conversation == false 165");
+                        line_count = 0;
+                        in_conversation = true;
+                    }
+                }
+
+            }
+
+            ///-------------------------------Dialogue Controls---------------------------------------------
+            ///--------------------------------------------------------Right Arrow---------------------------------------------
+            ///
+            else if (Input.GetKeyDown(KeyCode.RightArrow) && in_conversation)
+            {
+   
+                    if (next != null)
+                    {
+
+                        section_call = next;
+                        reset_dialogue_box();
 
                     }
                     else
@@ -202,29 +206,28 @@ public class Dialogue_Manager : MonoBehaviour
                         }
                     }
                     forward_dialogue();
-
-                }
-
-
-
-                ///--------------------------------------------------------Left Arrow---------------------------------------------
-                else if (Input.GetKeyDown(KeyCode.LeftArrow) && in_conversation && line_count > 0 && done == true)
-                {
-                    line_count -= 1;
-                    forward_dialogue();
-                }
-
-
+                
             }
 
 
 
-        }
+            ///--------------------------------------------------------Left Arrow---------------------------------------------
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && in_conversation && line_count > 0 && done == true)
+            {
+                line_count -= 1;
+                forward_dialogue();
+            }
+
+
+            }
+
+        
 
     }
 
     void reset_dialogue_box() //clear all contents
     {
+
         line_count = -1;
         name.text = "";
         conversation.text = "";
@@ -242,27 +245,28 @@ public class Dialogue_Manager : MonoBehaviour
         done = true;
         in_conversation = true;
         next = null;
+        if (is_pressing)  // used handle transition from press statements to normal dialogue
+        {
+            is_pressing = false;
+            
+            line_count = examincation_index;
+            if (line_count != -1)
+                forward_dialogue();
+            examincation_index = 0;
+            
+        }
     }
 
     void forward_dialogue() //move on to next line 
     {
 
-        if (!done)   //if we are not done, make it type faster and make sure the arrow is not on
-        {
-            Arrow.SetActive(false);
-        }
-        else
-        {
 
-            //if (Script[section_call][line_count].next_scene != null)
-            //{
-
-            //    SceneManager.LoadScene(Script[section_call][line_count].next_scene);
-            //}
-
+        
             name.text = Script[section_call][line_count].name;
 
             _PressCheck();
+
+            _PresentCheck();
 
             _LoadBackground();
 
@@ -277,7 +281,7 @@ public class Dialogue_Manager : MonoBehaviour
             _RunDialogue();
 
             _BgmHandler();
-        }
+        
     }
 
 
@@ -286,16 +290,17 @@ public class Dialogue_Manager : MonoBehaviour
     {
         done = false; //mark it as not done
         conversation.text = ""; //clear the current chat box
-
-
-
-        _SetTypeSound();
-
         string command_end = "</color>";//(Currently hardcoded) Dealing with rich text crap
         string command_begin = ""; //^
         bool color = false;//are we using rich text bs
 
-        string current=""; // current is the string we are about to type out
+
+        _BgmHandler();
+
+        _SetTypeSound();
+
+
+        string current; // current is the string we are about to type out
 
         for (int i = 0; i != story.Length; i++) //for every letter in the dialogue
         {
@@ -377,30 +382,39 @@ public class Dialogue_Manager : MonoBehaviour
 
 
             }
-        }
 
 
-        //Audio Management
-        if (current != "\n")
-        {
-            wait_time = 0.03f;
-            if (typesound.Contains(current))
+            //Audio Management
+            if (current != "\n")
             {
-                audioSource.PlayOneShot(typing, 0.7f);
-                if (current != " ")
-                    wait_time = 0.1f;
-                else
-                    wait_time = 0.03f;
+                wait_time = 0.03f;
+                if (typesound.Contains(current))
+                {
+                    audioSource.PlayOneShot(typing, 0.7f);
+                    if (current != " ")
+                        wait_time = 0.1f;
+                    else
+                        wait_time = 0.03f;
+                }
             }
+            if (fast_forward)
+            {
+                yield return new WaitForSeconds(0.01f);
+            }
+            else
+            yield return new WaitForSeconds(wait_time); //type writer
+
+
         }
 
 
-        yield return new WaitForSeconds(wait_time); //type writer
-
-        //Multiple Choice Handling------------------------------------
+        //Throws up the multiple choice panel if there is a question
+        //Multiple Choice Handling--------------------------
         if (Script[section_call][line_count].multipleChoice != null)
         {
-
+            //Debug.Log("Line count" + line_count);
+            /*foreach (string s in Script[section_call][line_count].multipleChoice)
+                Debug.Log(s);*/
             multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
             multChoicePanel.SetActive(true);
             //Need to select correct button arrangement based on number of choices
@@ -426,50 +440,12 @@ public class Dialogue_Manager : MonoBehaviour
             multChoicePanel.SetActive(false);
         }
 
+        //Presetable Handling-------------------------
 
-        //Presentable Handling---------------------------
-        if (Script[section_call][line_count].presentable)
-        {
-
-            presentButton.SetActive(true);
-
-            playerEvidenceSelection = "";
-            while (true)
-            {
-
-
-                yield return new WaitUntil(() => !playerEvidenceSelection.Equals(""));
-                if (playerEvidenceSelection.Equals(Script[section_call][line_count].evidence))
-                {
-                    //Automatically moves to next line, if there is one.
-                    if (line_count + 1 < end_of_chapter)
-                    {
-                        presentButton.SetActive(false);
-                        done = true;
-                        line_count += 1;
-                        forward_dialogue();
-                        yield break;
-                    }
-                    break;
-                }
-                else
-                {
-                    //else, there is a penalty.
-                    conversation.text = "WTF IS THIS!!!";
-                    playerEvidenceSelection = "";
-                    Arrow.SetActive(true);
-                    presentButton.SetActive(false);
-                    yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.RightArrow));
-                    _DisplayText();
-                    Arrow.SetActive(false);
-                    presentButton.SetActive(true);
-                }
-            }
-            presentButton.SetActive(false);
-        }
 
 
         done = true; // when we are done, mark done as true
+        fast_forward = false;
         Arrow.SetActive(true);//pop the arrow
 
         last_finished_line = line_count;
@@ -481,30 +457,46 @@ public class Dialogue_Manager : MonoBehaviour
         //Needed to prevent crashes if the press button is clicked before text finishes.
         if (done)
         {
-            is_pressing = true;
             examincation_index = line_count;
             section_call = Script[section_call][line_count].press;
             reset_dialogue_box();
+            is_pressing = true;
         }
     }
+
+
 
     public void PresentEvidence(string presenting)
     {
-        //Debug.Log("Presenting" + presenting);
-        //Debug.Log("Player present item" + playerPresentItem);
-        audio_manager.PlayOneSFX("objection");
-        /*if (presenting == playerPresentItem)
+        if (done)
         {
-            section_call = section_call + "Right";
+            audio_manager.PlayOneSFX("objection");
 
-        }
-        else
-            section_call = section_call + "Wrong";*/
-        //Print negative statement.
+            Debug.Log("Presenting: " + presenting);
 
-        playerEvidenceSelection = presenting;
-        //reset_dialogue_box();
-    }
+            if (presenting.Equals(Script[section_call][line_count].evidence))
+                    {
+                        //Automatically moves to next line, if there is one.
+                        conversation.text = "Fine";
+                        done = true;
+                        Arrow.SetActive(true);
+                        presentButton.SetActive(true);
+                }
+                  
+                    
+             else
+                    {
+                        //else, there is a penalty.
+                        conversation.text = "WTF IS THIS!!!";
+                        done = true;
+                        Arrow.SetActive(true);
+                        presentButton.SetActive(true);
+                    }
+                }
+            }
+
+
+  
     //Called by multiple choice buttons
     public void setPlayerMultChoiceSelection(int sel)
     {
@@ -538,12 +530,16 @@ public class Dialogue_Manager : MonoBehaviour
             PressButton.SetActive(false);
         }
     }
+
+
     private void _LoadBackground() //Background Switching Helper
     {
         if (Script[section_call][line_count].background != null)
             background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
     }
+
+
     private void _AnimationHandler() //switches animation
     {
         GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
@@ -554,6 +550,8 @@ public class Dialogue_Manager : MonoBehaviour
             animation_display.GetComponent<Image>().sprite = animation_prefab.GetComponent<Image>().sprite;
         }
     }
+
+
     private void _CharacterPositionSwitch() // move position accordingly
     {
         //Moves the character to the x position specified in the JSON
@@ -561,13 +559,21 @@ public class Dialogue_Manager : MonoBehaviour
         Vector3 animation_displayPos = animation_display.transform.localPosition;
         animation_display.transform.localPosition = new Vector3(characterXPos, animation_displayPos.y, animation_displayPos.z);
     }
+
+
     private void _PresentCheck()
     {
         if (Script[section_call][line_count].presentable)
         {
             presentButton.SetActive(true);
         }
+        else
+        {
+            presentButton.SetActive(false);
+        }
     } //check if we can present evidence
+
+
     private void _NextScetionSaver() //save the next section name for next iteration
     {
         if (Script[section_call][line_count].next_section != null)
@@ -575,14 +581,15 @@ public class Dialogue_Manager : MonoBehaviour
             next = Script[section_call][line_count].next_section;
         }
     }
+
+
     private void _RunDialogue() //type writer or speed run.
     {
 
         if (speedrun)
             _DisplayText();
-        else if (line_count > last_finished_line)
-        {
-
+        else
+        { 
             //play the current line out
             string processing = Script[section_call][line_count].text; //make a string for the content
                                                                        // Debug.Log(Script[line_count].icon);
@@ -591,12 +598,9 @@ public class Dialogue_Manager : MonoBehaviour
             Arrow.SetActive(false);//shut the arrow
         }
 
-        else
-        {
-            //Otherwise displays text while skipping multiple choice, etc.
-            _DisplayText();
-        }
     }
+
+
     private void _DisplayText()
     {
 
@@ -621,6 +625,8 @@ public class Dialogue_Manager : MonoBehaviour
         done = true;
         Arrow.SetActive(true);
     } //speed run
+
+
     private void _BgmHandler()//BGM Handling
     {
         //Play/Change/Stop background music, if specified.
