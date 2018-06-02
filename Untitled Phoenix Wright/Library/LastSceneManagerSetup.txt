@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/TestCrossExamination.unity
+- path: Assets/Scene/MainMenu.unity
   isLoaded: 1
   isActive: 1

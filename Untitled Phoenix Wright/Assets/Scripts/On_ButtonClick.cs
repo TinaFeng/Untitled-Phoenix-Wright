@@ -135,4 +135,13 @@ public class On_ButtonClick : MonoBehaviour {
             
     }
 
+    public void ChangeScene(string newScene)
+    {
+        SceneManager.LoadScene(newScene);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
