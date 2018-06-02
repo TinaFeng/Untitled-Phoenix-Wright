@@ -21,7 +21,7 @@
 {
  "name": "Artemis",
  "character": "Artemis",
- "animation": "Court_Neutral",
+  "animation": "null",
  "text": "Of course. There's only fifteen minutes left before the trial.",
  "multipleChoice": "[]",
  "correctChoice": "",
@@ -46,20 +46,20 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "Perhaps. Run me through the details again.",
- "multipleChoice": "[]",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "Perhaps. Run me through the details again.",
+    "multipleChoice": "[]",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -88,20 +88,20 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text":  "Right. The prosecuting lawyer is the public prosecutor and our superior, FELIX GWERDER.",
- "multipleChoice": "",
- "correctChoice": "[]",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "Right. The prosecuting lawyer is the public prosecutor and our superior, FELIX GWERDER.",
+    "multipleChoice": "",
+    "correctChoice": "[]",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -130,34 +130,34 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "GABRIEL HYLAND?",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "It's going to be tough to get the jury to dislike him. Could be problematic.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "GABRIEL HYLAND?",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "It's going to be tough to get the jury to dislike him. Could be problematic.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -172,48 +172,48 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "It would risk his future career in the Senate and the House.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "You have to remember that Eduardo was State Senator Hyland's bodyguard.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "I don't feel like State Senator Hyland wants to continue problematic affiliations.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "It would risk his future career in the Senate and the House.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -228,20 +228,20 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "Exactly. NWW doesn't poll well with the voters in his district.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "Exactly. NWW doesn't poll well with the voters in his district.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -256,20 +256,20 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "Run through the witnesses that we have.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "",
- "bgm": "",
- "background": ""
-},
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "Run through the witnesses that we have.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "",
+    "bgm": "",
+    "background": ""
+  },
 {
  "name": "Alex",
  "character": "Alex",
@@ -298,20 +298,20 @@
  "bgm": "",
  "background": ""
 },
-{
- "name": "Artemis",
- "character": "Artemis",
- "animation": "Court_Neutral",
- "text": "Okay. Seems like JUDGE BARRETT is almost ready.",
- "multipleChoice": "",
- "correctChoice": "",
- "presentable": "",
- "evidence": "",
- "nextsection": "",
- "nextscene": "Ch1_Courtroom",
- "bgm": "",
- "background": ""
-}
+  {
+    "name": "Artemis",
+    "character": "Artemis",
+    "animation": "null",
+    "text": "Okay. Seems like JUDGE BARRETT is almost ready.",
+    "multipleChoice": "",
+    "correctChoice": "",
+    "presentable": "",
+    "evidence": "",
+    "nextsection": "",
+    "nextscene": "Ch1_Courtroom",
+    "bgm": "",
+    "background": ""
+  }
 ]
 	}
 

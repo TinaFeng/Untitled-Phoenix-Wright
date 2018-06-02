@@ -293,7 +293,7 @@ public class Dialogue_Manager : MonoBehaviour
         string command_end = "</color>";//(Currently hardcoded) Dealing with rich text crap
         string command_begin = ""; //^
         bool color = false;//are we using rich text bs
-
+        _AnimationTalk();
 
         _BgmHandler();
 
@@ -443,11 +443,13 @@ public class Dialogue_Manager : MonoBehaviour
         //Presetable Handling-------------------------
 
 
+        //finishing up handling
 
         done = true; // when we are done, mark done as true
         fast_forward = false;
         Arrow.SetActive(true);//pop the arrow
 
+        _AnimationTalk();
         last_finished_line = line_count;
     }
 
@@ -666,4 +668,18 @@ public class Dialogue_Manager : MonoBehaviour
 
 
     } //set typing noise
+
+    private void _AnimationTalk()
+    {
+  
+        GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
+
+        if (animation_display.GetComponent<Animator>() != null)
+        {
+            if (!done)
+                animation_display.GetComponent<Animator>().SetBool("Talking", true);
+            else
+                animation_display.GetComponent<Animator>().SetBool("Talking",false);
+        }
+    }
 }

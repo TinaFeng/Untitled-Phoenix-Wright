@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/TestCrossExamination.unity
+- path: Assets/Scene/Ch1_CourtLodge.unity
   isLoaded: 1
   isActive: 1
