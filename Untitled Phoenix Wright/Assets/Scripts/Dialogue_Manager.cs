@@ -545,7 +545,7 @@ public class Dialogue_Manager : MonoBehaviour
     private void _AnimationHandler() //switches animation
     {
         GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
-
+        Debug.Log("Animation:" + "Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
         if (animation_display.GetComponent<Animator>() != null)
         {
             animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
