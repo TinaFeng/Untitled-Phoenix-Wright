@@ -24,7 +24,7 @@ public class ItemAndPeople_Loader : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         Load_Inventory("Item_List");
         Load_Inventory("People_List");
 

@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class On_ButtonClick : MonoBehaviour {
 
 
-   public void OnButtonClick(string button_name)
+    public void OnButtonClick(string button_name)
     {
         if (button_name == "Court Record")//if clicking court record button
         {
