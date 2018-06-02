@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scene/Ch1_CourtLodge.unity
+=======
+- path: Assets/Scene/MainMenu.unity
+>>>>>>> Kaitlyn
   isLoaded: 1
   isActive: 1
