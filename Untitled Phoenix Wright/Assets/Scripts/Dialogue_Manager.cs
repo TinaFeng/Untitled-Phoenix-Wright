@@ -18,6 +18,9 @@ public class Dialogue_Manager : MonoBehaviour
     public GameObject multChoicePanel;
     public GameObject PressButton;
 
+    public GameObject CourtRecordPanel;
+
+
     //animation//protrait display
     GameObject animation_display;
     Animator anim;
@@ -281,7 +284,7 @@ public class Dialogue_Manager : MonoBehaviour
             _RunDialogue();
 
             _BgmHandler();
-        
+
     }
 
 
@@ -442,6 +445,9 @@ public class Dialogue_Manager : MonoBehaviour
 
         //Presetable Handling-------------------------
 
+        //Ideally should only be checked the first time when completing dialogue.
+        //Waits if an item is unlocked to allow the "animation" to finish
+        CheckForNewEvidence();
 
 
         done = true; // when we are done, mark done as true
@@ -464,7 +470,16 @@ public class Dialogue_Manager : MonoBehaviour
         }
     }
 
-
+    //Adds evidence to list if the player finds it
+    void CheckForNewEvidence()
+    {
+        //Debug.Log(Script[section_call][line_count].obtainEvidence);
+        if (Script[section_call][line_count].obtainEvidence != null)
+        {
+            //Debug.Log(Script[section_call][line_count].obtainEvidence);
+            CourtRecordPanel.GetComponent<Inventory_Display>().UnlockItem(Script[section_call][line_count].obtainEvidence);
+        }
+    }
 
     public void PresentEvidence(string presenting)
     {

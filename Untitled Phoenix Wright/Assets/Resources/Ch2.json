@@ -16,11 +16,18 @@
           "animation": "Normal_Talking",
           "text": "<color=#5DE42F>Show me the badge",
 		  "evidence": "Attorney's Badge",
+		  "presentable": 1
         },
 		{
           "character": "Miles",
           "animation": "Normal_Talking",
           "text": "<color=#5DE42F>There it is!"
+        },
+		{
+          "character": "Miles",
+          "animation": "Normal_Talking",
+          "text": "<color=#5DE42F>Here's a thing.",
+		  "obtainEvidence": "Placeholder"
         },
 		{
 			

@@ -8,8 +8,8 @@ public class Inventory_Display : MonoBehaviour {
     List<Type_Inventory> portrait;
     GameObject loader;
     public GameObject item_box;
+    public GameObject EvidenceObtainedPanel; //Pop-up panel to show player they got new evidence
 
-    
     List<GameObject> Item_List;
     List<GameObject> Portrait_List;
     // Use this for initialization
@@ -20,7 +20,6 @@ public class Inventory_Display : MonoBehaviour {
         Item_List = new List<GameObject>();
         portrait = loader.GetComponent<ItemAndPeople_Loader>().people ;
         Portrait_List = new List<GameObject>();
-
     }
 
     private void OnCanvasGroupChanged()
@@ -64,7 +63,7 @@ public class Inventory_Display : MonoBehaviour {
         if (container.childCount == 1)
         {
             if (item_collection == items)
-            Item_List.Add(container.GetChild(0).gameObject);
+                Item_List.Add(container.GetChild(0).gameObject);
             else
                 Portrait_List.Add(container.GetChild(0).gameObject);
         }
@@ -82,11 +81,20 @@ public class Inventory_Display : MonoBehaviour {
             if ( !Search(currentlist, item_collection[i].display_name) )
             {
                 GameObject item = Instantiate(item_box, container);
-                item.GetComponent<Item_Button_Behavior>().item_name = item_collection[i].display_name;
-                item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + item_collection[i].display_name);
-                item.GetComponent<Item_Button_Behavior>().item_description = item_collection[i].description;
-                item.GetComponent<RectTransform>().Translate(new Vector3 (i*item.GetComponent<RectTransform>().rect.width, 0,0));
 
+                item.GetComponent<Item_Button_Behavior>().item_name = item_collection[i].display_name;                
+                item.GetComponent<Item_Button_Behavior>().item_description = item_collection[i].description;
+
+                if (!item_collection[i].is_unlocked)
+                {
+                    item.GetComponent<Button>().interactable = false;
+                }
+                else
+                {
+                    item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + item_collection[i].display_name);
+                }
+
+                item.GetComponent<RectTransform>().Translate(new Vector3(i * item.GetComponent<RectTransform>().rect.width, 0, 0));
 
                 if (item_collection == items)
                     Item_List.Add(item);
@@ -118,5 +126,53 @@ public class Inventory_Display : MonoBehaviour {
         }
         
             return false;
+    }
+
+    //Called by DialogueManager to unlock an item.
+    public void UnlockItem (string newItem)
+    {
+        //Debug.Log(newItem);
+        foreach (Type_Inventory i in items)
+        {
+            Debug.Log(newItem + " " + i.display_name);
+            if (i.display_name.Equals(newItem))
+            {
+                Debug.Log("Should unlock");
+                if (!i.is_unlocked)
+                {
+                    i.is_unlocked = true;
+                    //Animation
+                    Debug.Log("Unlocked " + i.display_name);
+                    foreach (GameObject j in Item_List)
+                    {
+                        Debug.Log(j.GetComponent<Item_Button_Behavior>().item_name);
+                        if (j.GetComponent<Item_Button_Behavior>().item_name.Equals(newItem))
+                        {
+                            j.GetComponent<Button>().interactable = true;
+                            if (i.display_name != null)
+                                j.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + i.display_name);
+                            else
+                                j.GetComponent<Image>().sprite = null;
+                        }
+                    }
+
+                    StartCoroutine(DisplayEvidenceObtained());
+                    //StartCoroutine(Wait(2.0f));
+                    //Debug.Log("coroutine one");
+                }
+
+            }
+        }
+    }
+
+    //Temporarly displays evidence obtained message
+    IEnumerator DisplayEvidenceObtained()
+    {
+        //Show evidence obtained panel for a bit
+        //Maybe edit to include the name of the evidence.
+        EvidenceObtainedPanel.SetActive(true);
+        //Hides the evidenceobtained panel when the player presses any key
+        yield return new WaitUntil(() => Input.anyKey == true);
+        EvidenceObtainedPanel.SetActive(false);
     }
 }
