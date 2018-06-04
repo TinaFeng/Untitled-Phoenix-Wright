@@ -81,6 +81,9 @@ public class On_ButtonClick : MonoBehaviour {
         Turn_off_Panel(GameObject.FindGameObjectWithTag("Court_Record"));
 
     }
+    //Can be called by a piece of evidence when the player clicks it
+
+
     void Display_Item(string itemname, string description)
     {
         GameObject panel = GameObject.FindGameObjectWithTag("Display_Panel");
@@ -139,6 +142,7 @@ public class On_ButtonClick : MonoBehaviour {
     {
         SceneManager.LoadScene(newScene);
     }
+
 
     public void Exit()
     {

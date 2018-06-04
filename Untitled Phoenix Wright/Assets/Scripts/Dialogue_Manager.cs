@@ -18,6 +18,9 @@ public class Dialogue_Manager : MonoBehaviour
     public GameObject multChoicePanel;
     public GameObject PressButton;
 
+    public GameObject CourtRecordPanel;
+
+
     //animation//protrait display
     GameObject animation_display;
     Animator anim;
@@ -47,7 +50,7 @@ public class Dialogue_Manager : MonoBehaviour
     bool in_conversation = false;                               // determine whether the chat box disappears
 
     int examincation_index = -1;  //checking cross examintation sentences when pressed
-
+    bool plot_lock = false; //locking for multiple choice and plot pauses.
 
 
     ///
@@ -125,8 +128,11 @@ public class Dialogue_Manager : MonoBehaviour
 
     void Update()
     {
-        if (section_call != "null")//if we know what we are talking
+        if (section_call != "null" &&!plot_lock)//if we know what we are talking
         {
+
+            if (speedrun)
+                done = true;
             if (line_count == -1)//if we are just starting, auto play one
             {
                 line_count++;
@@ -159,7 +165,7 @@ public class Dialogue_Manager : MonoBehaviour
                 {
                     if (next != null)
                     {
-                        Debug.Log("Next section at switching back");
+                    //    Debug.Log("Next section at switching back");
                         section_call = next;
                         reset_dialogue_box();
                         
@@ -172,7 +178,7 @@ public class Dialogue_Manager : MonoBehaviour
                     else
                     {
                         //if not moving on, roll back
-                        Debug.Log("Roll back at conversation == false 165");
+                    //    Debug.Log("Roll back at conversation == false 165");
                         line_count = 0;
                         in_conversation = true;
                     }
@@ -201,7 +207,7 @@ public class Dialogue_Manager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("Roll back at 197 size out of bound");
+                       //     Debug.Log("Roll back at 197 size out of bound");
                             line_count = 0; // roll back
                         }
                     }
@@ -274,14 +280,17 @@ public class Dialogue_Manager : MonoBehaviour
 
             _CharacterPositionSwitch();
 
-            _PresentCheck();
+            _PresentCheck();           
 
             _NextScetionSaver();
 
             _RunDialogue();
 
             _BgmHandler();
-        
+
+            _MultipleChoiceCheck();
+       
+
     }
 
 
@@ -408,40 +417,13 @@ public class Dialogue_Manager : MonoBehaviour
         }
 
 
-        //Throws up the multiple choice panel if there is a question
-        //Multiple Choice Handling--------------------------
-        if (Script[section_call][line_count].multipleChoice != null)
-        {
-            //Debug.Log("Line count" + line_count);
-            /*foreach (string s in Script[section_call][line_count].multipleChoice)
-                Debug.Log(s);*/
-            multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
-            multChoicePanel.SetActive(true);
-            //Need to select correct button arrangement based on number of choices
-
-            //Stops player from progressing until they choose the correct option
-            playerMultChoiceSelection = -1;
-            //Debug.Log("Correct choice " + Script[section_call][line_count].correctChoice);
-            while (true)
-            {
-                yield return new WaitUntil(() => playerMultChoiceSelection >= 0);
-                if (playerMultChoiceSelection == Script[section_call][line_count].correctChoice)
-                {
-                    break;
-                }
-                else
-                {
-                    //else, there is a penalty. Greys out the player's incorrect guess
-                    multChoicePanel.GetComponent<MultChoicePanelManager>().DisableIncorrectGuess(playerMultChoiceSelection, Script[section_call][line_count].multipleChoice.Length);
-                    playerMultChoiceSelection = -1;
-                }
-            }
-            multChoicePanel.GetComponent<MultChoicePanelManager>().ResetChoices();
-            multChoicePanel.SetActive(false);
-        }
+       
 
         //Presetable Handling-------------------------
 
+        //Ideally should only be checked the first time when completing dialogue.
+        //Waits if an item is unlocked to allow the "animation" to finish
+        CheckForNewEvidence();
 
         //finishing up handling
 
@@ -466,7 +448,16 @@ public class Dialogue_Manager : MonoBehaviour
         }
     }
 
-
+    //Adds evidence to list if the player finds it
+    void CheckForNewEvidence()
+    {
+        //Debug.Log(Script[section_call][line_count].obtainEvidence);
+        if (Script[section_call][line_count].obtainEvidence != null)
+        {
+            //Debug.Log(Script[section_call][line_count].obtainEvidence);
+            CourtRecordPanel.GetComponent<Inventory_Display>().UnlockItem(Script[section_call][line_count].obtainEvidence);
+        }
+    }
 
     public void PresentEvidence(string presenting)
     {
@@ -474,7 +465,7 @@ public class Dialogue_Manager : MonoBehaviour
         {
             audio_manager.PlayOneSFX("objection");
 
-            Debug.Log("Presenting: " + presenting);
+ //           Debug.Log("Presenting: " + presenting);
 
             if (presenting.Equals(Script[section_call][line_count].evidence))
                     {
@@ -498,12 +489,14 @@ public class Dialogue_Manager : MonoBehaviour
             }
 
 
-  
+
+
     //Called by multiple choice buttons
     public void setPlayerMultChoiceSelection(int sel)
     {
-        //Debug.Log("Player choice " + sel);
+    
         playerMultChoiceSelection = sel;
+        _MultipleChoiceCheck();
         //Debug.Log(playerMultChoiceSelection);
     }
 
@@ -545,7 +538,7 @@ public class Dialogue_Manager : MonoBehaviour
     private void _AnimationHandler() //switches animation
     {
         GameObject animation_prefab = Resources.Load<GameObject>("Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
-        Debug.Log("Animation:" + "Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
+        //Debug.Log("Animation:" + "Arts/" + "Characters/" + Script[section_call][line_count].character + "/" + Script[section_call][line_count].animation);
         if (animation_display.GetComponent<Animator>() != null)
         {
             animation_display.GetComponent<Animator>().runtimeAnimatorController = animation_prefab.GetComponent<Animator>().runtimeAnimatorController;
@@ -588,17 +581,14 @@ public class Dialogue_Manager : MonoBehaviour
     private void _RunDialogue() //type writer or speed run.
     {
 
-        if (speedrun)
-            _DisplayText();
-        else
-        { 
+       
             //play the current line out
             string processing = Script[section_call][line_count].text; //make a string for the content
                                                                        // Debug.Log(Script[line_count].icon);
 
             StartCoroutine(PlayText(processing, conversation));//call Coroutine to type write
             Arrow.SetActive(false);//shut the arrow
-        }
+        
 
     }
 
@@ -682,4 +672,53 @@ public class Dialogue_Manager : MonoBehaviour
                 animation_display.GetComponent<Animator>().SetBool("Talking",false);
         }
     }
+
+
+    void _MultipleChoiceCheck()
+    {
+        //Throws up the multiple choice panel if there is a question
+        //Multiple Choice Handling--------------------------
+
+      
+        if (Script[section_call][line_count].multipleChoice != null ) // if we haven't locked it yet. Lock and show multiple choice.
+        {
+            Debug.Log("Choices");
+                plot_lock = true;
+                multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
+                multChoicePanel.SetActive(true);
+
+                if (playerMultChoiceSelection == Script[section_call][line_count].correctChoice)
+                {
+                    plot_lock = false;
+                    line_count++;
+                    forward_dialogue();
+                }
+                else
+                {
+                    plot_lock = true;
+           
+                    //else, there is a penalty. Greys out the player's incorrect guess
+                    if (playerMultChoiceSelection != -1)
+                    {
+                        conversation.text = "No, that's not what I meant.";
+                        multChoicePanel.GetComponent<MultChoicePanelManager>().DisableIncorrectGuess(playerMultChoiceSelection, Script[section_call][line_count].multipleChoice.Length);
+                    }
+                    playerMultChoiceSelection = -1;
+                }
+
+            }
+        
+        
+
+            if (!plot_lock)
+            {
+            playerMultChoiceSelection = -1;
+            multChoicePanel.GetComponent<MultChoicePanelManager>().ResetChoices();
+                multChoicePanel.SetActive(false);
+            }
+        
+    }
+
+    
+
 }

@@ -34,6 +34,7 @@ public class Type_Dialogue
     public int correctChoice;
     public bool presentable;
     public string evidence;
+    public string obtainEvidence; //Evidence the player will obtain completing dialogue
     public string next_section = null;
     public string bgm;
     public string press = null;
@@ -182,6 +183,17 @@ public class LoadJson : MonoBehaviour{
                         {
                             line.evidence = null;
                         }
+
+                        try
+                        {
+                            if (item["obtainEvidence"].ToString() != "")
+                                line.obtainEvidence = item["obtainEvidence"].ToString();
+                        }
+                        catch (Exception e)
+                        {
+                            line.obtainEvidence = null;
+                        }
+
                         //section to call if pressed
                         try
                         {
