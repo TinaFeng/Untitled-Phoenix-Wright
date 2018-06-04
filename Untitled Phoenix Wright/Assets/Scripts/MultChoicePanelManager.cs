@@ -56,9 +56,16 @@ public class MultChoicePanelManager : MonoBehaviour {
     }
 
     //Will disable a button if the player makes an incorrect guess
+
+    public void Choosing(int choice_num)
+    {
+        GameObject.FindGameObjectWithTag("Dialogue_Manager").GetComponent<Dialogue_Manager>().setPlayerMultChoiceSelection(choice_num);
+    }
+
+
     public void DisableIncorrectGuess(int buttonNum, int numChoices)
     {
-        buttonNum += 1;
+    //    buttonNum += 1;
         string buttonName = "Choice" + buttonNum;
         if (numChoices == 2)
         {
