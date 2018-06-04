@@ -35,7 +35,6 @@ public class ItemAndPeople_Loader : MonoBehaviour {
         //    Debug.Log(item.display_name);
         //    Debug.Log(item.description);
         //}
-
     }
 
     public void Load_Inventory(string content)

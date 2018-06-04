@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/Scene/Ch1_Courtroom.unity
+=======
+- path: Assets/Scene/Ch2.unity
+>>>>>>> Kaitlyn
   isLoaded: 1
   isActive: 1
