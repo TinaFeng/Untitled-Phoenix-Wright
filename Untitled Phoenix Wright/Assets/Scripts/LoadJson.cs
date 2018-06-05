@@ -56,7 +56,7 @@ public class LoadJson : MonoBehaviour{
     //a dictionary that divides the script into sections
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         LoadDialogueData();  // When every scene starts, load json data
     }
 

@@ -88,6 +88,9 @@ public class Dialogue_Manager : MonoBehaviour
     AudioManager audio_manager;
     //Handles all audio except for typing sounds (would be an easy change though...)
 
+    //Scene Transition Manager
+    SceneTransitionManager trans_manager;
+
     ///
     void Awake()
     {
@@ -117,11 +120,17 @@ public class Dialogue_Manager : MonoBehaviour
         presentButton = GameObject.FindGameObjectWithTag("Present_Button");
         presentButton.SetActive(false);
 
+        trans_manager = GameObject.FindGameObjectWithTag("Transition_Manager").GetComponent<SceneTransitionManager>();
+
     }
 
-    private void OnEnable() //everytime when the panel shows up,reset everything.
+    private void OnEnable()
     {
         reset_dialogue_box();
+    }
+    private void Start() //everytime when the panel shows up,reset everything.
+    {
+        before_show_dialogue();
     }
 
     ///Using Update to keep track of line counts and pressing keys
@@ -173,7 +182,7 @@ public class Dialogue_Manager : MonoBehaviour
                     }
                     else if (Script[section_call][line_count].next_scene != null)
                     {
-                        SceneManager.LoadScene(Script[section_call][line_count].next_scene);
+                        _SceneOut(Script[section_call][line_count].next_scene);
                     }
                     else
                     {
@@ -229,6 +238,20 @@ public class Dialogue_Manager : MonoBehaviour
 
         
 
+    }
+
+    void before_show_dialogue()
+    {
+        line_count = 0;
+        _LoadBackground();
+        _AnimationHandler();
+        _BgmHandler();
+        line_count = -1;
+        name.text = "";
+        conversation.text = "";
+        done = true;
+        in_conversation = true;
+        next = null;
     }
 
     void reset_dialogue_box() //clear all contents
@@ -529,6 +552,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void _LoadBackground() //Background Switching Helper
     {
+        print(line_count);
         if (Script[section_call][line_count].background != null)
             background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
@@ -717,6 +741,16 @@ public class Dialogue_Manager : MonoBehaviour
                 multChoicePanel.SetActive(false);
             }
         
+    }
+
+    //Fades out when switching scenes.
+    void _SceneOut(string next_scene)
+    {
+        print("fading out");
+        if (trans_manager != null)
+            trans_manager.ChangeScene(next_scene);
+        else
+            SceneManager.LoadScene(next_scene);
     }
 
     
