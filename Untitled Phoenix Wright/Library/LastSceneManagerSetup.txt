@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Ch1_Courtroom.unity
+- path: Assets/Scene/Ch1.unity
   isLoaded: 1
   isActive: 1
