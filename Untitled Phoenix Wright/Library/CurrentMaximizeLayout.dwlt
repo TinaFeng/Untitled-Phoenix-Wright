@@ -18,12 +18,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
+<<<<<<< HEAD
     width: 1920
     height: 938
   m_MinSize: {x: 879, y: 492}
   m_MaxSize: {x: 16004, y: 14042}
   vertical: 0
   controlID: 5497
+=======
+    width: 1536
+    height: 731
+  m_MinSize: {x: 883, y: 342}
+  m_MaxSize: {x: 16008, y: 8042}
+  vertical: 0
+  controlID: 6911
+>>>>>>> Lawrence
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -44,10 +53,17 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 408
     y: 103
     width: 982
     height: 517
+=======
+    x: 709
+    y: 92
+    width: 403
+    height: 398
+>>>>>>> Lawrence
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 1
   m_Gizmos: 0
@@ -66,8 +82,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
+    m_HSlider: 1
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoom: 0
@@ -77,25 +93,43 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
+<<<<<<< HEAD
       width: 982
       height: 500
     m_Scale: {x: 0.6510417, y: 0.6510417}
     m_Translation: {x: 491, y: 250}
+=======
+      width: 403
+      height: 381
+    m_Scale: {x: 0.50406045, y: 0.50406045}
+    m_Translation: {x: 201.5, y: 190.5}
+>>>>>>> Lawrence
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -754.17596
       y: -384
       width: 1508.3519
       height: 768
+=======
+      x: -399.75363
+      y: -377.93088
+      width: 799.50726
+      height: 755.86176
+>>>>>>> Lawrence
     m_MinimalGUI: 1
-  m_defaultScale: 0.6510417
+  m_defaultScale: 0.3935547
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
+<<<<<<< HEAD
   m_LastWindowPixelSize: {x: 982, y: 517}
+=======
+  m_LastWindowPixelSize: {x: 403, y: 398}
+>>>>>>> Lawrence
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000100
@@ -117,12 +151,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1392
     height: 938
   m_MinSize: {x: 604, y: 492}
   m_MaxSize: {x: 12004, y: 14042}
   vertical: 1
   controlID: 5498
+=======
+    width: 1114
+    height: 731
+  m_MinSize: {x: 606, y: 342}
+  m_MaxSize: {x: 12006, y: 8042}
+  vertical: 1
+  controlID: 6912
+>>>>>>> Lawrence
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -142,12 +185,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1392
     height: 538
   m_MinSize: {x: 604, y: 221}
   m_MaxSize: {x: 12004, y: 4021}
   vertical: 0
   controlID: 5499
+=======
+    width: 1114
+    height: 419
+  m_MinSize: {x: 606, y: 221}
+  m_MaxSize: {x: 12006, y: 4021}
+  vertical: 0
+  controlID: 6913
+>>>>>>> Lawrence
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,9 +217,15 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 202
+<<<<<<< HEAD
     height: 538
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    height: 419
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+>>>>>>> Lawrence
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -194,6 +252,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 103
     width: 200
     height: 517
@@ -203,6 +262,17 @@ MonoBehaviour:
     m_SelectedIDs: f6b6ffff
     m_LastClickedID: 0
     m_ExpandedIDs: d00afeffda0afeffe0fbffffeafbffff00000000
+=======
+    y: 92
+    width: 200
+    height: 398
+  m_PersistentViewDataDictionary: {fileID: 0}
+  m_TreeViewState:
+    scrollPos: {x: 0, y: 0}
+    m_SelectedIDs: b2cefeff
+    m_LastClickedID: -78158
+    m_ExpandedIDs: 6c1dffff901dffff9c1dfffff822ffffa660ffff4ebfffff5abfffff30cbffff3ccbffff1cd8ffff78e7ffff84e7ffffc0f5ffff00000000f43b00000e3c0000044900001e490000
+>>>>>>> Lawrence
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -242,8 +312,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 202
     y: 0
+<<<<<<< HEAD
     width: 204
     height: 538
+=======
+    width: 505
+    height: 419
+>>>>>>> Lawrence
   m_MinSize: {x: 204, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 8}
@@ -275,9 +350,15 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 204
+<<<<<<< HEAD
     y: 103
     width: 200
     height: 517
+=======
+    y: 92
+    width: 501
+    height: 398
+>>>>>>> Lawrence
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
   lastFramingTime: 164.91473145679012
@@ -285,9 +366,15 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 512, y: 467.20004, z: 0}
     speed: 2
     m_Value: {x: 512, y: 467.20004, z: 0}
+=======
+    m_Target: {x: 619.4306, y: 340.0329, z: -6.576241}
+    speed: 2
+    m_Value: {x: 619.4306, y: 340.0329, z: -6.576241}
+>>>>>>> Lawrence
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -319,9 +406,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 1813.469
     speed: 2
     m_Value: 1813.469
+=======
+    m_Target: 865.6949
+    speed: 2
+    m_Value: 865.6949
+>>>>>>> Lawrence
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -498,12 +591,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 406
     y: 0
     width: 986
     height: 538
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+    x: 707
+    y: 0
+    width: 407
+    height: 419
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
+>>>>>>> Lawrence
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -524,6 +626,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 538
     width: 1392
     height: 400
@@ -536,6 +639,20 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &14
+=======
+    y: 419
+    width: 1114
+    height: 312
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 13}
+  m_Panes:
+  - {fileID: 12}
+  - {fileID: 13}
+  m_Selected: 1
+  m_LastSelected: 0
+--- !u!114 &12
+>>>>>>> Lawrence
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_PrefabParentObject: {fileID: 0}
@@ -556,9 +673,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 641
-    width: 1390
-    height: 379
+    y: 511
+    width: 1112
+    height: 291
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SearchFilter:
     m_NameFilter: 
@@ -572,21 +689,36 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
+<<<<<<< HEAD
     - Assets/Resources/Arts/Characters/Gabriel
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets/Resources/Arts/Characters/Gabriel
+=======
+    - Assets/Scripts
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Scripts
+>>>>>>> Lawrence
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\xuanf\OneDrive\Documents\GitHub\Untitled-Phoenix-Wright\Untitled
+  m_LastProjectPath: E:\Documents\programming stuff\Untitled-Phoenix-Wright\Untitled
     Phoenix Wright
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 54}
     m_SelectedIDs: c62b0000
     m_LastClickedID: 11206
     m_ExpandedIDs: 00000000442a0000a02b0000682c00007c2c0000642d000000ca9a3bffffff7f
+=======
+    scrollPos: {x: 0, y: 146}
+    m_SelectedIDs: 50350000
+    m_LastClickedID: 13648
+    m_ExpandedIDs: 000000006234000050350000ee35000002360000c236000000ca9a3bffffff7f
+>>>>>>> Lawrence
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -614,7 +746,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000442a0000a02b0000682c00007c2c0000642d000000ca9a3bffffff7f
+=======
+    m_ExpandedIDs: 000000006234000050350000ee35000002360000c236000000ca9a3bffffff7f
+>>>>>>> Lawrence
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -639,10 +775,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: f6b6ffff
     m_LastClickedInstanceID: -18698
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 0032000004320000e03100004e2b0000dc310000e8310000
+=======
+    m_SelectedInstanceIDs: b2cefeff
+    m_LastClickedInstanceID: -78158
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: 
+>>>>>>> Lawrence
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -690,9 +833,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 641
-    width: 1390
-    height: 379
+    y: 511
+    width: 1112
+    height: 291
   m_PersistentViewDataDictionary: {fileID: 0}
 --- !u!114 &16
 MonoBehaviour:
@@ -708,13 +851,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1392
+    x: 1114
     y: 0
+<<<<<<< HEAD
     width: 528
     height: 938
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
+=======
+    width: 422
+    height: 731
+  m_MinSize: {x: 277, y: 71}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 15}
+>>>>>>> Lawrence
   m_Panes:
   - {fileID: 17}
   m_Selected: 0
@@ -739,10 +890,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1394
-    y: 103
-    width: 526
-    height: 917
+    x: 1116
+    y: 92
+    width: 420
+    height: 710
   m_PersistentViewDataDictionary: {fileID: 0}
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
