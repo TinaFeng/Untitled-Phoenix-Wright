@@ -8,30 +8,30 @@
     {
       "name": "Cell Phone",
       "description": "My phone.",
-      "is_unlocked": "1"
+      "is_unlocked": "0"
     },
     {
       "name": "Placeholder",
       "description": "placeholder",
-      "is_unlocked": "1"
+      "is_unlocked": "0"
 
     },
     {
       "name": "Placeholder",
       "description": "placeholder",
-      "is_unlocked": "1"
+      "is_unlocked": "0"
 
     },
     {
       "name": "Placeholder",
       "description": "placeholder",
-      "is_unlocked": "1"
+      "is_unlocked": "0"
 
     },
     {
       "name": "Placeholder",
       "description": "placeholder",
-      "is_unlocked": "1"
+      "is_unlocked": "0"
 
     }
   ]

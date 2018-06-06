@@ -88,6 +88,7 @@ public class Inventory_Display : MonoBehaviour {
                 if (!item_collection[i].is_unlocked)
                 {
                     item.GetComponent<Button>().interactable = false;
+                    item.GetComponent<Image>().sprite = Resources.Load<Sprite>("Arts/" + "Items/" + "Inventory Background");
                 }
                 else
                 {

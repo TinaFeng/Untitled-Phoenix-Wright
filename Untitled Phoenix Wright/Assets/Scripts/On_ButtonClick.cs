@@ -125,15 +125,20 @@ public class On_ButtonClick : MonoBehaviour {
     {
         if (direction == "Left")
         {
-            panel.GetComponent<GridLayoutGroup>().padding.left -= Mathf.RoundToInt(panel.GetComponent<GridLayoutGroup>().cellSize.x);
-            LayoutRebuilder.MarkLayoutForRebuild(panel.GetComponent<RectTransform>());
-
+            if (panel.GetComponent<GridLayoutGroup>().padding.left >= panel.transform.GetChild(panel.transform.childCount-1).GetComponent<RectTransform>().rect.x - Mathf.RoundToInt(panel.GetComponent<GridLayoutGroup>().cellSize.x+10))
+            {
+                panel.GetComponent<GridLayoutGroup>().padding.left -= Mathf.RoundToInt(panel.GetComponent<GridLayoutGroup>().cellSize.x);
+                LayoutRebuilder.MarkLayoutForRebuild(panel.GetComponent<RectTransform>());
+            }
         }
         if(direction == "Right")
         {
             //+ panel.GetComponent<GridLayoutGroup>().spacing.x
-            panel.GetComponent<GridLayoutGroup>().padding.left += Mathf.RoundToInt(panel.GetComponent<GridLayoutGroup>().cellSize.x);
-            LayoutRebuilder.MarkLayoutForRebuild(panel.GetComponent<RectTransform>());
+            if (panel.GetComponent<GridLayoutGroup>().padding.left <= 15)
+            {
+                panel.GetComponent<GridLayoutGroup>().padding.left += Mathf.RoundToInt(panel.GetComponent<GridLayoutGroup>().cellSize.x);
+                LayoutRebuilder.MarkLayoutForRebuild(panel.GetComponent<RectTransform>());
+            }
         }
             
     }
