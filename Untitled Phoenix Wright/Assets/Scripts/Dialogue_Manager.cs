@@ -716,7 +716,7 @@ public class Dialogue_Manager : MonoBehaviour
       
         if (Script[section_call][line_count].multipleChoice != null ) // if we haven't locked it yet. Lock and show multiple choice.
         {
-            Debug.Log("Choices");
+            //Debug.Log("Choices");
                 plot_lock = true;
                 multChoicePanel.GetComponent<MultChoicePanelManager>().DisplayChoices(Script[section_call][line_count].multipleChoice);
                 multChoicePanel.SetActive(true);
