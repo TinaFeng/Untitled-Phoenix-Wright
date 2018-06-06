@@ -26,6 +26,7 @@ public class Dialogue_Manager : MonoBehaviour
     Animator anim;
 
     Image background;//The background image
+    Image foreground; //The foreground image
 
     GameObject presentButton; //button used to present evidence
     //GameObject courtRecordButton; //button used to open court record
@@ -116,6 +117,7 @@ public class Dialogue_Manager : MonoBehaviour
         anim = animation_display.GetComponent<Animator>();
 
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
+        foreground = GameObject.FindGameObjectWithTag("Foreground").GetComponent<Image>();
 
         presentButton = GameObject.FindGameObjectWithTag("Present_Button");
         presentButton.SetActive(false);
@@ -270,6 +272,8 @@ public class Dialogue_Manager : MonoBehaviour
 
         background = GameObject.FindGameObjectWithTag("Background").GetComponent<Image>();
         background.sprite = null;
+        foreground = GameObject.FindGameObjectWithTag("Foreground").GetComponent<Image>();
+        foreground.sprite = null;
 
         done = true;
         in_conversation = true;
@@ -556,6 +560,12 @@ public class Dialogue_Manager : MonoBehaviour
         if (Script[section_call][line_count].background != null)
             background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
+        if (Script[section_call][line_count].foreground != null)
+            foreground.sprite = Resources.Load<Sprite>("Arts/" + "Foregrounds/" + Script[section_call][line_count].foreground);
+        else
+        {
+            foreground.sprite = Resources.Load<Sprite>("Arts/" + "null");
+        }
     }
 
 

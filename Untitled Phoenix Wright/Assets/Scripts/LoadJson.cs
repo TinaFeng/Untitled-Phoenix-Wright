@@ -44,6 +44,7 @@ public class Type_Dialogue
 
 
     public string background; //The background image
+    public string foreground; //The foreground image
 }
 
 
@@ -249,6 +250,17 @@ public class LoadJson : MonoBehaviour{
                         catch (Exception e)
                         {
                             line.background = null;
+                        }
+                        try
+                        {
+                            if (item["foreground"].ToString() != "")
+                                line.background = item["foreground"].ToString();
+
+                            //Debug.Log(line.evidence);
+                        }
+                        catch (Exception e)
+                        {
+                            line.foreground = null;
                         }
                         dialogues.Add(line); //add this line to list
                     }
