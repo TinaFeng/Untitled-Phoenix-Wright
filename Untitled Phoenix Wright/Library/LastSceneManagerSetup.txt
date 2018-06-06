@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scene/Ch1.unity
-=======
-- path: Assets/Scene/Ch1_CourtLodge.unity
->>>>>>> Lawrence
+- path: Assets/Scene/Ch1_Courtroom.unity
   isLoaded: 1
   isActive: 1
