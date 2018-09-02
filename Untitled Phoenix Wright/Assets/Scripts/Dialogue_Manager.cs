@@ -59,7 +59,8 @@ public class Dialogue_Manager : MonoBehaviour
     bool done = true; // is the current dialogue donw (are we calling arrow)
     public bool is_investigation; //determine if we should leave dialogue box on or off
     public bool can_press = false;// determine whether to hide press button
-                                  ///  
+    public bool can_rewind = false;
+    ///  
     public bool is_pressing = false;
     public bool speedrun = false;
 
@@ -94,6 +95,9 @@ public class Dialogue_Manager : MonoBehaviour
     ///
     void Awake()
     {
+        //stuff
+        PressButton.SetActive(false);
+
 
         //Script
         GameObject loader = GameObject.FindGameObjectWithTag("Script_Data");  //find the xml loader that has the xml data in the scene
@@ -227,7 +231,7 @@ public class Dialogue_Manager : MonoBehaviour
 
 
             ///--------------------------------------------------------Left Arrow---------------------------------------------
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) && in_conversation && line_count > 0 && done == true)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && in_conversation && line_count > 0 && done == true &&can_rewind )
             {
                 line_count -= 1;
                 forward_dialogue();
@@ -288,7 +292,6 @@ public class Dialogue_Manager : MonoBehaviour
 
     void forward_dialogue() //move on to next line 
     {
-
 
         
             name.text = Script[section_call][line_count].name;
@@ -492,11 +495,12 @@ public class Dialogue_Manager : MonoBehaviour
 
             if (presenting.Equals(Script[section_call][line_count].evidence))
                     {
-                        //Automatically moves to next line, if there is one.
-                        conversation.text = "Fine";
-                        done = true;
-                        Arrow.SetActive(true);
-                        presentButton.SetActive(true);
+                //Automatically moves to next line, if there is one.
+                can_rewind = false;
+                        section_call = section_call += "-Right";
+                reset_dialogue_box();
+                Debug.Log(Script[section_call]);
+                presentButton.SetActive(false);
                 }
                   
                     
@@ -552,7 +556,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     private void _LoadBackground() //Background Switching Helper
     {
-        print(line_count);
+//        print(line_count);
         if (Script[section_call][line_count].background != null)
             background.sprite = Resources.Load<Sprite>("Arts/" + "Backgrounds/" + Script[section_call][line_count].background);
 
@@ -746,7 +750,7 @@ public class Dialogue_Manager : MonoBehaviour
     //Fades out when switching scenes.
     void _SceneOut(string next_scene)
     {
-        print("fading out");
+  //      print("fading out");
         if (trans_manager != null)
             trans_manager.ChangeScene(next_scene);
         else

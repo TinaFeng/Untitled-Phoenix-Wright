@@ -27,7 +27,7 @@ public class BenchManager : MonoBehaviour {
             string bg = bg_object.GetComponent<Image>().sprite.name;
             if (last_bg != bg)
             {
-                print(bg);
+//                print(bg);
                 //Check defense
                 if (last_bg != defense_bg && bg == defense_bg)
                 {

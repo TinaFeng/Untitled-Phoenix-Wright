@@ -9,7 +9,8 @@
         {
             "lobby":"Audio/Court_Lobby",
             "test01":"Audio/Test_BGM01",
-            "test02":"Audio/Test_BGM02"
+          "test02": "Audio/Test_BGM02",
+            "theme": "Audio/Theme"
         },
     "SFX":
         {

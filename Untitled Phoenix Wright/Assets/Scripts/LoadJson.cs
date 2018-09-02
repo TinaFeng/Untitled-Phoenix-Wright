@@ -66,7 +66,7 @@ public class LoadJson : MonoBehaviour{
 
             Dialogue_File_Name = SceneManager.GetActiveScene().name; // getting the file name from current scene
 
-        Debug.Log(Dialogue_File_Name);
+      //  Debug.Log(Dialogue_File_Name);
 
             TextAsset rawJson = Resources.Load<TextAsset>(Dialogue_File_Name); //Load the JSON file by its name
            
@@ -137,7 +137,7 @@ public class LoadJson : MonoBehaviour{
                                 }
                                 if (line.multipleChoice.Count() == 1 || line.multipleChoice.Count() > 4)
                                 {
-                                    Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
+                                  //  Debug.Log("There are " + line.multipleChoice.Count() + " in the mulitple choice Array. 2-4 please.");
                                 }
                             }
                         }
@@ -153,7 +153,7 @@ public class LoadJson : MonoBehaviour{
                             //Debug.Log("When read in..." + line.correctChoice);
                             if (line.multipleChoice == null)
                             {
-                                Debug.Log("No multiple choices");
+                        //        Debug.Log("No multiple choices");
                             }
                         }
                         catch (Exception e)
@@ -219,7 +219,7 @@ public class LoadJson : MonoBehaviour{
                         {
                             if (item["nextscene"].ToString() != "")
                                 line.next_scene = item["nextscene"].ToString();
-                            Debug.Log(item["nextscene"].ToString());
+              //              Debug.Log(item["nextscene"].ToString());
                         }
                         catch (Exception e)
                         {

@@ -1,0 +1,4 @@
+*.resS filter=lfs diff=lfs merge=lfs -text
+*.assets filter=lfs diff=lfs merge=lfs -text
+*.assets.resS filter=lfs diff=lfs merge=lfs -text
+Untitled[[:space:]]Phoenix[[:space:]]Wright/Library/PlayerDataCache/Data/resources.assets.resS filter=lfs diff=lfs merge=lfs -text

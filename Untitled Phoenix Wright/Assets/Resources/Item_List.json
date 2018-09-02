@@ -6,33 +6,28 @@
       "is_unlocked": "1"
     },
     {
-      "name": "Cell Phone",
-      "description": "My phone.",
-      "is_unlocked": "0"
+      "name": "Autopsy Report",
+      "description": "The autopsy report by the La Reina County Coroner's office for Joshua Hyland.",
+      "is_unlocked": "1"
     },
     {
-      "name": "Placeholder",
-      "description": "placeholder",
-      "is_unlocked": "0"
+      "name": "Written Testimony",
+      "description": "A written form of the testimony for Eduardo Fuentes.",
+      "is_unlocked": "1"
 
     },
     {
-      "name": "Placeholder",
-      "description": "placeholder",
-      "is_unlocked": "0"
+      "name": "Rubber Gloves",
+      "description": "Rubber gloves found at the crime scene.  Most of the blood splatter seems to be on the right hand. There seems to be a hole where the wrist area is.",
+      "is_unlocked": "1"
 
     },
     {
-      "name": "Placeholder",
-      "description": "placeholder",
-      "is_unlocked": "0"
+      "name": "Aluminum Pen",
+      "description": "A tactical pen made from anodized aluminum. A pen Artemis bought as evidence to match a molten one found at the crime scene.",
+      "is_unlocked": "1"
 
     },
-    {
-      "name": "Placeholder",
-      "description": "placeholder",
-      "is_unlocked": "0"
 
-    }
   ]
 }

@@ -1,0 +1,52 @@
+{
+  "Scene": [
+
+    {
+      "name:": "trans",
+      "objects": [
+        {
+          "name": "Judge",
+          "character": "Judge",
+          "animation": "Court_Neutral",
+          "text": "Does the defense have any questions?",
+          "multipleChoice":,
+          "correctChoice": "",
+          "presentable": "",
+          "evidence": "",
+          "nextsection": "",
+          "nextscene": "",
+          "bgm": "",
+          "background": "judge_stand"
+        },
+        {
+          "name": "Artemis",
+          "character": "Artemis",
+          "animation": "Court_Neutral",
+          "text": "Yes, your honor.",
+          "multipleChoice":,
+          "correctChoice": "",
+          "presentable": "",
+          "evidence": "",
+          "nextsection": "",
+          "nextscene": "",
+          "bgm": "",
+          "background": "defense_stand"
+        },
+        {
+          "name": "Judge",
+          "character": "Judge",
+          "animation": "Court_Neutral",
+          "text": "Please proceed to cross examination.",
+          "multipleChoice":,
+          "correctChoice": "",
+          "presentable": "",
+          "evidence": "",
+          "nextsection": "",
+          "nextscene": "Ch1D_CrossExamination",
+          "bgm": "",
+          "background": "judge_stand"
+        }
+      ]
+    }
+  ]
+}
